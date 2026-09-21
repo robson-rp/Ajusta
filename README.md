@@ -1,26 +1,22 @@
 <p align="center">
-  <img src="resources/static/img/logo-full.svg" alt="InvoiceShelf" width="232">
+  <img src="resources/static/img/brand/ajusta-horizontal.webp" alt="AJUSTA" width="360">
 </p>
 
 <p align="center">
-  Open-source invoicing for people who want to own their business data.
+  <strong>Facturação e salários, ajustados à lei angolana.</strong><br>
+  Uma conta. Um NIF. Um ciclo.
 </p>
 
-<p align="center">
-  <a href="https://invoiceshelf.com/download"><strong>Download InvoiceShelf</strong></a>
-  ·
-  <a href="https://docs.invoiceshelf.com/">Documentation</a>
-  ·
-  <a href="https://discord.gg/eHXf4zWhsR">Join Discord</a>
-</p>
+> [!NOTE]
+> **AJUSTA** é baseado no [InvoiceShelf](https://github.com/InvoiceShelf/InvoiceShelf),
+> software livre sob a licença [AGPL-3.0](LICENSE). O AJUSTA mantém a mesma licença:
+> o código-fonte desta versão modificada está disponível neste repositório.
+> A interface está em Português de Angola (com inglês disponível), usa o Kwanza e as
+> predefinições angolanas, e tem identidade visual própria.
 
 > [!WARNING]
-> The default `3.x` branch is an alpha preview. It is ready for testing and
-> feedback, but not for production data. Use the supported
-> [`2.x` release](https://github.com/InvoiceShelf/InvoiceShelf/tree/2.x) for a
-> production installation.
-
-![InvoiceShelf dashboard](resources/static/img/invoiceshelf-dashboard.png)
+> Este fork segue o ramo `3.x` do InvoiceShelf, que é uma versão de pré-lançamento (alpha).
+> Não o use com dados de produção.
 
 ## Run your invoicing from one place
 

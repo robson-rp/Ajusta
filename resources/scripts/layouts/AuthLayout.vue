@@ -2,7 +2,7 @@
   <div class="relative min-h-screen w-full bg-surface-secondary">
     <NotificationRoot />
 
-    <div class="absolute top-4 right-4 sm:top-6 sm:right-6">
+    <div class="absolute z-10 top-4 right-4 sm:top-6 sm:right-6">
       <LanguageSwitcher />
     </div>
 

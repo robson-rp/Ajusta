@@ -19,7 +19,7 @@
 
         hr {
             color: rgba(0, 0, 0, 0.2);
-            border: 0.5px solid #EAF1FB;
+            border: 0.5px solid #EFFCF9;
             margin: 50px 0px;
         }
 
@@ -46,7 +46,7 @@
         .header-logo {
             /* position: absolute; */
             text-transform: capitalize;
-            color: #7675ff;
+            color: #008574;
             padding-top: 0px;
         }
 
@@ -154,7 +154,7 @@
             font-size: 12px;
             line-height: 18px;
             margin-bottom: 0px;
-            color: #55547A;
+            color: #33413F;
         }
 
         .billing-address-name {
@@ -188,7 +188,7 @@
             font-size: 12px;
             line-height: 18px;
             text-align: left;
-            color: #55547A
+            color: #33413F
         }
 
         .attribute-value {
@@ -236,7 +236,7 @@
             font-size: 14px;
             line-height: 25px;
             padding-bottom: 5px;
-            border-bottom: 1px solid #B9C1D1;
+            border-bottom: 1px solid #D4DDDB;
         }
 
         /* -- Total Display Box -- */
@@ -245,8 +245,8 @@
             min-width: 315px;
             display: block;
             margin-right: 30px;
-            background: #F9FBFF;
-            border: 1px solid #EAF1FB;
+            background: #F7FAF9;
+            border: 1px solid #EFFCF9;
             box-sizing: border-box;
             float: right;
             padding: 12px 15px 15px 15px;
@@ -266,7 +266,7 @@
             font-size: 14px;
             line-height: 21px;
             text-align: right;
-            color: #5851D8;
+            color: #008574;
             margin-left: 150px;
         }
 

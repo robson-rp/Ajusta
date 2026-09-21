@@ -156,7 +156,9 @@
     "select_company_to_continue": "Seleccione uma empresa para continuar.",
     "go_to_dashboard": "Ir para o painel",
     "logged_out_successfully_toast": "Sessão terminada com sucesso.",
-    "connection_lost": "Verifique a sua ligação à internet ou aguarde até que os servidores voltem a estar disponíveis."
+    "connection_lost": "Verifique a sua ligação à internet ou aguarde até que os servidores voltem a estar disponíveis.",
+    "based_on": "Baseado no",
+    "source_code": "Código-fonte"
   },
   "dashboard": {
     "select_year": "Seleccionar ano",

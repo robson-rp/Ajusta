@@ -26,6 +26,7 @@
         <p class="text-2xl font-semibold text-heading">
           {{ data.app_version }}
         </p>
+        <UpstreamAttribution class="mt-2" />
       </BaseCard>
 
       <!-- PHP Version -->
@@ -87,6 +88,7 @@
 </template>
 
 <script setup lang="ts">
+import UpstreamAttribution from '@/scripts/components/UpstreamAttribution.vue'
 import { ref, onMounted } from 'vue'
 import { useAdminStore } from '../stores/admin.store'
 import type { AdminDashboardData } from '../stores/admin.store'

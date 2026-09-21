@@ -156,7 +156,9 @@
     "select_company_to_continue": "Select a company to continue.",
     "go_to_dashboard": "Go to Dashboard",
     "logged_out_successfully_toast": "Logged out successfully.",
-    "connection_lost": "Please check your internet connection or wait until servers are back online."
+    "connection_lost": "Please check your internet connection or wait until servers are back online.",
+    "based_on": "Based on",
+    "source_code": "Source code"
   },
   "dashboard": {
     "select_year": "Select year",

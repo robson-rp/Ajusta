@@ -248,9 +248,9 @@ async function fetchData({ page, sort }: FetchParams): Promise<TableResult> {
 function getRoleBadgeClass(role: string | null): string {
   switch (role) {
     case 'super admin':
-      return 'bg-purple-100 text-purple-800'
+      return 'bg-primary-100 text-primary-800'
     case 'admin':
-      return 'bg-blue-100 text-blue-800'
+      return 'bg-surface-tertiary text-body'
     default:
       return 'bg-surface-tertiary text-heading'
   }

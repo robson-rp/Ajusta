@@ -16,13 +16,13 @@ const badgeColorClasses = computed<string>(() => {
   switch (props.status) {
     case EstimateStatus.DRAFT:
     case 'DRAFT':
-      return `${baseClasses} bg-gray-100 text-gray-700 ring-1 ring-inset ring-gray-300/50`
+      return `${baseClasses} bg-surface-tertiary text-muted ring-1 ring-inset ring-line-default`
     case EstimateStatus.SENT:
     case 'SENT':
-      return `${baseClasses} bg-blue-50 text-blue-700 ring-1 ring-inset ring-blue-300/50`
+      return `${baseClasses} bg-primary-50 text-primary-700 ring-1 ring-inset ring-primary-200/60`
     case EstimateStatus.VIEWED:
     case 'VIEWED':
-      return `${baseClasses} bg-indigo-50 text-indigo-700 ring-1 ring-inset ring-indigo-300/50`
+      return `${baseClasses} bg-primary-50 text-primary-700 ring-1 ring-inset ring-primary-200/60`
     case EstimateStatus.EXPIRED:
     case 'EXPIRED':
       return `${baseClasses} bg-red-50 text-red-700 ring-1 ring-inset ring-red-300/50`
@@ -31,7 +31,7 @@ const badgeColorClasses = computed<string>(() => {
       return `${baseClasses} bg-emerald-50 text-emerald-700 ring-1 ring-inset ring-emerald-300/50`
     case EstimateStatus.REJECTED:
     case 'REJECTED':
-      return `${baseClasses} bg-rose-50 text-rose-700 ring-1 ring-inset ring-rose-300/50`
+      return `${baseClasses} bg-red-50 text-red-700 ring-1 ring-inset ring-red-300/50`
     default:
       return `${baseClasses} bg-surface-secondary text-muted ring-1 ring-inset ring-line-default`
   }

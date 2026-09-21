@@ -33,7 +33,7 @@
           class="flex items-center justify-between gap-3 px-3 py-2 text-sm cursor-pointer text-body hover:bg-hover"
           @click="select(language.code)"
         >
-          <span :class="{ 'font-medium text-heading': language.code === currentLocale }">
+          <span class="whitespace-nowrap" :class="{ 'font-medium text-heading': language.code === currentLocale }">
             {{ language.name }}
           </span>
           <BaseIcon

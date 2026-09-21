@@ -2,19 +2,18 @@
   <header
     class="
       fixed top-0 left-0 z-20 flex items-center justify-between w-full
-      px-4 py-3 md:h-16 md:px-8 bg-linear-to-r from-header-from to-header-to
+      px-4 py-3 md:h-16 md:px-8 bg-header-from border-b border-line-light
     "
   >
     <div class="flex items-center">
       <router-link
         :to="companyStore.isAdminMode ? '/admin/administration/dashboard' : '/admin/dashboard'"
         class="
-          text-lg not-italic font-black tracking-wider text-white
           brand-main font-base hidden md:block
         "
       >
         <img v-if="adminLogo" :src="adminLogo" class="h-9 w-auto max-w-48 object-contain" />
-        <MainLogo v-else class="h-9 w-auto" light-color="white" dark-color="white" />
+        <MainLogo v-else class="h-8 w-auto" />
       </router-link>
     </div>
 
@@ -41,7 +40,7 @@
             <div
               class="
                 flex items-center justify-center w-8 h-8 ml-2 text-sm text-white
-                bg-white/20 rounded-lg hover:bg-white/30 md:h-9 md:w-9
+                bg-btn-primary rounded-lg hover:bg-btn-primary-hover transition-colors md:h-9 md:w-9
               "
             >
               <BaseIcon name="PlusIcon" class="w-5 h-5 text-white" />
@@ -117,7 +116,7 @@
           <template #activator>
             <img
               :src="previewAvatar"
-              class="block w-8 h-8 rounded-full ring-2 ring-white/30 md:h-9 md:w-9 object-cover"
+              class="block w-8 h-8 rounded-full ring-1 ring-line-default md:h-9 md:w-9 object-cover"
             />
           </template>
 

@@ -1,13 +1,15 @@
 <template>
   <div class="flex flex-col items-center justify-center mt-16">
     <div class="flex flex-col items-center justify-center">
-      <slot></slot>
+      <slot>
+        <EmptyStateMark class="mb-4" />
+      </slot>
     </div>
     <div class="mt-2">
-      <label class="font-medium">{{ title }}</label>
+      <label class="font-medium text-heading">{{ title }}</label>
     </div>
-    <div class="mt-2">
-      <label class="text-muted">
+    <div class="mt-1">
+      <label class="text-sm text-muted">
         {{ description }}
       </label>
     </div>
@@ -18,6 +20,7 @@
 </template>
 
 <script setup lang="ts">
+import EmptyStateMark from '@/scripts/components/icons/EmptyStateMark.vue'
 interface Props {
   title?: string
   description?: string

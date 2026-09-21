@@ -20,7 +20,7 @@
         hr {
             margin: 0 30px 0 30px;
             color: rgba(0, 0, 0, 0.2);
-            border: 0.5px solid #EAF1FB;
+            border: 0.5px solid #EFFCF9;
         }
 
         /* -- Header -- */
@@ -47,7 +47,7 @@
             margin-top: 20px;
             padding-bottom: 20px;
             text-transform: capitalize;
-            color: #7675ff;
+            color: #008574;
         }
 
         .content-wrapper {
@@ -94,7 +94,7 @@
             line-height: 18px;
             padding-right: 40px;
             text-align: left;
-            color: #55547A;
+            color: #33413F;
         }
 
         .attribute-value {
@@ -187,7 +187,7 @@
             text-align: center;
             color: rgba(0, 0, 0, 0.85);
             padding: 5px;
-            color: #55547A;
+            color: #33413F;
         }
 
         tr.item-table-heading-row th {
@@ -234,7 +234,7 @@
 
         .total-table-attribute-label {
             font-size: 13px;
-            color: #55547A;
+            color: #33413F;
             text-align: left;
             padding-left: 10px;
         }
@@ -289,7 +289,7 @@
         /* -- Helpers -- */
 
         .text-primary {
-            color: #5851DB;
+            color: #008574;
         }
 
 

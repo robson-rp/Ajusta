@@ -5,7 +5,8 @@
       max-w-sm
       mb-3
       rounded-lg
-      shadow-lg
+      border border-line-light
+      shadow-md
       cursor-pointer
       pointer-events-auto
       w-full

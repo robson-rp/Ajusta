@@ -5,11 +5,11 @@
         v-model="searchQuery"
         :placeholder="$t('global_search.search')"
         container-class="!rounded-lg !shadow-none"
-        class="h-8 md:h-9 !rounded-lg !bg-white/20 !border-white/10 !text-white !placeholder-white/60"
+        class="h-8 md:h-9 !rounded-lg !bg-surface-secondary !border-line-light"
         @input="onSearchInput"
       >
         <template #left>
-          <BaseIcon name="MagnifyingGlassIcon" class="!text-white/70" />
+          <BaseIcon name="MagnifyingGlassIcon" class="!text-subtle" />
         </template>
         <template #right>
           <span v-if="isSearching" class="h-5 w-5 animate-spin text-primary-500" />
@@ -30,7 +30,7 @@
         class="
           scrollbar-thin scrollbar-thumb-rounded-full scrollbar-thumb-surface-muted
           scrollbar-track-surface-secondary overflow-y-auto bg-surface rounded-md
-          mt-2 shadow-lg p-3 absolute w-[300px] h-[200px] right-0
+          mt-2 border border-line-light shadow-md p-3 absolute w-[300px] h-[200px] right-0
         "
       >
         <div

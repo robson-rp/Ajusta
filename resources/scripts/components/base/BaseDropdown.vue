@@ -68,7 +68,7 @@ const props = withDefaults(defineProps<Props>(), {
 })
 
 const containerClasses = computed<string>(() => {
-  const baseClass = `origin-top-right rounded-xl shadow-xl bg-surface/80 backdrop-blur-xl border border-white/15 divide-y divide-line-light focus:outline-hidden`
+  const baseClass = `origin-top-right rounded-xl shadow-md bg-surface border border-line-light divide-y divide-line-light focus:outline-hidden`
   return `${baseClass} pointer-events-auto ${props.containerClass}`
 })
 

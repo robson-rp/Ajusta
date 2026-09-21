@@ -180,7 +180,7 @@
             </td>
             <td
                 class="py-8 border-0 total-border-right item-cell total-table-attribute-value"
-                style="color: #5851D8"
+                style="color: #008574"
             >
                 {!! format_money_pdf($invoice->total, $invoice->customer->currency)!!}
             </td>
@@ -227,7 +227,7 @@
                 <td class="border-0 total-border-left total-table-attribute-label">
                     @lang('pdf_amount_due')
                 </td>
-                <td class="py-8 border-0 total-border-right item-cell total-table-attribute-value" style="color: #5851D8">
+                <td class="py-8 border-0 total-border-right item-cell total-table-attribute-value" style="color: #008574">
                     {!! format_money_pdf($invoice->due_amount, $invoice->customer->currency)!!}
                 </td>
             </tr>

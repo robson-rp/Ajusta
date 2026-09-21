@@ -63,15 +63,15 @@ const placeHolderSize = computed<string>(() => {
 
 const variantClass = computed<Record<string, boolean>>(() => {
   return {
-    'border-transparent shadow-xs text-white bg-btn-primary hover:bg-btn-primary-hover focus:ring-primary-500':
+    'border-transparent text-white bg-btn-primary hover:bg-btn-primary-hover focus:ring-primary-500':
       props.variant === 'primary',
     'border-transparent text-primary-700 bg-primary-100 hover:bg-primary-200 focus:ring-primary-500':
       props.variant === 'secondary',
-    'border-solid border-primary-500 font-normal transition ease-in-out duration-150 text-primary-500 hover:bg-primary-200 shadow-inner focus:ring-primary-500':
+    'border-solid border-primary-600 font-medium transition ease-in-out duration-150 text-primary-600 bg-surface hover:bg-primary-50 focus:ring-primary-500':
       props.variant == 'primary-outline',
     'border-line-default text-body bg-surface hover:bg-hover focus:ring-primary-500 focus:ring-offset-0':
       props.variant == 'white',
-    'border-transparent shadow-xs text-white bg-red-600 hover:bg-red-700 focus:ring-red-500':
+    'border-transparent text-white bg-red-600 hover:bg-red-700 focus:ring-red-500':
       props.variant === 'danger',
     'border-transparent bg-surface-muted border hover:bg-surface-muted/60 focus:ring-gray-500 focus:ring-offset-0':
       props.variant === 'gray',

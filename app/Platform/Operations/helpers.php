@@ -71,7 +71,7 @@ function get_page_title($company_id)
         ? CompanySetting::getSetting('customer_portal_page_title', $company_id)
         : Setting::getSetting('admin_page_title');
 
-    return $configured ?: 'InvoiceShelf - Self Hosted Invoicing Platform';
+    return $configured ?: 'AJUSTA — Facturação e salários';
 }
 
 /*

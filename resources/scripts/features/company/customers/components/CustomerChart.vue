@@ -145,7 +145,7 @@ async function onChangeYear(data: string): Promise<boolean> {
           <span
             v-if="isLoading"
             class="block mt-1 text-xl font-semibold leading-8"
-            style="color: #00c99c"
+            style="color: var(--color-primary-600)"
           >
             <BaseFormatMoney
               :amount="chartData.totalReceipts"
@@ -162,7 +162,7 @@ async function onChangeYear(data: string): Promise<boolean> {
           <span
             v-if="isLoading"
             class="block mt-1 text-xl font-semibold leading-8"
-            style="color: #fb7178"
+            style="color: #E5484D"
           >
             <BaseFormatMoney
               :amount="chartData.totalExpenses"
@@ -179,7 +179,7 @@ async function onChangeYear(data: string): Promise<boolean> {
           <span
             v-if="isLoading"
             class="block mt-1 text-xl font-semibold leading-8"
-            style="color: #5851d8"
+            style="color: var(--color-primary-700)"
           >
             <BaseFormatMoney
               :amount="chartData.netProfit"

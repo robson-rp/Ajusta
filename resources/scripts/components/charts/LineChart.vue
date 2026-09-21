@@ -5,6 +5,7 @@
 </template>
 
 <script setup lang="ts">
+import { useI18n } from 'vue-i18n'
 import { Chart } from 'chart.js/auto'
 import type { ChartConfiguration, ChartDataset } from 'chart.js/auto'
 import { ref, computed, onMounted, watchEffect, inject } from 'vue'
@@ -28,6 +29,8 @@ interface Props {
 }
 
 const utils = inject<FormatUtils>('utils')
+
+const { t } = useI18n()
 
 const props = withDefaults(defineProps<Props>(), {
   labels: () => [],
@@ -66,10 +69,17 @@ onMounted(() => {
     style.getPropertyValue('--color-muted').trim() || '#6b7280'
   const surfaceColor =
     style.getPropertyValue('--color-surface').trim() || '#fff'
+  // Brand teal for money coming in, deep teal for the result, a single
+  // muted red for money going out — the same meaning everywhere.
+  const receiptsColor =
+    style.getPropertyValue('--color-primary-500').trim() || '#00BFA6'
+  const netColor =
+    style.getPropertyValue('--color-primary-700').trim() || '#006E61'
+  const expensesColor = '#E5484D'
 
   const datasets: ChartDataset<'line', number[]>[] = [
     {
-      label: 'Sales',
+      label: t('dashboard.chart_info.total_sales'),
       fill: false,
       tension: 0.3,
       backgroundColor: 'rgba(230, 254, 249)',
@@ -90,20 +100,20 @@ onMounted(() => {
       data: props.invoices.map((invoice) => invoice / 100),
     },
     {
-      label: 'Receipts',
+      label: t('dashboard.chart_info.total_receipts'),
       fill: false,
       tension: 0.3,
       backgroundColor: 'rgba(230, 254, 249)',
-      borderColor: 'rgb(2, 201, 156)',
+      borderColor: receiptsColor,
       borderCapStyle: 'butt',
       borderDash: [],
       borderDashOffset: 0.0,
       borderJoinStyle: 'miter',
-      pointBorderColor: 'rgb(2, 201, 156)',
+      pointBorderColor: receiptsColor,
       pointBackgroundColor: surfaceColor,
       pointBorderWidth: 1,
       pointHoverRadius: 5,
-      pointHoverBackgroundColor: 'rgb(2, 201, 156)',
+      pointHoverBackgroundColor: receiptsColor,
       pointHoverBorderColor: 'rgba(220,220,220,1)',
       pointHoverBorderWidth: 2,
       pointRadius: 4,
@@ -111,20 +121,20 @@ onMounted(() => {
       data: props.receipts.map((receipt) => receipt / 100),
     },
     {
-      label: 'Expenses',
+      label: t('dashboard.chart_info.total_expense'),
       fill: false,
       tension: 0.3,
       backgroundColor: 'rgba(245, 235, 242)',
-      borderColor: 'rgb(255,0,0)',
+      borderColor: expensesColor,
       borderCapStyle: 'butt',
       borderDash: [],
       borderDashOffset: 0.0,
       borderJoinStyle: 'miter',
-      pointBorderColor: 'rgb(255,0,0)',
+      pointBorderColor: expensesColor,
       pointBackgroundColor: surfaceColor,
       pointBorderWidth: 1,
       pointHoverRadius: 5,
-      pointHoverBackgroundColor: 'rgb(255,0,0)',
+      pointHoverBackgroundColor: expensesColor,
       pointHoverBorderColor: 'rgba(220,220,220,1)',
       pointHoverBorderWidth: 2,
       pointRadius: 4,
@@ -132,20 +142,20 @@ onMounted(() => {
       data: props.expenses.map((expense) => expense / 100),
     },
     {
-      label: 'Net Income',
+      label: t('dashboard.chart_info.net_income'),
       fill: false,
       tension: 0.3,
       backgroundColor: 'rgba(236, 235, 249)',
-      borderColor: 'rgba(88, 81, 216, 1)',
+      borderColor: netColor,
       borderCapStyle: 'butt',
       borderDash: [],
       borderDashOffset: 0.0,
       borderJoinStyle: 'miter',
-      pointBorderColor: 'rgba(88, 81, 216, 1)',
+      pointBorderColor: netColor,
       pointBackgroundColor: surfaceColor,
       pointBorderWidth: 1,
       pointHoverRadius: 5,
-      pointHoverBackgroundColor: 'rgba(88, 81, 216, 1)',
+      pointHoverBackgroundColor: netColor,
       pointHoverBorderColor: 'rgba(220,220,220,1)',
       pointHoverBorderWidth: 2,
       pointRadius: 4,

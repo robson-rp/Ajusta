@@ -54,7 +54,7 @@
         line-height: 24px;
         letter-spacing: 0.05em;
         text-transform: uppercase;
-        color: #55547A;
+        color: #33413F;
     }
 
     /* -- Sections -- */
@@ -79,7 +79,7 @@
         line-height: 18px;
         letter-spacing: 0.05em;
         text-transform: uppercase;
-        color: #55547A;
+        color: #33413F;
     }
 
     /* -- Tables -- */
@@ -94,7 +94,7 @@
         line-height: 15px;
         text-transform: uppercase;
         text-align: left;
-        color: #55547A;
+        color: #33413F;
     }
 
     .report-table td {
@@ -154,7 +154,7 @@
     .report-footer {
         margin: 0 -12px;
         padding: 12px;
-        background: #F9FBFF;
+        background: #F7FAF9;
     }
 
     /* Same reason as the report table: the band's inset is its own 12px, not
@@ -169,7 +169,7 @@
         font-weight: bold;
         letter-spacing: 0.05em;
         text-transform: uppercase;
-        color: #55547A;
+        color: #33413F;
     }
 
     .report-footer-value {
@@ -177,6 +177,6 @@
         line-height: 24px;
         font-weight: bold;
         text-align: right;
-        color: #5851D8;
+        color: #008574;
     }
 </style>

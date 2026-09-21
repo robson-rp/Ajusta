@@ -1,49 +1,52 @@
 :root {
-    --color-primary-50: rgb(241, 243, 255);
-    --color-primary-100: rgb(229, 231, 255);
-    --color-primary-200: rgb(206, 209, 255);
-    --color-primary-300: rgb(167, 170, 255);
-    --color-primary-400: rgb(118, 117, 255);
-    --color-primary-500: rgb(74, 61, 255);
-    --color-primary-600: rgb(51, 22, 255);
-    --color-primary-700: rgb(33, 4, 253);
-    --color-primary-800: rgb(27, 3, 211);
-    --color-primary-900: rgb(25, 5, 173);
-    --color-primary-950: rgb(9, 0, 118);
+    /* AJUSTA teal — 500 (#00BFA6) is the brand signature: focus, active
+       states, highlights. Text-bearing fills use 600+ for contrast. */
+    --color-primary-50: rgb(239, 252, 249);
+    --color-primary-100: rgb(204, 247, 238);
+    --color-primary-200: rgb(153, 238, 221);
+    --color-primary-300: rgb(92, 224, 200);
+    --color-primary-400: rgb(31, 205, 178);
+    --color-primary-500: rgb(0, 191, 166);
+    --color-primary-600: rgb(0, 133, 116);
+    --color-primary-700: rgb(0, 110, 97);
+    --color-primary-800: rgb(3, 89, 79);
+    --color-primary-900: rgb(7, 74, 67);
+    --color-primary-950: rgb(1, 45, 41);
 
-    /* Surfaces */
+    /* Surfaces — white with an almost invisible cool tint underneath */
     --color-surface: rgb(255, 255, 255);
-    --color-surface-secondary: rgb(249, 250, 251);
-    --color-surface-tertiary: rgb(243, 244, 246);
-    --color-surface-muted: rgb(229, 231, 235);
+    --color-surface-secondary: rgb(247, 250, 249);
+    --color-surface-tertiary: rgb(241, 245, 244);
+    --color-surface-muted: rgb(227, 234, 232);
 
-    /* Text */
-    --color-heading: rgb(17, 24, 39);
-    --color-body: rgb(55, 65, 81);
-    --color-muted: rgb(107, 114, 128);
-    --color-subtle: rgb(156, 163, 175);
+    /* Text — graphite from the AJUSTA wordmark */
+    --color-heading: rgb(15, 38, 36);
+    --color-body: rgb(51, 65, 63);
+    --color-muted: rgb(98, 112, 110);
+    --color-subtle: rgb(145, 158, 156);
 
     /* Borders */
-    --color-line-light: rgb(229, 231, 235);
-    --color-line-default: rgb(209, 213, 219);
-    --color-line-strong: rgb(185, 193, 204);
+    --color-line-light: rgb(230, 236, 235);
+    --color-line-default: rgb(212, 221, 219);
+    --color-line-strong: rgb(183, 196, 193);
 
     /* Hover */
-    --color-hover: rgb(249, 250, 251);
-    --color-hover-strong: rgb(243, 244, 246);
+    --color-hover: rgb(244, 248, 247);
+    --color-hover-strong: rgb(234, 241, 239);
 
-    /* Header gradient (fixed, not affected by dark mode) */
-    --color-header-from: rgb(74, 61, 255);
-    --color-header-to: rgb(118, 117, 255);
+    /* Header (fixed, not affected by dark mode) — a light surface, not a
+       brand-coloured band: teal marks what matters, it is not a background */
+    --color-header-from: rgb(255, 255, 255);
+    --color-header-to: rgb(255, 255, 255);
 
-    /* Button colors (fixed, always bold) */
-    --color-btn-primary: rgb(74, 61, 255);
-    --color-btn-primary-hover: rgb(51, 22, 255);
+    /* Button colors (fixed, always bold) — white text on teal-600 ≈ 4.5:1 */
+    --color-btn-primary: rgb(0, 133, 116);
+    --color-btn-primary-hover: rgb(0, 110, 97);
 
     /* Status badge text */
     --color-status-yellow: rgb(113, 63, 18);
     --color-status-green: rgb(20, 83, 45);
-    --color-status-blue: rgb(30, 58, 138);
+    --color-status-blue: rgb(0, 110, 97);
     --color-status-red: rgb(127, 29, 29);
     --color-status-purple: rgb(107, 33, 168);
 
@@ -58,30 +61,30 @@
 
 [data-theme="dark"] {
     /* Surfaces — layered depth: tertiary (body) < secondary < surface (cards) */
-    --color-surface: rgb(30, 41, 59);
-    --color-surface-secondary: rgb(23, 33, 50);
-    --color-surface-tertiary: rgb(10, 18, 32);
-    --color-surface-muted: rgb(51, 65, 85);
+    --color-surface: rgb(22, 33, 31);
+    --color-surface-secondary: rgb(17, 26, 25);
+    --color-surface-tertiary: rgb(11, 18, 17);
+    --color-surface-muted: rgb(36, 51, 47);
 
     /* Text */
-    --color-heading: rgb(241, 245, 249);
-    --color-body: rgb(203, 213, 225);
-    --color-muted: rgb(148, 163, 184);
-    --color-subtle: rgb(100, 116, 139);
+    --color-heading: rgb(236, 243, 241);
+    --color-body: rgb(200, 212, 209);
+    --color-muted: rgb(146, 162, 158);
+    --color-subtle: rgb(104, 122, 118);
 
     /* Borders — brighter for visibility */
-    --color-line-light: rgb(51, 65, 85);
-    --color-line-default: rgb(80, 95, 115);
-    --color-line-strong: rgb(130, 145, 165);
+    --color-line-light: rgb(36, 51, 47);
+    --color-line-default: rgb(58, 76, 71);
+    --color-line-strong: rgb(100, 120, 115);
 
     /* Hover */
-    --color-hover: rgb(40, 52, 72);
-    --color-hover-strong: rgb(51, 65, 85);
+    --color-hover: rgb(29, 43, 40);
+    --color-hover-strong: rgb(36, 51, 47);
 
     /* Status badge text */
     --color-status-yellow: rgb(253, 224, 71);
     --color-status-green: rgb(134, 239, 172);
-    --color-status-blue: rgb(147, 197, 253);
+    --color-status-blue: rgb(92, 224, 200);
     --color-status-red: rgb(252, 165, 165);
     --color-status-purple: rgb(216, 180, 254);
 
@@ -93,19 +96,19 @@
     --color-alert-success-bg: rgba(20, 83, 45, 0.2);
     --color-alert-success-text: rgb(134, 239, 172);
 
-    /* Header gradient (darker in dark mode) */
-    --color-header-from: rgb(51, 22, 255);
-    --color-header-to: rgb(74, 61, 255);
+    /* Header follows the dark surface */
+    --color-header-from: rgb(22, 33, 31);
+    --color-header-to: rgb(22, 33, 31);
 
-    /* Button colors (slightly brighter in dark for contrast) */
-    --color-btn-primary: rgb(88, 75, 255);
-    --color-btn-primary-hover: rgb(74, 61, 255);
+    /* Button colors */
+    --color-btn-primary: rgb(0, 143, 124);
+    --color-btn-primary-hover: rgb(0, 165, 143);
 
-    /* Primary adjustments for dark mode */
-    --color-primary-50: rgba(167, 170, 255, 0.15);
-    --color-primary-100: rgba(167, 170, 255, 0.25);
-    --color-primary-400: rgb(167, 170, 255);
-    --color-primary-500: rgb(140, 140, 255);
-    --color-primary-600: rgb(167, 170, 255);
-    --color-primary-700: rgb(190, 192, 255);
+    /* Primary adjustments for dark mode — brighter teal for highlights */
+    --color-primary-50: rgba(0, 191, 166, 0.12);
+    --color-primary-100: rgba(0, 191, 166, 0.2);
+    --color-primary-400: rgb(51, 209, 184);
+    --color-primary-500: rgb(31, 205, 178);
+    --color-primary-600: rgb(51, 209, 184);
+    --color-primary-700: rgb(92, 224, 200);
 }

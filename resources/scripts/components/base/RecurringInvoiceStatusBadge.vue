@@ -16,13 +16,13 @@ const badgeColorClasses = computed<string>(() => {
   switch (props.status) {
     case RecurringInvoiceStatus.ACTIVE:
     case 'ACTIVE':
-      return `${baseClasses} bg-blue-50 text-blue-700 ring-1 ring-inset ring-blue-300/50`
+      return `${baseClasses} bg-primary-50 text-primary-700 ring-1 ring-inset ring-primary-200/60`
     case RecurringInvoiceStatus.ON_HOLD:
     case 'ON_HOLD':
       return `${baseClasses} bg-amber-50 text-amber-700 ring-1 ring-inset ring-amber-300/50`
     case RecurringInvoiceStatus.COMPLETED:
     case 'COMPLETED':
-      return `${baseClasses} bg-green-50 text-green-700 ring-1 ring-inset ring-green-300/50`
+      return `${baseClasses} bg-emerald-50 text-emerald-700 ring-1 ring-inset ring-emerald-300/50`
     default:
       return `${baseClasses} bg-surface-secondary text-muted ring-1 ring-inset ring-line-default`
   }

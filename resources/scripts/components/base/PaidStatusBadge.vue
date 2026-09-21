@@ -21,10 +21,10 @@ const badgeColorClasses = computed<string>(() => {
       return `${baseClasses} bg-emerald-50 text-emerald-700 ring-1 ring-inset ring-emerald-300/50`
     case InvoicePaidStatus.UNPAID:
     case 'UNPAID':
-      return `${baseClasses} bg-orange-50 text-orange-700 ring-1 ring-inset ring-orange-300/50`
+      return `${baseClasses} bg-amber-50 text-amber-700 ring-1 ring-inset ring-amber-300/50`
     case InvoicePaidStatus.PARTIALLY_PAID:
     case 'PARTIALLY_PAID':
-      return `${baseClasses} bg-cyan-50 text-cyan-700 ring-1 ring-inset ring-cyan-300/50`
+      return `${baseClasses} bg-amber-50 text-amber-700 ring-1 ring-inset ring-amber-300/50`
     case 'OVERDUE':
       return `${baseClasses} bg-red-50 text-red-700 ring-1 ring-inset ring-red-300/50`
     default:

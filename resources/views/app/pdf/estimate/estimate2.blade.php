@@ -18,13 +18,13 @@
 
         hr {
             color: rgba(0, 0, 0, 0.2);
-            border: 0.5px solid #EAF1FB;
+            border: 0.5px solid #EFFCF9;
         }
 
         /* -- Header -- */
 
         .header-container {
-            background: #817AE3;
+            background: #008574;
             position: relative;
             width: 100%;
             height: 141px;
@@ -307,7 +307,7 @@
 
         .total-table-attribute-label {
             font-size: 12px;
-            color: #55547A;
+            color: #33413F;
             text-align: left;
             padding-left: 10px;
         }
@@ -362,7 +362,7 @@
         /* -- Helpers -- */
 
         .text-primary {
-            color: #5851DB;
+            color: #008574;
         }
 
         .text-center {

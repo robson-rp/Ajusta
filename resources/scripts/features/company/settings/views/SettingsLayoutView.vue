@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import UpstreamAttribution from '@/scripts/components/UpstreamAttribution.vue'
 import { ref, computed, watchEffect } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import { useI18n } from 'vue-i18n'
@@ -139,6 +140,8 @@ function navigateToSetting(setting: DropdownMenuItem): void {
           </span>
           <span>{{ $t('settings.company_info.danger_zone') }}</span>
         </router-link>
+
+        <UpstreamAttribution class="px-3 mt-8" />
       </div>
 
       <div class="w-full overflow-visible">

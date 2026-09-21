@@ -2,53 +2,66 @@
 import { computed } from 'vue'
 
 interface Props {
-  darkColor?: string
-  lightColor?: string
+  /** `full` = symbol + AJUSTA wordmark; `mark` = the "A" symbol only. */
+  variant?: 'full' | 'mark'
+  /** Single-colour lockup in `currentColor` (e.g. on a coloured surface). */
+  mono?: boolean
 }
 
 const props = withDefaults(defineProps<Props>(), {
-  darkColor: 'var(--color-primary-500)',
-  lightColor: 'var(--color-primary-500)',
+  variant: 'full',
+  mono: false,
 })
 
-// Single render colour (mono lockup). Parents pass `light-color="white"` etc.
-const color = computed(() => props.lightColor)
+const viewBox = computed(() => (props.variant === 'mark' ? '0 0 70 51' : '0 0 296 51'))
+
+// Unique per instance so several logos on one page don't share a gradient id.
+const gradientId = `ajusta-mark-${Math.random().toString(36).slice(2, 9)}`
 </script>
 
 <template>
-  <!-- Redesigned brand lockup: "receipt + check" mark + InvoiceShelf wordmark, monochrome. -->
+  <!--
+    AJUSTA lockup. The symbol is two parts that fit together into an "A":
+    a long bar and a shorter one, separated by a parallel gap. Corners are
+    rounded by stroking each polygon with its own fill (round joins).
+  -->
   <svg
-    viewBox="0 0 235 48"
+    :viewBox="viewBox"
     xmlns="http://www.w3.org/2000/svg"
-    fill="none"
-    :style="{ color }"
     role="img"
-    aria-label="InvoiceShelf"
+    aria-label="AJUSTA"
   >
-    <g stroke="currentColor" fill="none">
-      <path
-        d="M12,11 a4,4 0 0 1 4,-4 h16 a4,4 0 0 1 4,4 v22 l-2,4 l-2,-4 l-2,4 l-2,-4 l-2,4 l-2,-4 l-2,4 l-2,-4 l-2,4 l-2,-4 l-2,4 l-2,-4 Z"
-        stroke-width="2.6"
-        stroke-linejoin="round"
+    <defs v-if="!mono">
+      <linearGradient :id="gradientId" x1="1" y1="0" x2="0" y2="1">
+        <stop offset="0" stop-color="#00BFA6" />
+        <stop offset="1" stop-color="#05A99A" />
+      </linearGradient>
+    </defs>
+
+    <g stroke-linejoin="round" stroke-width="6">
+      <polygon
+        points="4,48 20,48 44,3 28,3"
+        :fill="mono ? 'currentColor' : `url(#${gradientId})`"
+        :stroke="mono ? 'currentColor' : `url(#${gradientId})`"
       />
-      <line x1="17" y1="16" x2="31" y2="16" stroke-width="2.6" stroke-linecap="round" opacity="0.45" />
-      <line x1="17" y1="21.5" x2="26" y2="21.5" stroke-width="2.6" stroke-linecap="round" opacity="0.45" />
-      <circle cx="33" cy="33" r="9" stroke-width="2.6" />
-      <path
-        d="M29.2 33.2 l2.6 2.7 l4.6 -5.6"
-        stroke-width="2.6"
-        stroke-linecap="round"
-        stroke-linejoin="round"
+      <polygon
+        points="53,48 66,48 49,17.5 46.3,17.5 41.2,27"
+        :fill="mono ? 'currentColor' : '#5CD6C4'"
+        :stroke="mono ? 'currentColor' : '#5CD6C4'"
+        :opacity="mono ? 0.6 : 1"
       />
     </g>
+
     <text
-      x="56"
-      y="32"
-      font-family="Poppins, ui-sans-serif, system-ui, sans-serif"
-      font-weight="700"
-      font-size="27"
-      letter-spacing="-0.7"
-      fill="currentColor"
-    >InvoiceShelf</text>
+      v-if="variant === 'full'"
+      x="86"
+      y="41.5"
+      textLength="208"
+      lengthAdjust="spacing"
+      font-family="'Inter Variable', Inter, system-ui, sans-serif"
+      font-size="39"
+      font-weight="600"
+      :fill="mono ? 'currentColor' : 'var(--color-heading, #0F2624)'"
+    >ΛJUSTΛ</text>
   </svg>
 </template>

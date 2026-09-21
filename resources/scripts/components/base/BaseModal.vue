@@ -51,17 +51,16 @@
             <div
               :class="`inline-block
               align-middle
-              bg-surface/95 backdrop-blur-xl backdrop-saturate-150
-              rounded-xl border border-line-default
+              bg-surface
+              rounded-xl border border-line-light
               text-left
               overflow-visible
               relative
-              shadow-2xl
+              shadow-lg
               transition-all
               my-4
               ${modalSize}
-              sm:w-full
-              border-t-8 border-solid rounded border-primary-500`"
+              sm:w-full`"
             >
               <div
                 v-if="hasHeaderSlot"

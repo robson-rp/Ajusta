@@ -58,7 +58,7 @@
           <div class="flex-1 h-0 pt-5 pb-4 overflow-y-auto">
             <div class="flex items-center shrink-0 px-4 mb-10">
               <MainLogo
-                class="block h-auto max-w-full w-36 text-primary-400"
+                class="block h-auto max-w-full w-32"
                 alt="AJUSTA"
               />
             </div>
@@ -116,7 +116,7 @@
     ]"
     class="
       hidden h-screen pb-0 overflow-y-auto overflow-x-hidden
-      bg-surface/80 backdrop-blur-xl border-r border-white/10
+      bg-surface border-r border-line-light
       md:fixed md:flex md:flex-col md:inset-y-0 pt-16
       transition-all duration-300
     "
@@ -171,7 +171,7 @@
     </div>
 
     <!-- Bottom toolbar -->
-    <div class="mt-auto sticky bottom-0 border-t border-white/10 bg-surface/80 backdrop-blur-xl p-2 flex flex-col items-center gap-1">
+    <div class="mt-auto sticky bottom-0 border-t border-line-light bg-surface p-2 flex flex-col items-center gap-1">
       <button
         v-tooltip="globalStore.isSidebarCollapsed ? { content: $t('general.collapse'), placement: 'right' } : null"
         :class="[

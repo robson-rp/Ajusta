@@ -124,7 +124,7 @@ return [
 
     'from' => [
         'address' => env('MAIL_FROM_ADDRESS', 'hello@invoiceshelf.com'),
-        'name' => env('MAIL_FROM_NAME', 'InvoiceShelf'),
+        'name' => env('MAIL_FROM_NAME', env('APP_NAME', 'AJUSTA')),
     ],
 
 ];

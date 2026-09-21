@@ -2,8 +2,8 @@
   <div ref="companySwitchBar" class="relative rounded">
     <div
       class="
-        flex items-center justify-center px-3 h-8 md:h-9 ml-2 text-sm text-white
-        bg-white/20 rounded-lg cursor-pointer hover:bg-white/30 transition-colors
+        flex items-center justify-center px-3 h-8 md:h-9 ml-2 text-sm text-body
+        border border-line-light rounded-lg cursor-pointer hover:bg-hover transition-colors
       "
       @click="isShow = !isShow"
     >
@@ -19,7 +19,7 @@
       >
         {{ companyStore.selectedCompany.name }}
       </span>
-      <BaseIcon name="ChevronDownIcon" class="h-5 ml-1 text-white" />
+      <BaseIcon name="ChevronDownIcon" class="h-4 ml-1 text-muted" />
     </div>
 
     <transition
@@ -32,7 +32,7 @@
     >
       <div
         v-if="isShow"
-        class="absolute right-0 mt-2 bg-surface rounded-md shadow-lg"
+        class="absolute right-0 mt-2 bg-surface rounded-lg border border-line-light shadow-md"
       >
         <div
           class="
