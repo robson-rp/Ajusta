@@ -32,12 +32,6 @@ return [
     // How many months can be prepaid at once.
     'periods' => [1, 3, 6, 12],
 
-    // Electronic invoicing fee, added per month once AGT e-invoicing exists.
-    'e_invoice_fee' => [
-        'enabled' => env('BILLING_E_INVOICE_FEE_ENABLED', false),
-        'amount' => 500000,
-    ],
-
     // Payment gateways offered at checkout, in display order.
     'gateways' => array_filter([
         env('APPYPAY_CLIENT_ID') ? 'appypay' : null,

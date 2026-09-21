@@ -47,10 +47,15 @@ export function formatKz(value: number): string {
   return `${String(value).replace(/\B(?=(\d{3})+(?!\d))/g, '.')} Kz`
 }
 
+/** Self-service signup in the app, with the plan pre-selected. */
+export function signupLink(plan: 'start' | 'business' = 'start'): string {
+  return `${site.appUrl.replace(/\/login$/, '')}/signup?plan=${plan}`
+}
+
 export const cta = {
-  start: contactLink('Quero começar a usar o AJUSTA'),
+  start: signupLink('start'),
+  startBusiness: signupLink('business'),
   demo: contactLink('Pedido de demonstração do AJUSTA'),
   talk: contactLink('Falar com a equipa AJUSTA'),
-  payroll: contactLink('Quero acompanhar a folha de salários'),
   ai: contactLink('Quero acompanhar a IA do AJUSTA'),
 }

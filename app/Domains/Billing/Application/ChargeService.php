@@ -28,16 +28,9 @@ class ChargeService
         private readonly SubscriptionService $subscriptions,
     ) {}
 
-    /** Monthly price plus the e-invoicing fee when it is switched on. */
     public function amountFor(Plan $plan, int $months): int
     {
-        $monthly = $plan->price_monthly;
-
-        if (config('billing.e_invoice_fee.enabled')) {
-            $monthly += (int) config('billing.e_invoice_fee.amount');
-        }
-
-        return $monthly * $months;
+        return $plan->price_monthly * $months;
     }
 
     /**

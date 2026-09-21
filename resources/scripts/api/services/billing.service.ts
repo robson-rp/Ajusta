@@ -64,7 +64,6 @@ export interface BillingOverview {
   can_manage: boolean
   plans: BillingPlan[]
   periods: number[]
-  e_invoice_fee: number
   options: CheckoutOption[]
   charges: BillingCharge[]
 }

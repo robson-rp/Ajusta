@@ -38,7 +38,6 @@ class BillingController extends Controller
             'can_manage' => $subscription !== null && $subscription->user_id === $request->user()->id,
             'plans' => PlanResource::collection(Plan::public()->get()),
             'periods' => config('billing.periods'),
-            'e_invoice_fee' => config('billing.e_invoice_fee.enabled') ? (int) config('billing.e_invoice_fee.amount') : 0,
             'options' => $this->gateways->options(),
             'charges' => $subscription
                 ? ChargeResource::collection($subscription->charges()->with('plan')->limit(20)->get())

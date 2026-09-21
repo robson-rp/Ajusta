@@ -2124,7 +2124,6 @@
     "phone": "Multicaixa Express phone",
     "phone_help": "You will confirm the payment in the Multicaixa Express app.",
     "total": "Total",
-    "fee_included": "Includes the electronic invoicing fee.",
     "pay": "Pay",
     "no_methods": "Online payments are not configured yet. Contact us to activate your plan.",
     "reference_intro": "Pay at any ATM or in your bank app, under \"Payments by reference\":",

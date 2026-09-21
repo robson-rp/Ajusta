@@ -145,7 +145,6 @@
           <div>
             <p class="text-sm text-muted">{{ $t('billing.total') }}</p>
             <p class="text-2xl font-semibold text-heading">{{ formatKz(total) }}</p>
-            <p v-if="overview.e_invoice_fee" class="text-xs text-muted">{{ $t('billing.fee_included') }}</p>
           </div>
           <BaseButton type="submit" :loading="isPaying" :disabled="isPaying || !overview.options.length || !checkout.method">
             {{ $t('billing.pay') }}
@@ -211,7 +210,7 @@ const selectedOption = computed(() => overview.value?.options.find((o) => o.meth
 const total = computed(() => {
   const plan = overview.value?.plans.find((p) => p.code === checkout.plan)
   if (!plan) return 0
-  return (plan.price_monthly + (overview.value?.e_invoice_fee ?? 0)) * checkout.months
+  return plan.price_monthly * checkout.months
 })
 
 const endLabel = computed(() => {
