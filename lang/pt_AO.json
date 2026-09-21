@@ -2126,5 +2126,9 @@
   "Gross invoice due": "Total facturado em dívida",
   "Net account balance": "Saldo líquido da conta",
   "You have received a new estimate from <b>{COMPANY_NAME}</b>.</br> Please download using the button below:": "Recebeu uma nova proforma de <b>{COMPANY_NAME}</b>.</br> Descarregue-a através do botão abaixo:",
-  "Thank you for the payment.</b></br> Please download your payment receipt using the button below:": "Obrigado pelo seu pagamento.</b></br> Descarregue o recibo através do botão abaixo:"
+  "Thank you for the payment.</b></br> Please download your payment receipt using the button below:": "Obrigado pelo seu pagamento.</b></br> Descarregue o recibo através do botão abaixo:",
+  "Cash": "Numerário",
+  "Check": "Cheque",
+  "Credit Card": "Cartão (Multicaixa)",
+  "Bank Transfer": "Transferência bancária"
 }

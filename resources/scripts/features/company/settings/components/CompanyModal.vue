@@ -63,7 +63,14 @@ async function getInitials(): Promise<void> {
   await globalStore.fetchCurrencies()
   await globalStore.fetchCountries()
 
-  newCompanyForm.currency = companyStore.selectedCompanyCurrency?.id ?? ''
+  // New companies default to the install's currency (AOA for AJUSTA).
+  const defaults = (globalStore.config as Record<string, unknown> | null)?.company_defaults as
+    | { currency_code?: string }
+    | undefined
+  const defaultCurrency = globalStore.currencies.find(
+    (currency) => currency.code === (defaults?.currency_code ?? 'AOA'),
+  )
+  newCompanyForm.currency = defaultCurrency?.id ?? companyStore.selectedCompanyCurrency?.id ?? ''
   newCompanyForm.address.country_id =
     (companyStore.selectedCompany as Record<string, unknown>)?.address
       ? ((companyStore.selectedCompany as Record<string, unknown>).address as Record<string, unknown>)?.country_id as number | null

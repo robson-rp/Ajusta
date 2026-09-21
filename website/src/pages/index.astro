@@ -239,8 +239,36 @@ const h2 = 'text-3xl font-semibold tracking-tight sm:text-[2.5rem] sm:leading-[1
     </div>
   </section>
 
+  <!-- API -->
+  <section id="api" class="bg-white py-24">
+    <div class:list={[section, 'grid gap-12 md:grid-cols-2 md:items-center']}>
+      <div>
+        <p class={eyebrow}>API AJUSTA</p>
+        <h2 class:list={[h2, 'mt-3']}>A mesma facturação, por API.</h2>
+        <p class="mt-5 text-muted">
+          O AJUSTA não tranca a empresa no ecrã. Tudo o que faz na aplicação está disponível em REST: autenticar,
+          escolher o NIF (empresa), criar a factura, registar o pagamento. Integra com o site, o ERP ou o processo
+          do contabilista — sem reinventar o ciclo.
+        </p>
+        <p class="mt-6 font-mono text-sm text-ink">
+          POST /api/v1/auth/login · header <span class="text-teal-strong">company</span> · OpenAPI 3
+        </p>
+      </div>
+      <div class="overflow-hidden rounded-xl border border-line bg-[#0F2624] font-mono text-[13px] leading-7 text-[#DDF8F2]">
+        <div class="border-b border-white/10 px-5 py-2.5 text-xs text-white/50">REST · JSON · v1</div>
+        <pre class="overflow-x-auto px-5 py-4"><code><span class="text-teal">POST</span> /api/v1/auth/login
+<span class="text-white/50">→ token (Authorization: Bearer …)</span>
+
+<span class="text-teal">GET </span> /api/v1/customers
+<span class="text-white/50">  company: 1</span>
+<span class="text-teal">POST</span> /api/v1/invoices
+<span class="text-teal">POST</span> /api/v1/payments</code></pre>
+      </div>
+    </div>
+  </section>
+
   <!-- PLANOS -->
-  <section id="precos" class="border-y border-line bg-white py-24">
+  <section id="precos" class="py-24">
     <div class={section}>
       <div class="max-w-xl">
         <h2 class={h2}>Comece com o que precisa.</h2>
@@ -248,7 +276,7 @@ const h2 = 'text-3xl font-semibold tracking-tight sm:text-[2.5rem] sm:leading-[1
       </div>
       <div class="mt-12 grid gap-6 md:grid-cols-3">
         {plans.map((plan) => (
-          <div class:list={['flex flex-col rounded-xl border p-7', plan.featured ? 'border-teal' : 'border-line']}>
+          <div class:list={['flex flex-col rounded-xl border bg-white p-7', plan.featured ? 'border-teal' : 'border-line']}>
             <h3 class="text-lg font-semibold">{plan.name}</h3>
             <p class="mt-1 text-[15px] text-muted">{plan.for}</p>
             <p class="mt-6">
@@ -284,7 +312,8 @@ const h2 = 'text-3xl font-semibold tracking-tight sm:text-[2.5rem] sm:leading-[1
   </section>
 
   <!-- FUTURO -->
-  <section class:list={[section, 'grid gap-12 py-24 md:grid-cols-2 md:items-center']}>
+  <section class="bg-white py-24">
+    <div class:list={[section, 'grid gap-12 md:grid-cols-2 md:items-center']}>
     <div>
       <p class={eyebrow}>A seguir</p>
       <h2 class:list={[h2, 'mt-3']}>O mesmo NIF. A mesma conta.</h2>
@@ -292,7 +321,7 @@ const h2 = 'text-3xl font-semibold tracking-tight sm:text-[2.5rem] sm:leading-[1
         <Button href={cta.payroll} variant="secondary">Quero acompanhar</Button>
       </div>
     </div>
-    <div class="relative rounded-xl border border-dashed border-line bg-white p-6" aria-hidden="true">
+    <div class="relative rounded-xl border border-dashed border-line bg-canvas p-6" aria-hidden="true">
       <div class="flex items-center justify-between">
         <p class="font-semibold text-muted">Folha de salários</p>
         <span class="rounded-full bg-teal-soft px-3 py-1 text-xs font-medium text-teal-strong">Em breve</span>
@@ -301,20 +330,21 @@ const h2 = 'text-3xl font-semibold tracking-tight sm:text-[2.5rem] sm:leading-[1
         {['Colaborador', 'IRT', 'INSS', 'Líquido'].map((label) => (
           <div class="flex items-center gap-4">
             <span class="w-24 text-sm text-muted">{label}</span>
-            <span class="h-2.5 flex-1 rounded-full bg-canvas" />
+            <span class="h-2.5 flex-1 rounded-full bg-line" />
           </div>
         ))}
       </div>
     </div>
+    </div>
   </section>
 
   <!-- PARA QUEM -->
-  <section id="para-quem" class="bg-white py-24">
+  <section id="para-quem" class="py-24">
     <div class={section}>
     <h2 class={h2}>Para empresas que precisam de facturar.</h2>
     <div class="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-5">
       {audiences.map((a) => (
-        <div class="rounded-xl border border-line p-5">
+        <div class="rounded-xl border border-line bg-white p-5">
           <Icon name={a.icon} class="h-6 w-6 text-teal-strong" />
           <p class="mt-4 text-[15px] font-medium">{a.label}</p>
         </div>
@@ -325,7 +355,7 @@ const h2 = 'text-3xl font-semibold tracking-tight sm:text-[2.5rem] sm:leading-[1
   </section>
 
   <!-- FAQ -->
-  <section id="faq" class="py-24">
+  <section id="faq" class="bg-white py-24">
     <div class="mx-auto max-w-3xl px-5 sm:px-8">
       <h2 class={h2}>Perguntas frequentes</h2>
       <div class="mt-10 divide-y divide-line border-y border-line">

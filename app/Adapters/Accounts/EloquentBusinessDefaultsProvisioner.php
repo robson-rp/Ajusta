@@ -11,9 +11,12 @@ class EloquentBusinessDefaultsProvisioner implements CompanyDefaultsProvisioner
 {
     public function provision(Company $company): void
     {
+        // Named in the install's default language (pt_AO for AJUSTA).
+        $language = config('invoiceshelf.company_defaults.language');
+
         foreach (['Cash', 'Check', 'Credit Card', 'Bank Transfer'] as $name) {
             PaymentMethod::create([
-                'name' => $name,
+                'name' => __($name, [], $language),
                 'company_id' => $company->id,
             ]);
         }

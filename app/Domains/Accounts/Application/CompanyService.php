@@ -7,6 +7,7 @@ use App\Domains\Accounts\Contracts\CompanyDataPurger;
 use App\Domains\Accounts\Contracts\CompanyDefaultsProvisioner;
 use App\Domains\Accounts\Models\Company;
 use App\Domains\Accounts\Models\CompanySetting;
+use App\Domains\Money\Models\Currency;
 use Silber\Bouncer\BouncerFacade;
 use Silber\Bouncer\Database\Role;
 
@@ -55,8 +56,10 @@ class CompanyService
      * assigned; then the reference data; then the preference sheet, which is
      * where the chosen currency lands.
      */
-    public function setupDefaults(Company $company, int $currencyId = 13): bool
+    public function setupDefaults(Company $company, ?int $currencyId = null): bool
     {
+        $currencyId ??= $this->defaultCurrencyId();
+
         $this->setupRoles($company);
 
         $this->companyDefaultsProvisioner->provision($company);
@@ -64,6 +67,17 @@ class CompanyService
         $this->setupDefaultSettings($company, $currencyId);
 
         return true;
+    }
+
+    /**
+     * The install's default currency (config invoiceshelf.company_defaults,
+     * AOA for AJUSTA). Falls back to id 13, the historical upstream default.
+     */
+    private function defaultCurrencyId(): int
+    {
+        $code = config('invoiceshelf.company_defaults.currency_code');
+
+        return ($code ? Currency::where('code', $code)->value('id') : null) ?? 13;
     }
 
     /**

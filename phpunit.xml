@@ -23,7 +23,7 @@
     <env name="COMPANY_DEFAULT_TIME_ZONE" value="Asia/Kolkata"/>
     <env name="COMPANY_DEFAULT_DATE_FORMAT" value="Y/m/d"/>
     <env name="COMPANY_DEFAULT_MOMENT_DATE_FORMAT" value="YYYY/MM/DD"/>
-    <env name="COMPANY_DEFAULT_CURRENCY" value="USD"/>
+    <env name="COMPANY_DEFAULT_CURRENCY" value=""/>
   </php>
     <groups>
         <exclude>
