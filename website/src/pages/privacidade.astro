@@ -1,13 +1,93 @@
 ---
-import Base from '../layouts/Base.astro'
-import { cta } from '../site.config'
+import Legal from '../layouts/Legal.astro'
+import { legal } from '../site.config'
 ---
-<Base title="Política de privacidade — AJUSTA">
-  <section class="mx-auto max-w-3xl px-5 py-24 sm:px-8">
-    <h1 class="text-3xl font-semibold tracking-tight">Política de privacidade</h1>
-    <!-- TODO: texto legal a fornecer antes do lançamento. -->
-    <p class="mt-6 text-muted">
-      Este texto está a ser preparado. Para qualquer questão, <a href={cta.talk} class="text-teal-strong underline underline-offset-2">fale connosco</a>.
-    </p>
-  </section>
-</Base>
+<Legal
+  title="Política de Privacidade"
+  description="Como o AJUSTA recolhe, usa e protege os dados pessoais, de acordo com a lei angolana."
+>
+  <p>
+    Esta política explica que dados pessoais tratamos quando visita este site ou usa o AJUSTA, para quê e
+    quais são os seus direitos. Aplica-se a lei angolana, em especial a <strong>Lei n.º 22/11, de 17 de
+    Junho — Lei da Protecção de Dados Pessoais</strong>.
+  </p>
+
+  <h2>1. Quem é o responsável</h2>
+  <p>
+    O responsável pelo tratamento é <strong>{legal.company}</strong>, NIF {legal.nif}, com sede em
+    {legal.address}. Para qualquer questão sobre dados pessoais, escreva para
+    <a href={`mailto:${legal.email}`}>{legal.email}</a>.
+  </p>
+
+  <h2>2. Que dados tratamos</h2>
+  <ul>
+    <li><strong>Contacto:</strong> nome, e-mail, telefone e empresa, quando nos escreve ou pede uma demonstração.</li>
+    <li><strong>Conta:</strong> nome, e-mail, palavra-passe (guardada cifrada) e preferências dos utilizadores.</li>
+    <li><strong>Dados da empresa:</strong> denominação, NIF, morada e dados fiscais necessários à facturação.</li>
+    <li>
+      <strong>Dados dos seus clientes:</strong> os que a sua empresa regista no AJUSTA para emitir documentos
+      (por exemplo, nome, NIF, morada e e-mail).
+    </li>
+    <li><strong>Utilização técnica:</strong> endereço IP, tipo de navegador e registos de acesso, para segurança e funcionamento do serviço.</li>
+  </ul>
+
+  <h2>3. Para que usamos os dados</h2>
+  <ul>
+    <li>Prestar o serviço: criar a conta, emitir e guardar documentos, enviar facturas e recibos por e-mail.</li>
+    <li>Responder a pedidos de contacto e de demonstração.</li>
+    <li>Garantir a segurança do serviço e prevenir utilizações abusivas.</li>
+    <li>Cumprir obrigações legais, nomeadamente fiscais.</li>
+  </ul>
+  <p>Não vendemos dados pessoais nem os usamos para publicidade de terceiros.</p>
+
+  <h2>4. Fundamento</h2>
+  <p>
+    Tratamos os dados para executar o contrato consigo, para cumprir obrigações legais, com base no seu
+    consentimento (por exemplo, quando nos contacta) ou no nosso interesse legítimo em manter o serviço seguro.
+  </p>
+
+  <h2>5. Dados dos clientes da sua empresa</h2>
+  <p>
+    Quando a sua empresa regista dados de clientes no AJUSTA, é a sua empresa a responsável por esses dados.
+    O AJUSTA trata-os apenas em nome da sua empresa e segundo as suas instruções, para prestar o serviço.
+  </p>
+
+  <h2>6. Durante quanto tempo</h2>
+  <p>
+    Guardamos os dados enquanto a conta estiver activa. Os documentos fiscais são conservados pelos prazos
+    exigidos pela legislação fiscal angolana. Os pedidos de contacto são apagados quando deixam de ser
+    necessários.
+  </p>
+
+  <h2>7. Partilha</h2>
+  <p>
+    Só partilhamos dados com prestadores que nos ajudam a operar o serviço (alojamento, envio de e-mail),
+    obrigados a confidencialidade, ou com autoridades quando a lei o exija. Se algum prestador tratar dados
+    fora de Angola, fazemo-lo nos termos permitidos pela lei.
+  </p>
+
+  <h2>8. Segurança</h2>
+  <p>
+    Usamos medidas técnicas e organizativas adequadas: ligações cifradas, palavras-passe cifradas, acessos
+    por função e cópias de segurança.
+  </p>
+
+  <h2>9. Os seus direitos</h2>
+  <p>
+    Pode pedir acesso, rectificação ou eliminação dos seus dados, opor-se ao tratamento ou retirar o
+    consentimento, escrevendo para <a href={`mailto:${legal.email}`}>{legal.email}</a>. Tem também o direito de
+    apresentar reclamação junto da Agência de Protecção de Dados (APD).
+  </p>
+
+  <h2>10. Cookies</h2>
+  <p>
+    Este site não usa cookies de publicidade nem de seguimento. A aplicação usa apenas os cookies necessários
+    para manter a sessão iniciada.
+  </p>
+
+  <h2>11. Alterações</h2>
+  <p>
+    Podemos actualizar esta política. A data da última actualização está no topo desta página. Alterações
+    relevantes serão comunicadas aos utilizadores.
+  </p>
+</Legal>

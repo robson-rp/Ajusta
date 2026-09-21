@@ -1,13 +1,87 @@
 ---
-import Base from '../layouts/Base.astro'
-import { cta } from '../site.config'
+import Legal from '../layouts/Legal.astro'
+import { legal } from '../site.config'
 ---
-<Base title="Termos de utilização — AJUSTA">
-  <section class="mx-auto max-w-3xl px-5 py-24 sm:px-8">
-    <h1 class="text-3xl font-semibold tracking-tight">Termos de utilização</h1>
-    <!-- TODO: texto legal a fornecer antes do lançamento. -->
-    <p class="mt-6 text-muted">
-      Este texto está a ser preparado. Para qualquer questão, <a href={cta.talk} class="text-teal-strong underline underline-offset-2">fale connosco</a>.
-    </p>
-  </section>
-</Base>
+<Legal
+  title="Termos de Utilização"
+  description="As condições de utilização do AJUSTA, software de facturação para empresas em Angola."
+>
+  <p>
+    Estes termos regulam a utilização do AJUSTA, prestado por <strong>{legal.company}</strong>, NIF {legal.nif},
+    com sede em {legal.address}. Ao criar uma conta ou usar o serviço, a sua empresa aceita estes termos.
+  </p>
+
+  <h2>1. O serviço</h2>
+  <p>
+    O AJUSTA é um software de facturação para empresas: facturas, proformas, recibos, clientes, pagamentos,
+    despesas e relatórios. As funcionalidades disponíveis dependem do plano contratado.
+  </p>
+
+  <h2>2. Conta e acesso</h2>
+  <ul>
+    <li>A empresa é responsável pelos utilizadores que convida e pelas permissões que lhes atribui.</li>
+    <li>Cada utilizador deve manter a sua palavra-passe em segredo e avisar-nos de qualquer acesso indevido.</li>
+    <li>Os dados indicados no registo devem ser verdadeiros e estar actualizados.</li>
+  </ul>
+
+  <h2>3. Responsabilidade fiscal</h2>
+  <p>
+    O AJUSTA ajuda a emitir e organizar documentos, mas <strong>não substitui o contabilista</strong>. A empresa
+    é responsável pelo conteúdo dos documentos que emite, pelos dados fiscais que introduz e pelo cumprimento
+    das suas obrigações perante a Administração Geral Tributária (AGT).
+  </p>
+
+  <h2>4. Utilização aceitável</h2>
+  <p>Não é permitido usar o AJUSTA para:</p>
+  <ul>
+    <li>emitir documentos falsos ou para fins ilícitos;</li>
+    <li>tentar aceder a dados de outras empresas ou comprometer a segurança do serviço;</li>
+    <li>revender o serviço sem acordo escrito.</li>
+  </ul>
+
+  <h2>5. Planos e pagamento</h2>
+  <p>
+    Os planos são cobrados mensalmente, em Kwanza, pelos valores em vigor no momento da contratação. Os preços
+    podem ser actualizados com aviso prévio de 30 dias. Sem pagamento, o acesso pode ser limitado, mas os
+    dados continuam disponíveis para exportação durante um período razoável.
+  </p>
+
+  <h2>6. Os seus dados</h2>
+  <p>
+    Os dados que a empresa introduz no AJUSTA pertencem à empresa. Pode exportá-los a qualquer momento. O
+    tratamento de dados pessoais segue a <a href="/privacidade">Política de Privacidade</a>.
+  </p>
+
+  <h2>7. Disponibilidade</h2>
+  <p>
+    Fazemos o possível para manter o serviço disponível e fazer cópias de segurança regulares, mas podem
+    ocorrer interrupções para manutenção ou por causas externas. Avisamos com antecedência sempre que possível.
+  </p>
+
+  <h2>8. Novas funcionalidades</h2>
+  <p>
+    Funcionalidades anunciadas como futuras (por exemplo, folha de salários) não fazem parte do serviço até
+    serem disponibilizadas.
+  </p>
+
+  <h2>9. Limitação de responsabilidade</h2>
+  <p>
+    Na medida permitida pela lei, não respondemos por danos indirectos ou lucros cessantes resultantes da
+    utilização do serviço. A nossa responsabilidade total limita-se ao valor pago pela empresa nos últimos
+    12 meses.
+  </p>
+
+  <h2>10. Cancelamento</h2>
+  <p>
+    A empresa pode cancelar a conta a qualquer momento. Podemos suspender contas que violem estes termos. Após o
+    cancelamento, os dados são apagados, excepto os que a lei obrigue a conservar.
+  </p>
+
+  <h2>11. Lei aplicável</h2>
+  <p>
+    Estes termos regem-se pela lei da República de Angola. Os litígios são resolvidos nos tribunais de Luanda.
+  </p>
+
+  <h2>12. Contacto</h2>
+  <p>Questões sobre estes termos: <a href={`mailto:${legal.email}`}>{legal.email}</a>.</p>
+</Legal>

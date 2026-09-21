@@ -19,6 +19,18 @@ export const site = {
   upstreamUrl: 'https://github.com/InvoiceShelf/InvoiceShelf',
 }
 
+/**
+ * Legal entity shown in the Privacy Policy and Terms.
+ * TODO: fill in before launch and have both pages reviewed by a lawyer.
+ */
+export const legal = {
+  company: '[Denominação social], Lda',
+  nif: '[NIF]',
+  address: '[Morada], Luanda, Angola',
+  email: 'privacidade@ajusta.ao',
+  updatedAt: '21 de Setembro de 2026',
+}
+
 /** mailto: link with a pre-filled subject, so each button tells us why the person wrote. */
 export function contactLink(subject: string): string {
   return `mailto:${site.contactEmail}?subject=${encodeURIComponent(subject)}`
