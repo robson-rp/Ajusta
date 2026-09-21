@@ -2070,6 +2070,10 @@
     "hero": {
       "title": "Your accounts, finally in order.",
       "tagline": "One account. One NIF. One cycle."
+    },
+    "signup": {
+      "heading": "Create your company's account",
+      "subheading": "Start invoicing today. No card needed."
     }
   },
   "invitation_register": {
@@ -2090,5 +2094,116 @@
   },
   "exchange_rates": {
     "bulk_update": "Update Exchange Rates"
+  },
+  "signup": {
+    "plan": "Plan",
+    "per_month": "/month",
+    "trial_note": "Free for {days} days. You only pay when you choose to continue.",
+    "company_name": "Company name",
+    "your_name": "Your name",
+    "phone": "Phone",
+    "submit": "Start {days}-day free trial",
+    "have_account": "Already have an account?",
+    "no_account": "New to AJUSTA?",
+    "create_account": "Create an account",
+    "disabled": "New accounts are not available right now."
+  },
+  "billing": {
+    "title": "Subscription",
+    "description": "Your plan, payments and billing history.",
+    "no_subscription": "This account has no subscription to manage.",
+    "current_plan": "Current plan",
+    "trial_until": "Free trial until",
+    "paid_until": "Paid until",
+    "ended_on": "Ended on",
+    "owner_only": "Only the account owner can pay the subscription.",
+    "choose_plan": "Plan",
+    "period": "Period",
+    "months": "{n} month | {n} months",
+    "method": "Payment method",
+    "phone": "Multicaixa Express phone",
+    "phone_help": "You will confirm the payment in the Multicaixa Express app.",
+    "total": "Total",
+    "fee_included": "Includes the electronic invoicing fee.",
+    "pay": "Pay",
+    "no_methods": "Online payments are not configured yet. Contact us to activate your plan.",
+    "reference_intro": "Pay at any ATM or in your bank app, under \"Payments by reference\":",
+    "entity": "Entity",
+    "reference": "Reference",
+    "amount": "Amount",
+    "valid_until": "Valid until",
+    "reference_waiting": "Your plan is activated automatically as soon as the payment is confirmed. We also sent these details by e-mail.",
+    "gpo_title": "Confirm the payment on your phone",
+    "gpo_text": "Open Multicaixa Express on {phone} and accept the payment request. This page updates by itself.",
+    "paid_title": "Payment confirmed",
+    "paid_text": "Your subscription is active until {date}.",
+    "done": "Done",
+    "new_payment": "Start a new payment",
+    "copied": "Copied",
+    "history": "Payment history",
+    "plan": "Plan",
+    "state": "Status",
+    "status": {
+      "trialing": "Free trial",
+      "active": "Active",
+      "past_due": "Payment overdue",
+      "suspended": "Read-only",
+      "cancelled": "Cancelled"
+    },
+    "charge_status": {
+      "pending": "Waiting for payment",
+      "paid": "Paid",
+      "failed": "Payment failed",
+      "cancelled": "Payment cancelled",
+      "expired": "Expired"
+    },
+    "methods": {
+      "gpo": "Multicaixa Express",
+      "gpo_hint": "Pay now on your phone.",
+      "reference": "Payment by reference",
+      "reference_hint": "Pay at an ATM or in your bank app.",
+      "manual": "Recorded by AJUSTA",
+      "manual_hint": "Transfer or other method."
+    },
+    "features": {
+      "customer_portal": "Customer portal",
+      "recurring_invoices": "Recurring invoices",
+      "advanced_reports": "Advanced reports"
+    },
+    "banner": {
+      "trial": "Free trial: {days} day left. | Free trial: {days} days left.",
+      "trial_last_day": "Your free trial ends today.",
+      "renew_soon": "Your subscription ends in {days} day. | Your subscription ends in {days} days.",
+      "past_due": "Payment overdue: {days} day before the account becomes read-only. | Payment overdue: {days} days before the account becomes read-only.",
+      "read_only": "This account is read-only until the subscription is paid.",
+      "choose_plan": "Choose a plan",
+      "pay_now": "Pay now"
+    },
+    "errors": {
+      "read_only": "The account is read-only until the subscription is paid.",
+      "plan_feature": "Your plan does not include this feature. Upgrade to Empresa to use it.",
+      "generic": "The payment could not be started. Please try again.",
+      "gateway_unavailable": "The payment service is not responding. Please try again in a few minutes.",
+      "charge_refused": "The payment was refused."
+    },
+    "admin": {
+      "subscriptions": "Subscriptions",
+      "plans": "Plans",
+      "owner": "Account owner",
+      "ends": "Ends",
+      "record_payment": "Record payment",
+      "manual_hint": "for payments received outside AppyPay.",
+      "note_placeholder": "e.g. bank transfer, receipt no.",
+      "payment_recorded": "Payment recorded",
+      "switch_to": "Switch to {plan}",
+      "suspend": "Suspend",
+      "reactivate": "Reactivate",
+      "plan_name": "Name",
+      "price_monthly": "Monthly price (Kz)",
+      "public": "Public",
+      "max_users": "Max. users",
+      "max_companies": "Max. companies",
+      "empty_unlimited": "Empty = unlimited"
+    }
   }
 }

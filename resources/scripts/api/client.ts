@@ -59,6 +59,24 @@ client.interceptors.response.use(
   async (error: AxiosError) => {
     const status = error.response?.status
 
+    // AJUSTA subscriptions: read-only account (402) or a feature outside the
+    // plan (403 plan_feature). Explain once and point the owner to billing.
+    const billingError = (error.response?.data as { error?: string } | undefined)?.error
+    if (status === 402 || (status === 403 && billingError === 'plan_feature')) {
+      const [{ useNotificationStore }, { default: router }] = await Promise.all([
+        import('@/scripts/stores/notification.store'),
+        import('@/scripts/router'),
+      ])
+      useNotificationStore().showNotification({
+        type: 'error',
+        message: status === 402 ? 'billing.errors.read_only' : 'billing.errors.plan_feature',
+      })
+      if (status === 402 && router.currentRoute.value.name !== 'settings.billing') {
+        router.push({ name: 'settings.billing' })
+      }
+      return Promise.reject(error)
+    }
+
     if (status !== 401) {
       return Promise.reject(error)
     }

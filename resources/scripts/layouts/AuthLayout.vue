@@ -102,6 +102,10 @@ const COPY: Record<string, RouteCopy> = {
     heading: 'auth_layout.reset_password.heading',
     subheading: 'auth_layout.reset_password.subheading',
   },
+  signup: {
+    heading: 'auth_layout.signup.heading',
+    subheading: 'auth_layout.signup.subheading',
+  },
   'register-with-invitation': {
     heading: 'auth_layout.register.heading',
     subheading: 'auth_layout.register.subheading',

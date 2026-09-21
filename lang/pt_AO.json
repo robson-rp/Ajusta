@@ -2070,6 +2070,10 @@
     "hero": {
       "title": "As suas contas, finalmente ajustadas.",
       "tagline": "Uma conta. Um NIF. Um ciclo."
+    },
+    "signup": {
+      "heading": "Crie a conta da sua empresa",
+      "subheading": "Comece a facturar hoje. Sem cartão."
     }
   },
   "invitation_register": {
@@ -2090,6 +2094,117 @@
   },
   "exchange_rates": {
     "bulk_update": "Actualizar taxas de câmbio"
+  },
+  "signup": {
+    "plan": "Plano",
+    "per_month": "/mês",
+    "trial_note": "Grátis durante {days} dias. Só paga se decidir continuar.",
+    "company_name": "Nome da empresa",
+    "your_name": "O seu nome",
+    "phone": "Telefone",
+    "submit": "Começar {days} dias grátis",
+    "have_account": "Já tem conta?",
+    "no_account": "Ainda não usa o AJUSTA?",
+    "create_account": "Criar conta",
+    "disabled": "De momento não é possível criar novas contas."
+  },
+  "billing": {
+    "title": "Subscrição",
+    "description": "O seu plano, pagamentos e histórico.",
+    "no_subscription": "Esta conta não tem subscrição para gerir.",
+    "current_plan": "Plano actual",
+    "trial_until": "Teste gratuito até",
+    "paid_until": "Pago até",
+    "ended_on": "Terminou a",
+    "owner_only": "Só o titular da conta pode pagar a subscrição.",
+    "choose_plan": "Plano",
+    "period": "Período",
+    "months": "{n} mês | {n} meses",
+    "method": "Forma de pagamento",
+    "phone": "Telefone Multicaixa Express",
+    "phone_help": "Vai confirmar o pagamento na app Multicaixa Express.",
+    "total": "Total",
+    "fee_included": "Inclui a taxa de facturação electrónica.",
+    "pay": "Pagar",
+    "no_methods": "Os pagamentos online ainda não estão configurados. Contacte-nos para activar o plano.",
+    "reference_intro": "Pague em qualquer ATM ou na app do seu banco, em \"Pagamentos por referência\":",
+    "entity": "Entidade",
+    "reference": "Referência",
+    "amount": "Montante",
+    "valid_until": "Válida até",
+    "reference_waiting": "O plano é activado automaticamente assim que o pagamento for confirmado. Também enviámos estes dados por e-mail.",
+    "gpo_title": "Confirme o pagamento no telemóvel",
+    "gpo_text": "Abra o Multicaixa Express no {phone} e aceite o pedido de pagamento. Esta página actualiza-se sozinha.",
+    "paid_title": "Pagamento confirmado",
+    "paid_text": "A subscrição está activa até {date}.",
+    "done": "Concluir",
+    "new_payment": "Fazer novo pagamento",
+    "copied": "Copiado",
+    "history": "Histórico de pagamentos",
+    "plan": "Plano",
+    "state": "Estado",
+    "status": {
+      "trialing": "Teste gratuito",
+      "active": "Activa",
+      "past_due": "Pagamento em atraso",
+      "suspended": "Só leitura",
+      "cancelled": "Cancelada"
+    },
+    "charge_status": {
+      "pending": "A aguardar pagamento",
+      "paid": "Pago",
+      "failed": "Pagamento falhou",
+      "cancelled": "Pagamento cancelado",
+      "expired": "Expirado"
+    },
+    "methods": {
+      "gpo": "Multicaixa Express",
+      "gpo_hint": "Pague já no telemóvel.",
+      "reference": "Pagamento por referência",
+      "reference_hint": "Pague num ATM ou na app do banco.",
+      "manual": "Registado pelo AJUSTA",
+      "manual_hint": "Transferência ou outro meio."
+    },
+    "features": {
+      "customer_portal": "Portal do cliente",
+      "recurring_invoices": "Facturas recorrentes",
+      "advanced_reports": "Relatórios avançados"
+    },
+    "banner": {
+      "trial": "Teste gratuito: falta {days} dia. | Teste gratuito: faltam {days} dias.",
+      "trial_last_day": "O teste gratuito termina hoje.",
+      "renew_soon": "A subscrição termina daqui a {days} dia. | A subscrição termina daqui a {days} dias.",
+      "past_due": "Pagamento em atraso: falta {days} dia para a conta ficar só de leitura. | Pagamento em atraso: faltam {days} dias para a conta ficar só de leitura.",
+      "read_only": "Esta conta está só de leitura até a subscrição ser paga.",
+      "choose_plan": "Escolher plano",
+      "pay_now": "Pagar agora"
+    },
+    "errors": {
+      "read_only": "A conta está só de leitura até a subscrição ser paga.",
+      "plan_feature": "O seu plano não inclui esta funcionalidade. Mude para o plano Empresa para a usar.",
+      "generic": "Não foi possível iniciar o pagamento. Tente novamente.",
+      "gateway_unavailable": "O serviço de pagamentos não responde. Tente novamente dentro de alguns minutos.",
+      "charge_refused": "O pagamento foi recusado."
+    },
+    "admin": {
+      "subscriptions": "Subscrições",
+      "plans": "Planos",
+      "owner": "Titular da conta",
+      "ends": "Termina",
+      "record_payment": "Registar pagamento",
+      "manual_hint": "para pagamentos recebidos fora da AppyPay.",
+      "note_placeholder": "ex.: transferência bancária, n.º do comprovativo",
+      "payment_recorded": "Pagamento registado",
+      "switch_to": "Mudar para {plan}",
+      "suspend": "Suspender",
+      "reactivate": "Reactivar",
+      "plan_name": "Nome",
+      "price_monthly": "Preço mensal (Kz)",
+      "public": "Público",
+      "max_users": "Máx. utilizadores",
+      "max_companies": "Máx. empresas",
+      "empty_unlimited": "Vazio = ilimitado"
+    }
   },
   "You've been invited to join :company": "Foi convidado para se juntar a :company",
   "You've been invited!": "Foi convidado!",

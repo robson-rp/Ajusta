@@ -19,6 +19,7 @@
       ]"
     >
       <div class="pt-16 pb-16">
+        <SubscriptionBanner v-if="hasCompany" />
         <router-view />
       </div>
     </main>
@@ -30,6 +31,7 @@
 </template>
 
 <script setup lang="ts">
+import SubscriptionBanner from '@/scripts/components/billing/SubscriptionBanner.vue'
 import { useI18n } from 'vue-i18n'
 import { onMounted, computed, watch } from 'vue'
 import { useRoute, useRouter } from 'vue-router'

@@ -23,6 +23,7 @@ export interface BootstrapResponse {
   companies: Company[]
   current_company: Company | null
   current_company_settings: Record<string, string>
+  current_company_subscription?: import('./billing.service').BillingSubscription | null
   current_company_currency: Currency | null
   main_menu: MenuItem[]
   setting_menu: MenuItem[]

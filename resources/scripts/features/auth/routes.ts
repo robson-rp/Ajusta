@@ -5,6 +5,7 @@ const LoginView = () => import('./views/LoginView.vue')
 const ForgotPasswordView = () => import('./views/ForgotPasswordView.vue')
 const ResetPasswordView = () => import('./views/ResetPasswordView.vue')
 const RegisterWithInvitationView = () => import('./views/RegisterWithInvitationView.vue')
+const SignupView = () => import('./views/SignupView.vue')
 
 export const authRoutes: RouteRecordRaw[] = [
   {
@@ -36,6 +37,15 @@ export const authRoutes: RouteRecordRaw[] = [
         meta: {
           requiresAuth: false,
           title: 'Reset Password',
+        },
+      },
+      {
+        path: '/signup',
+        name: 'signup',
+        component: SignupView,
+        meta: {
+          requiresAuth: false,
+          title: 'Signup',
         },
       },
       {

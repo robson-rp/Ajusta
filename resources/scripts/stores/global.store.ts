@@ -21,11 +21,14 @@ import type { Currency } from '@/scripts/types/domain/currency'
 import type { Country } from '@/scripts/types/domain/customer'
 import { emitBootstrapCompleted } from '@/scripts/extensions/runtime'
 import { DEFAULT_LOCALE } from '@/scripts/config/locale'
+import type { BillingSubscription } from '@/scripts/api/services/billing.service'
 
 export const useGlobalStore = defineStore('global', () => {
   // State
   const config = ref<Record<string, unknown> | null>(null)
   const globalSettings = ref<Record<string, string> | null>(null)
+  // AJUSTA: the account's subscription (null = unrestricted account).
+  const subscription = ref<BillingSubscription | null>(null)
 
   const timeZones = ref<Array<{ key: string; value: string }>>([])
   const dateFormats = ref<DateFormat[]>([])
@@ -67,6 +70,7 @@ export const useGlobalStore = defineStore('global', () => {
       const response = await bootstrapService.bootstrap(shouldUseAdminBootstrap)
 
       mainMenu.value = response.main_menu
+      subscription.value = response.current_company_subscription ?? null
       settingMenu.value = response.setting_menu
       userMenu.value = response.user_menu ?? []
       config.value = response.config
@@ -291,6 +295,7 @@ export const useGlobalStore = defineStore('global', () => {
     // State
     config,
     globalSettings,
+    subscription,
     timeZones,
     dateFormats,
     timeFormats,

@@ -62,6 +62,14 @@ const settingsRoutes: RouteRecordRaw[] = [
         redirect: { name: 'settings.modules' },
       },
       {
+        path: 'billing',
+        name: 'settings.billing',
+        meta: {
+          requiresAuth: true,
+        },
+        component: () => import('./views/BillingView.vue'),
+      },
+      {
         path: 'company-info',
         name: 'settings.company-info',
         meta: {

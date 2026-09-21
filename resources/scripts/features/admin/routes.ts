@@ -7,6 +7,8 @@ const AdminCompaniesView = () => import('./views/AdminCompaniesView.vue')
 const AdminCompanyEditView = () => import('./views/AdminCompanyEditView.vue')
 const AdminUsersView = () => import('./views/AdminUsersView.vue')
 const AdminUserEditView = () => import('./views/AdminUserEditView.vue')
+const AdminSubscriptionsView = () => import('./views/AdminSubscriptionsView.vue')
+const AdminPlansView = () => import('./views/AdminPlansView.vue')
 const AdminSettingsView = () => import('./views/AdminSettingsView.vue')
 const AdminMailConfigView = () => import('./views/settings/AdminMailConfigView.vue')
 const AdminPdfGenerationView = () => import('./views/settings/AdminPdfGenerationView.vue')
@@ -62,6 +64,22 @@ export const adminRoutes: RouteRecordRaw[] = [
         path: 'users/:id/edit',
         name: 'admin.users.edit',
         component: AdminUserEditView,
+        meta: {
+          isSuperAdmin: true,
+        },
+      },
+      {
+        path: 'subscriptions',
+        name: 'admin.subscriptions.index',
+        component: AdminSubscriptionsView,
+        meta: {
+          isSuperAdmin: true,
+        },
+      },
+      {
+        path: 'plans',
+        name: 'admin.plans.index',
+        component: AdminPlansView,
         meta: {
           isSuperAdmin: true,
         },

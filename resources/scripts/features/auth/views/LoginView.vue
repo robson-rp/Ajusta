@@ -53,6 +53,13 @@
     <BaseButton :loading="isLoading" type="submit" class="w-full justify-center">
       {{ $t('login.login') }}
     </BaseButton>
+
+    <p class="mt-6 text-sm text-center text-muted">
+      {{ $t('signup.no_account') }}
+      <router-link to="/signup" class="font-medium text-primary-600 hover:text-primary-700">
+        {{ $t('signup.create_account') }}
+      </router-link>
+    </p>
   </form>
 </template>
 
