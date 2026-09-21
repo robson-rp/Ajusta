@@ -1,0 +1,30 @@
+@import 'tailwindcss';
+@import '@fontsource-variable/inter';
+
+@theme {
+  --font-sans: 'Inter Variable', Inter, ui-sans-serif, system-ui, sans-serif;
+
+  /* AJUSTA brand. Teal is a signature, not a background. */
+  --color-teal: #00bfa6;
+  --color-teal-strong: #008574; /* text and white-on-teal fills (contrast) */
+  --color-teal-soft: #ddf8f2;
+  --color-ink: #172321;
+  --color-muted: #5b6b68;
+  --color-canvas: #f8faf9;
+  --color-line: #e3eae8;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 5rem;
+}
+
+body {
+  @apply bg-canvas font-sans text-ink antialiased;
+  font-size: 17px;
+  line-height: 1.65;
+}
+
+summary::-webkit-details-marker {
+  display: none;
+}

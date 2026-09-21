@@ -1,0 +1,361 @@
+---
+import Base from '../layouts/Base.astro'
+import Button from '../components/Button.astro'
+import Icon from '../components/Icon.astro'
+import Logo from '../components/Logo.astro'
+import Screenshot from '../components/Screenshot.astro'
+import { site, cta } from '../site.config'
+
+// Real captures from the app live in /public/screenshots. Leave a value
+// undefined to show a labelled placeholder until the capture exists.
+const shots: Record<string, string | undefined> = {
+  invoice: undefined,
+  customers: undefined,
+  reports: undefined,
+}
+
+const features = [
+  { icon: 'document', title: 'Facturas e proformas', text: 'Crie documentos em poucos passos e envie-os ao cliente.' },
+  { icon: 'payment', title: 'Pagamentos e recibos', text: 'Saiba o que já recebeu e o que está pendente.' },
+  { icon: 'customers', title: 'Clientes', text: 'Dados e histórico de documentos no mesmo lugar.' },
+  { icon: 'portal', title: 'Portal do cliente', text: 'O cliente consulta documentos e pagamentos.' },
+  { icon: 'vat', title: 'IVA', text: 'IVA liquidado e IVA dedutível, sempre à vista.' },
+  { icon: 'repeat', title: 'Facturas recorrentes', text: 'Automatize o que se repete todos os meses.' },
+  { icon: 'expense', title: 'Despesas', text: 'Registe as despesas e acompanhe os custos.' },
+  { icon: 'reports', title: 'Relatórios', text: 'Vendas, despesas e valores pendentes.' },
+] as const
+
+const cycle = ['Cliente', 'Proforma', 'Factura', 'Pagamento', 'Recibo']
+
+const angola = [
+  { mark: 'Kz', text: 'Facturação em Kwanza.' },
+  { mark: 'NIF', text: 'Empresa e clientes bem identificados.' },
+  { mark: 'IVA', text: 'IVA liquidado e dedutível.' },
+  { mark: 'AO', text: 'Em Português de Angola.' },
+]
+
+const plans = [
+  {
+    name: 'Start',
+    for: 'Para começar a facturar.',
+    items: ['Facturas', 'Proformas', 'Recibos', 'Clientes', 'Pagamentos', 'Despesas', 'Relatórios básicos'],
+    action: { label: 'Começar agora', href: cta.start },
+  },
+  {
+    name: 'Empresa',
+    for: 'Para equipas que precisam de mais controlo.',
+    items: ['Tudo do plano Start', 'Vários utilizadores', 'Portal do cliente', 'Facturas recorrentes', 'Várias empresas', 'Permissões', 'Relatórios avançados'],
+    action: { label: 'Começar agora', href: cta.start },
+    featured: true,
+  },
+  {
+    name: 'À medida',
+    for: 'Para necessidades específicas.',
+    items: ['Instalação própria', 'Várias empresas', 'Grupos empresariais', 'Configuração personalizada', 'Suporte dedicado'],
+    action: { label: 'Falar connosco', href: cta.talk },
+  },
+]
+
+const audiences = [
+  { icon: 'services', label: 'Prestadores de serviços' },
+  { icon: 'store', label: 'Comércio' },
+  { icon: 'company', label: 'Pequenas e médias empresas' },
+  { icon: 'office', label: 'Escritórios' },
+  { icon: 'group', label: 'Contabilistas e grupos empresariais' },
+] as const
+
+const faq = [
+  {
+    q: 'O AJUSTA substitui o contabilista?',
+    a: 'Não. O AJUSTA organiza a informação da empresa e facilita o trabalho contabilístico. O acompanhamento fiscal continua a ser feito com o seu contabilista.',
+  },
+  { q: 'Posso facturar em Kwanza?', a: 'Sim. O AJUSTA foi pensado para empresas que trabalham em Kwanza, com NIF e IVA.' },
+  { q: 'Posso gerir mais de uma empresa?', a: 'Sim. Cada empresa tem o seu próprio espaço, NIF, documentos e utilizadores.' },
+  { q: 'O cliente pode consultar as suas facturas?', a: 'Sim. O portal do cliente permite consultar documentos e o histórico de pagamentos.' },
+  {
+    q: 'A folha de salários já está disponível?',
+    a: 'Ainda não. Hoje o AJUSTA está focado na facturação. A folha de salários é o próximo passo do produto.',
+  },
+  {
+    q: 'Posso instalar o AJUSTA na minha própria infraestrutura?',
+    a: 'Sim, de acordo com as condições e o suporte aplicáveis à versão self-hosted.',
+  },
+]
+
+const section = 'mx-auto max-w-6xl px-5 sm:px-8'
+const eyebrow = 'text-sm font-medium text-teal-strong'
+const h2 = 'text-3xl font-semibold tracking-tight sm:text-[2.5rem] sm:leading-[1.15]'
+---
+<Base>
+  <!-- HERO -->
+  <section class="relative overflow-hidden bg-white">
+    <Logo mark class="pointer-events-none absolute -right-24 -top-10 h-[420px] w-auto opacity-[0.06]" />
+    <div class:list={[section, 'relative pt-20 pb-16 sm:pt-28']}>
+      <div class="max-w-2xl">
+        <p class={eyebrow}>Facturação para Angola</p>
+        <h1 class="mt-4 text-4xl font-semibold tracking-tight sm:text-5xl sm:leading-[1.1]">
+          Facturar em Angola não devia ser complicado.
+        </h1>
+        <p class="mt-6 max-w-xl text-lg text-muted">
+          Facturas, proformas, recibos e pagamentos — tudo num só lugar.
+        </p>
+        <div class="mt-8 flex flex-wrap gap-3">
+          <Button href={cta.start}>Começar agora</Button>
+          <Button href="#como-funciona" variant="secondary">Ver como funciona</Button>
+        </div>
+        <p class="mt-8 text-sm font-medium text-muted">{site.tagline}</p>
+      </div>
+
+      <Screenshot
+        src={shots.invoice}
+        alt="Factura no AJUSTA, com valores em Kwanza"
+        class="mt-16"
+        eager
+      />
+    </div>
+  </section>
+
+  <!-- CONTEXTO -->
+  <section class:list={[section, 'grid items-center gap-12 py-24 md:grid-cols-2']}>
+    <div>
+      <h2 class={h2}>Feito para a forma como as empresas trabalham cá.</h2>
+      <p class="mt-5 text-muted">
+        Kwanza, NIF, IVA, facturas, proformas e recibos. Não precisa de adaptar a empresa a um software feito para outro mercado.
+      </p>
+    </div>
+    <img
+      src="/fotos/equipa.webp"
+      alt="Empresário angolano a trabalhar com o portátil"
+      width="1671"
+      height="941"
+      loading="lazy"
+      class="aspect-[4/3] w-full rounded-xl object-cover object-[20%_center]"
+    />
+  </section>
+
+  <!-- PRODUTO -->
+  <section id="produto" class="border-y border-line bg-white py-24">
+    <div class={section}>
+      <h2 class={h2}>Tudo o que precisa para facturar.</h2>
+
+      <div class="mt-12 grid gap-px overflow-hidden rounded-xl border border-line bg-line sm:grid-cols-2 lg:grid-cols-4">
+        {features.map((f) => (
+          <div class="bg-white p-6">
+            <Icon name={f.icon} class="h-6 w-6 text-teal-strong" />
+            <h3 class="mt-4 font-semibold">{f.title}</h3>
+            <p class="mt-1 text-[15px] text-muted">{f.text}</p>
+          </div>
+        ))}
+      </div>
+
+      <div class="mt-16 grid gap-8 md:grid-cols-2">
+        <Screenshot src={shots.customers} alt="Lista de clientes com valores em dívida" />
+        <Screenshot src={shots.reports} alt="Relatório de vendas e despesas" />
+      </div>
+    </div>
+  </section>
+
+  <!-- O CICLO -->
+  <section id="como-funciona" class:list={[section, 'py-24 text-center']}>
+    <h2 class={h2}>Tudo começa com uma factura.</h2>
+    <ol class="mx-auto mt-12 flex max-w-4xl flex-col items-center gap-3 sm:flex-row sm:justify-between">
+      {cycle.map((step, i) => (
+        <li class="flex flex-col items-center gap-3 sm:flex-row">
+          <span
+            class:list={[
+              'rounded-lg border px-4 py-2 text-[15px] font-medium',
+              step === 'Factura' ? 'border-teal bg-teal-soft text-ink' : 'border-line bg-white',
+            ]}
+          >
+            {step}
+          </span>
+          {i < cycle.length - 1 && (
+            <Icon name="arrow" class="h-4 w-4 rotate-90 text-teal sm:rotate-0" />
+          )}
+        </li>
+      ))}
+    </ol>
+    <p class="mx-auto mt-10 max-w-xl text-muted">
+      Crie o cliente, faça a proforma, emita a factura e registe o pagamento. Tudo no mesmo lugar.
+    </p>
+    <div class="mt-8">
+      <Button href={cta.start}>Criar a primeira factura</Button>
+    </div>
+  </section>
+
+  <!-- ANGOLA -->
+  <section class="bg-white py-24">
+    <div class:list={[section, 'grid gap-12 md:grid-cols-[1fr_1.4fr] md:items-center']}>
+      <div>
+        <h2 class={h2}>Angola não é uma configuração.</h2>
+        <p class="mt-4 text-muted">É onde a sua empresa trabalha.</p>
+      </div>
+      <div class="grid grid-cols-2 gap-4">
+        {angola.map((item) => (
+          <div class="rounded-xl border border-line p-6">
+            <p class="text-4xl font-semibold tracking-tight text-teal-strong">{item.mark}</p>
+            <p class="mt-2 text-[15px] text-muted">{item.text}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- IA (em desenvolvimento) -->
+  <section class:list={[section, 'py-24']}>
+    <div class="grid gap-12 md:grid-cols-2 md:items-center">
+      <div>
+        <span class="inline-block rounded-full bg-teal-soft px-3 py-1 text-xs font-medium text-teal-strong">
+          Em desenvolvimento
+        </span>
+        <h2 class:list={[h2, 'mt-4']}>Menos trabalho repetitivo.</h2>
+        <p class="mt-5 text-muted">
+          O AJUSTA vai transformar uma fotografia ou mensagem num rascunho de factura, apontar possíveis erros e lembrar prazos.
+        </p>
+        <p class="mt-4 font-medium">A IA ajuda. A decisão continua consigo.</p>
+      </div>
+      <div class="flex items-center justify-between gap-2 rounded-xl border border-line bg-white p-6 sm:p-8">
+        <div class="flex flex-col items-center gap-2 text-center text-sm text-muted">
+          <div class="flex gap-2 text-ink">
+            <Icon name="photo" class="h-7 w-7" />
+            <Icon name="message" class="h-7 w-7" />
+          </div>
+          Foto / WhatsApp
+        </div>
+        <Icon name="arrow" class="h-5 w-5 shrink-0 text-teal" />
+        <div class="flex flex-col items-center gap-2 text-sm text-muted">
+          <Logo mark class="h-7 w-auto" />
+          AJUSTA
+        </div>
+        <Icon name="arrow" class="h-5 w-5 shrink-0 text-teal" />
+        <div class="flex flex-col items-center gap-2 text-center text-sm text-muted">
+          <Icon name="document" class="h-7 w-7 text-ink" />
+          Rascunho
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PLANOS -->
+  <section id="precos" class="border-y border-line bg-white py-24">
+    <div class={section}>
+      <div class="max-w-xl">
+        <h2 class={h2}>Comece com o que precisa.</h2>
+        <p class="mt-4 text-muted">Escolha a forma de trabalhar que faz sentido para a sua empresa.</p>
+      </div>
+      <div class="mt-12 grid gap-6 md:grid-cols-3">
+        {plans.map((plan) => (
+          <div class:list={['flex flex-col rounded-xl border p-7', plan.featured ? 'border-teal' : 'border-line']}>
+            <h3 class="text-lg font-semibold">{plan.name}</h3>
+            <p class="mt-1 text-[15px] text-muted">{plan.for}</p>
+            <p class="mt-6 text-sm font-medium text-muted">Preço a anunciar</p>
+            <ul class="mt-6 flex-1 space-y-2 text-[15px]">
+              {plan.items.map((item) => (
+                <li class="flex items-center gap-3">
+                  <span class="h-px w-3 shrink-0 bg-teal" aria-hidden="true" />
+                  {item}
+                </li>
+              ))}
+            </ul>
+            <Button
+              href={plan.action.href}
+              variant={plan.featured ? 'primary' : 'secondary'}
+              class="mt-8 w-full"
+            >
+              {plan.action.label}
+            </Button>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- FUTURO -->
+  <section class:list={[section, 'grid gap-12 py-24 md:grid-cols-2 md:items-center']}>
+    <div>
+      <p class={eyebrow}>A seguir</p>
+      <h2 class:list={[h2, 'mt-3']}>O mesmo NIF. A mesma conta.</h2>
+      <p class="mt-5 text-muted">
+        Hoje, o AJUSTA começa pela facturação. O próximo passo é a folha de salários, com IRT e INSS, no mesmo ciclo.
+      </p>
+      <div class="mt-8">
+        <Button href={cta.payroll} variant="secondary">Quero acompanhar</Button>
+      </div>
+    </div>
+    <div class="relative rounded-xl border border-dashed border-line bg-white p-6" aria-hidden="true">
+      <div class="flex items-center justify-between">
+        <p class="font-semibold text-muted">Folha de salários</p>
+        <span class="rounded-full bg-teal-soft px-3 py-1 text-xs font-medium text-teal-strong">Em breve</span>
+      </div>
+      <div class="mt-6 space-y-3 opacity-60">
+        {['Colaborador', 'IRT', 'INSS', 'Líquido'].map((label) => (
+          <div class="flex items-center gap-4">
+            <span class="w-24 text-sm text-muted">{label}</span>
+            <span class="h-2.5 flex-1 rounded-full bg-canvas" />
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- CONFIANÇA -->
+  <section id="sobre" class="bg-white py-24">
+    <div class:list={[section, 'text-center']}>
+      <h2 class={h2}>Simples para a empresa. Aberto por natureza.</h2>
+      <p class="mx-auto mt-5 max-w-2xl text-muted">
+        O AJUSTA é baseado em software livre (<a href={site.upstreamUrl} class="underline underline-offset-2 hover:text-ink">InvoiceShelf</a>) e o código está disponível sob licença AGPL-3.0. Use o serviço alojado ou instale na sua infraestrutura.
+      </p>
+      <ul class="mt-10 flex flex-wrap justify-center gap-3 text-[15px]">
+        <li class="flex items-center gap-2 rounded-full border border-line px-4 py-2"><Icon name="license" class="h-4 w-4 text-teal-strong" />AGPL-3.0</li>
+        <li class="flex items-center gap-2 rounded-full border border-line px-4 py-2"><Icon name="code" class="h-4 w-4 text-teal-strong" />Open Source</li>
+        <li class="flex items-center gap-2 rounded-full border border-line px-4 py-2"><Icon name="server" class="h-4 w-4 text-teal-strong" />Self-hosted</li>
+      </ul>
+      <a href={site.sourceUrl} class="mt-8 inline-block text-[15px] font-medium text-teal-strong hover:text-ink">Ver o código-fonte</a>
+    </div>
+  </section>
+
+  <!-- PARA QUEM -->
+  <section id="para-quem" class:list={[section, 'py-24']}>
+    <h2 class={h2}>Para empresas que precisam de facturar.</h2>
+    <div class="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-5">
+      {audiences.map((a) => (
+        <div class="rounded-xl border border-line bg-white p-5">
+          <Icon name={a.icon} class="h-6 w-6 text-teal-strong" />
+          <p class="mt-4 text-[15px] font-medium">{a.label}</p>
+        </div>
+      ))}
+    </div>
+    <p class="mt-8 text-muted">Se a sua empresa factura em Angola, o AJUSTA foi pensado para si.</p>
+  </section>
+
+  <!-- FAQ -->
+  <section id="faq" class="border-t border-line bg-white py-24">
+    <div class="mx-auto max-w-3xl px-5 sm:px-8">
+      <h2 class={h2}>Perguntas frequentes</h2>
+      <div class="mt-10 divide-y divide-line border-y border-line">
+        {faq.map((item) => (
+          <details class="group py-5">
+            <summary class="flex cursor-pointer items-center justify-between gap-6 font-medium">
+              {item.q}
+              <span class="text-xl leading-none text-teal-strong transition-transform group-open:rotate-45" aria-hidden="true">+</span>
+            </summary>
+            <p class="mt-3 text-muted">{item.a}</p>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA FINAL -->
+  <section class="bg-teal-soft">
+    <div class:list={[section, 'py-24 text-center']}>
+      <h2 class={h2}>Pronto para ajustar a sua facturação?</h2>
+      <p class="mt-4 text-muted">Comece pelas facturas. Organize os clientes. Acompanhe os pagamentos.</p>
+      <div class="mt-8 flex flex-wrap justify-center gap-3">
+        <Button href={cta.start}>Começar agora</Button>
+        <Button href={cta.talk} variant="secondary">Falar connosco</Button>
+      </div>
+      <p class="mt-8 text-sm font-medium text-teal-strong">{site.tagline}</p>
+    </div>
+  </section>
+</Base>

@@ -1,0 +1,35 @@
+---
+// A real app screenshot in a quiet browser frame. Without `src` it renders a
+// labelled placeholder so the layout can be reviewed before captures exist.
+interface Props {
+  src?: string
+  alt: string
+  width?: number
+  height?: number
+  class?: string
+  eager?: boolean
+}
+const { src, alt, width = 1600, height = 1000, class: className = '', eager = false } = Astro.props
+---
+<figure class:list={['overflow-hidden rounded-xl border border-line bg-white shadow-[0_24px_48px_-24px_rgba(23,35,33,0.18)]', className]}>
+  <div class="flex items-center gap-1.5 border-b border-line bg-canvas px-4 py-2.5" aria-hidden="true">
+    <span class="h-2.5 w-2.5 rounded-full bg-line"></span>
+    <span class="h-2.5 w-2.5 rounded-full bg-line"></span>
+    <span class="h-2.5 w-2.5 rounded-full bg-line"></span>
+  </div>
+  {src ? (
+    <img
+      src={src}
+      alt={alt}
+      width={width}
+      height={height}
+      loading={eager ? 'eager' : 'lazy'}
+      decoding="async"
+      class="block h-auto w-full"
+    />
+  ) : (
+    <div class="flex aspect-[16/10] items-center justify-center bg-canvas text-sm text-muted">
+      {alt}
+    </div>
+  )}
+</figure>

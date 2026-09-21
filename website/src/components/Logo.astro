@@ -1,0 +1,38 @@
+---
+// Same geometry as the app's MainLogo.vue: two parts that fit into an "A".
+interface Props {
+  class?: string
+  mark?: boolean
+}
+const { class: className = 'h-7 w-auto', mark = false } = Astro.props
+---
+<svg
+  viewBox={mark ? '0 0 70 51' : '0 0 296 51'}
+  class={className}
+  xmlns="http://www.w3.org/2000/svg"
+  role="img"
+  aria-label="AJUSTA"
+>
+  <defs>
+    <linearGradient id="ajusta-logo-g" x1="1" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#00BFA6" />
+      <stop offset="1" stop-color="#05A99A" />
+    </linearGradient>
+  </defs>
+  <g stroke-linejoin="round" stroke-width="6">
+    <polygon points="4,48 20,48 44,3 28,3" fill="url(#ajusta-logo-g)" stroke="url(#ajusta-logo-g)" />
+    <polygon points="53,48 66,48 49,17.5 46.3,17.5 41.2,27" fill="#5CD6C4" stroke="#5CD6C4" />
+  </g>
+  {!mark && (
+    <text
+      x="86"
+      y="41.5"
+      textLength="208"
+      lengthAdjust="spacing"
+      font-family="'Inter Variable', Inter, system-ui, sans-serif"
+      font-size="39"
+      font-weight="600"
+      fill="currentColor"
+    >ΛJUSTΛ</text>
+  )}
+</svg>

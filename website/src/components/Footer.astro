@@ -1,0 +1,32 @@
+---
+import Logo from './Logo.astro'
+import { site, cta } from '../site.config'
+
+const links = [
+  { label: 'Produto', href: '/#produto' },
+  { label: 'Preços', href: '/#precos' },
+  { label: 'Sobre', href: '/#sobre' },
+  { label: 'FAQ', href: '/#faq' },
+  { label: 'Contacto', href: cta.talk },
+  { label: 'Privacidade', href: '/privacidade' },
+  { label: 'Termos', href: '/termos' },
+  { label: 'Código-fonte', href: site.sourceUrl },
+]
+---
+<footer class="border-t border-line bg-white">
+  <div class="mx-auto grid max-w-6xl gap-10 px-5 py-14 sm:px-8 md:grid-cols-[1fr_auto]">
+    <div>
+      <Logo class="h-7 w-auto text-ink" />
+      <p class="mt-4 max-w-xs text-[15px] text-muted">{site.positioning}</p>
+    </div>
+    <nav class="grid grid-cols-2 gap-x-12 gap-y-2 text-[15px] sm:grid-cols-3" aria-label="Rodapé">
+      {links.map((link) => <a href={link.href} class="text-muted hover:text-ink">{link.label}</a>)}
+      <a href={site.appUrl} class="font-medium text-teal-strong hover:text-ink">Iniciar sessão</a>
+    </nav>
+  </div>
+  <div class="border-t border-line">
+    <p class="mx-auto max-w-6xl px-5 py-6 text-sm text-muted sm:px-8">
+      © {new Date().getFullYear()} AJUSTA · Baseado no <a href={site.upstreamUrl} class="underline underline-offset-2 hover:text-ink">InvoiceShelf</a> · AGPL-3.0
+    </p>
+  </div>
+</footer>

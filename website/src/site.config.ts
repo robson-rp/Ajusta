@@ -1,0 +1,33 @@
+/**
+ * Everything that must be confirmed before launch lives here.
+ * TODO: replace the placeholders with the real domain and contacts.
+ */
+export const site = {
+  name: 'AJUSTA',
+  tagline: 'Uma conta. Um NIF. Um ciclo.',
+  positioning: 'Facturação ajustada à realidade de Angola.',
+
+  /** Where "Iniciar sessão" goes. */
+  appUrl: 'https://app.ajusta.ao/login',
+
+  /** Contact for demos and questions. TODO: confirm. */
+  contactEmail: 'ola@ajusta.ao',
+  /** International format, digits only, e.g. 244923000000. Empty hides WhatsApp. */
+  whatsapp: '',
+
+  sourceUrl: 'https://github.com/robson-rp/Ajusta',
+  upstreamUrl: 'https://github.com/InvoiceShelf/InvoiceShelf',
+}
+
+/** mailto: link with a pre-filled subject, so each button tells us why the person wrote. */
+export function contactLink(subject: string): string {
+  return `mailto:${site.contactEmail}?subject=${encodeURIComponent(subject)}`
+}
+
+export const cta = {
+  start: contactLink('Quero começar a usar o AJUSTA'),
+  demo: contactLink('Pedido de demonstração do AJUSTA'),
+  talk: contactLink('Falar com a equipa AJUSTA'),
+  payroll: contactLink('Quero acompanhar a folha de salários'),
+  ai: contactLink('Quero acompanhar a IA do AJUSTA'),
+}

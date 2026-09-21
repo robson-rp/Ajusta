@@ -1,0 +1,4 @@
+# Standalone workspace: the website is built and hosted apart from the app.
+allowBuilds:
+  esbuild: true
+  sharp: true
