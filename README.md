@@ -3,7 +3,7 @@
 </p>
 
 <p align="center">
-  <strong>Facturação e salários, ajustados à lei angolana.</strong><br>
+  <strong>Facturação ajustada à realidade de Angola.</strong><br>
   Uma conta. Um NIF. Um ciclo.
 </p>
 
