@@ -10,33 +10,15 @@
         class="absolute inset-0 h-full w-full object-cover object-[12%_center]"
       />
       <div
-        class="absolute inset-0 bg-linear-to-t from-[#0F2624]/90 via-[#0F2624]/45 via-45% to-transparent to-75%"
+        class="absolute inset-0 bg-linear-to-t from-[#0F2624]/80 via-[#0F2624]/20 via-30% to-transparent to-55%"
       />
 
       <div class="relative flex h-full flex-col justify-end p-12 xl:p-16">
         <div class="max-w-md text-white">
-          <p class="text-sm font-medium tracking-wide text-primary-200">
-            {{ $t('auth_layout.hero.eyebrow') }}
-          </p>
-          <h2 class="mt-3 text-4xl font-semibold leading-tight tracking-tight">
+          <h2 class="text-4xl font-semibold leading-tight tracking-tight">
             {{ $t('auth_layout.hero.title') }}
           </h2>
-          <p class="mt-4 text-base leading-relaxed text-white/85">
-            {{ $t('auth_layout.hero.description') }}
-          </p>
-
-          <ul class="mt-8 space-y-3 text-sm text-white/90">
-            <li
-              v-for="point in heroPoints"
-              :key="point"
-              class="flex items-center gap-3"
-            >
-              <span class="h-px w-6 shrink-0 bg-primary-300" />
-              {{ point }}
-            </li>
-          </ul>
-
-          <p class="mt-10 text-sm font-medium text-primary-200">
+          <p class="mt-4 text-base font-medium text-primary-200">
             {{ $t('auth_layout.hero.tagline') }}
           </p>
         </div>
@@ -101,12 +83,6 @@ const route = useRoute()
 const { t } = useI18n()
 
 const heroImage = new URL('$images/brand/login-hero.webp', import.meta.url).href
-
-const heroPoints = computed<string[]>(() => [
-  t('auth_layout.hero.point_invoicing'),
-  t('auth_layout.hero.point_payroll'),
-  t('auth_layout.hero.point_one_place'),
-])
 
 interface RouteCopy {
   heading: string
