@@ -33,7 +33,7 @@
           </BaseInput>
         </div>
 
-        <div class="flex mb-6 ml-3" role="group" aria-label="First group">
+        <div class="flex mb-6 ml-3" role="group" :aria-label="$t('general.actions')">
           <BaseDropdown class="ml-3" position="bottom-start">
             <template #activator>
               <BaseButton size="md" variant="gray">

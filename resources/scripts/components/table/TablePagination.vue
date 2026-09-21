@@ -108,7 +108,7 @@
       <div>
         <nav
           class="relative z-0 inline-flex -space-x-px rounded-lg shadow-sm"
-          aria-label="Pagination"
+          :aria-label="$t('general.pagination.label')"
         >
           <a
             href="#"
@@ -132,7 +132,7 @@
             "
             @click="pageClicked(pagination.currentPage - 1)"
           >
-            <span class="sr-only">Previous</span>
+            <span class="sr-only">{{ $t('general.pagination.previous') }}</span>
             <BaseIcon name="ChevronLeftIcon" />
           </a>
           <a
@@ -266,7 +266,7 @@
             }"
             @click="pageClicked(pagination.currentPage + 1)"
           >
-            <span class="sr-only">Next</span>
+            <span class="sr-only">{{ $t('general.pagination.next') }}</span>
             <BaseIcon name="ChevronRightIcon" />
           </a>
         </nav>

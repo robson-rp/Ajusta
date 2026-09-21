@@ -2,7 +2,7 @@
   <!-- Loading -->
   <div v-if="isLoading" class="mt-12 text-center">
     <BaseSpinner class="w-8 h-8 text-primary-400 mx-auto" />
-    <p class="text-muted mt-4 text-sm">Loading invitation details...</p>
+    <p class="text-muted mt-4 text-sm">{{ $t('invitation_register.loading') }}</p>
   </div>
 
   <!-- Invalid/Expired -->
@@ -12,14 +12,14 @@
       class="w-12 h-12 mx-auto text-red-400 mb-4"
     />
     <h2 class="text-lg font-semibold text-heading mb-2">
-      Invalid Invitation
+      {{ $t('invitation_register.invalid_title') }}
     </h2>
     <p class="text-sm text-muted mb-4">{{ error }}</p>
     <router-link
       to="/login"
       class="text-sm text-primary-400 hover:text-primary-500"
     >
-      Go to Login
+      {{ $t('invitation_register.go_to_login') }}
     </router-link>
   </div>
 
@@ -27,18 +27,23 @@
   <div v-else class="mt-12">
     <div class="mb-8">
       <h1 class="text-2xl font-semibold text-heading">
-        Create Your Account
+        {{ $t('invitation_register.title') }}
       </h1>
       <p class="text-sm text-muted mt-2">
-        You've been invited to join
-        <strong class="text-heading">{{ invitationDetails.company_name }}</strong>
-        as <strong class="text-heading">{{ invitationDetails.role_name }}</strong>
+        <i18n-t keypath="invitation_register.invited_to_join" tag="span">
+          <template #company>
+            <strong class="text-heading">{{ invitationDetails.company_name }}</strong>
+          </template>
+          <template #role>
+            <strong class="text-heading">{{ invitationDetails.role_name }}</strong>
+          </template>
+        </i18n-t>
       </p>
     </div>
 
     <form @submit.prevent="submitRegistration">
       <BaseInputGroup
-        label="Name"
+        :label="$t('login.name')"
         :error="v$.name.$error && v$.name.$errors[0].$message"
         class="mb-4"
         required
@@ -51,7 +56,7 @@
         />
       </BaseInputGroup>
 
-      <BaseInputGroup label="Email" class="mb-4">
+      <BaseInputGroup :label="$t('login.email')" class="mb-4">
         <BaseInput
           v-model="form.email"
           type="email"
@@ -60,7 +65,7 @@
       </BaseInputGroup>
 
       <BaseInputGroup
-        label="Password"
+        :label="$t('login.password')"
         :error="v$.password.$error && v$.password.$errors[0].$message"
         class="mb-4"
         required
@@ -82,7 +87,7 @@
       </BaseInputGroup>
 
       <BaseInputGroup
-        label="Confirm Password"
+        :label="$t('login.confirm_password')"
         :error="
           v$.password_confirmation.$error &&
           v$.password_confirmation.$errors[0].$message
@@ -111,7 +116,7 @@
           to="/login"
           class="text-sm text-primary-400 hover:text-body"
         >
-          Already have an account? Log in
+          {{ $t('invitation_register.have_account') }}
         </router-link>
       </div>
 
@@ -121,7 +126,7 @@
         type="submit"
         class="w-full justify-center"
       >
-        Create Account & Join
+        {{ $t('invitation_register.submit') }}
       </BaseButton>
     </form>
   </div>
@@ -130,6 +135,7 @@
 <script setup lang="ts">
 import { ref, reactive, computed, onMounted } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
+import { useI18n } from 'vue-i18n'
 import { helpers, required, minLength, sameAs } from '@vuelidate/validators'
 import { useVuelidate } from '@vuelidate/core'
 import { authService } from '../../../api/services/auth.service'
@@ -149,6 +155,7 @@ interface RegistrationForm {
 
 const route = useRoute()
 const router = useRouter()
+const { t } = useI18n()
 
 const isLoading = ref<boolean>(true)
 const isSubmitting = ref<boolean>(false)
@@ -170,15 +177,15 @@ const form = reactive<RegistrationForm>({
 
 const rules = computed(() => ({
   name: {
-    required: helpers.withMessage('Name is required', required),
+    required: helpers.withMessage(t('validation.required'), required),
   },
   password: {
-    required: helpers.withMessage('Password is required', required),
-    minLength: helpers.withMessage('Password must be at least 8 characters', minLength(8)),
+    required: helpers.withMessage(t('validation.required'), required),
+    minLength: helpers.withMessage(t('validation.password_min_length', { count: 8 }), minLength(8)),
   },
   password_confirmation: {
-    required: helpers.withMessage('Please confirm your password', required),
-    sameAs: helpers.withMessage('Passwords do not match', sameAs(form.password)),
+    required: helpers.withMessage(t('validation.required'), required),
+    sameAs: helpers.withMessage(t('validation.password_incorrect'), sameAs(form.password)),
   },
 }))
 
@@ -191,7 +198,7 @@ const token = computed<string>(() => route.query.invitation as string)
 
 onMounted(async () => {
   if (!token.value) {
-    error.value = 'No invitation token provided.'
+    error.value = t('invitation_register.no_token')
     isLoading.value = false
     return
   }
@@ -205,7 +212,7 @@ onMounted(async () => {
     }
     form.email = details.email
   } catch {
-    error.value = 'This invitation is invalid or has expired.'
+    error.value = t('invitation_register.invalid_or_expired')
   } finally {
     isLoading.value = false
   }

@@ -61,7 +61,7 @@ Route::prefix('/v1')->group(function () {
         require app_path('Domains/Accounts/routes/impersonation.php');
     });
 
-    Route::middleware(['auth:sanctum', 'company'])->group(function () {
+    Route::middleware(['auth:sanctum', 'company', 'locale'])->group(function () {
         Route::middleware(['bouncer'])->group(function () {
             require app_path('Domains/Accounts/routes/company.php');
             require app_path('Platform/Operations/routes/company.php');
@@ -147,7 +147,7 @@ Route::prefix('/v1')->group(function () {
         // Invoices, Estimates, Payments and Expenses endpoints
         // -------------------------------------------------------
 
-        Route::middleware(['auth:customer', 'customer-portal'])->group(function () {
+        Route::middleware(['auth:customer', 'customer-portal', 'locale'])->group(function () {
             require app_path('Domains/Contacts/routes/customer.php');
 
             require app_path('Domains/Sales/routes/customer.php');

@@ -132,10 +132,13 @@ class CompanyService
      */
     private function setupDefaultSettings(Company $company, int $currencyId): void
     {
+        $defaults = config('invoiceshelf.company_defaults');
+        $language = $defaults['language'];
+
         CompanySetting::setSettings([
-            'invoice_mail_body' => self::INVOICE_MAIL_BODY,
-            'estimate_mail_body' => self::ESTIMATE_MAIL_BODY,
-            'payment_mail_body' => self::PAYMENT_MAIL_BODY,
+            'invoice_mail_body' => __(self::INVOICE_MAIL_BODY, [], $language),
+            'estimate_mail_body' => __(self::ESTIMATE_MAIL_BODY, [], $language),
+            'payment_mail_body' => __(self::PAYMENT_MAIL_BODY, [], $language),
             'invoice_company_address_format' => self::COMPANY_ADDRESS_FORMAT,
             'invoice_shipping_address_format' => self::SHIPPING_ADDRESS_FORMAT,
             'invoice_billing_address_format' => self::BILLING_ADDRESS_FORMAT,
@@ -145,11 +148,11 @@ class CompanyService
             'payment_company_address_format' => self::COMPANY_ADDRESS_FORMAT,
             'payment_from_customer_address_format' => self::PAYMENT_CUSTOMER_ADDRESS_FORMAT,
             'currency' => $currencyId,
-            'time_zone' => 'Asia/Kolkata',
-            'language' => 'en',
+            'time_zone' => $defaults['time_zone'],
+            'language' => $language,
             'fiscal_year' => '1-12',
-            'carbon_date_format' => 'Y/m/d',
-            'moment_date_format' => 'YYYY/MM/DD',
+            'carbon_date_format' => $defaults['carbon_date_format'],
+            'moment_date_format' => $defaults['moment_date_format'],
             'carbon_time_format' => 'H:i',
             'moment_time_format' => 'HH:mm',
             'invoice_use_time' => 'NO',

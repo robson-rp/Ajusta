@@ -2,7 +2,7 @@
   <div class="flex flex-col items-center justify-center h-screen">
     <MainLogo
       class="w-28 h-auto text-primary-400 mb-6"
-      alt="InvoiceShelf Logo"
+      alt="AJUSTA"
     />
     <div class="flex space-x-1.5">
       <span class="loader-dot" />

@@ -20,6 +20,7 @@ import * as localStore from '../utils/local-storage'
 import type { Currency } from '@/scripts/types/domain/currency'
 import type { Country } from '@/scripts/types/domain/customer'
 import { emitBootstrapCompleted } from '@/scripts/extensions/runtime'
+import { DEFAULT_LOCALE } from '@/scripts/config/locale'
 
 export const useGlobalStore = defineStore('global', () => {
   // State
@@ -109,13 +110,13 @@ export const useGlobalStore = defineStore('global', () => {
 
       isAppLoaded.value = true
 
-      // Load UI language: user preference > company setting > English
+      // Load UI language: user preference > company setting > default
       // 'default' means "use company language"
       const userLang = userStore.currentUserSettings.language
       const uiLanguage =
         (userLang && userLang !== 'default' ? userLang : '') ||
         (response.current_company_settings as Record<string, string>)?.language ||
-        'en'
+        DEFAULT_LOCALE
       await window.loadLanguage?.(uiLanguage)
 
       emitBootstrapCompleted({

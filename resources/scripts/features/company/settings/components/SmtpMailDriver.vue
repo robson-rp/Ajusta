@@ -197,7 +197,7 @@ function onChangeDriver(): void {
           :options="schemes"
           :searchable="true"
           :show-labels="false"
-          placeholder="Select option"
+          :placeholder="$t('general.select_an_option')"
         />
       </BaseInputGroup>
 

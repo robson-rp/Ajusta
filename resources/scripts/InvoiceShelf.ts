@@ -4,6 +4,7 @@ import type { Router } from 'vue-router'
 import App_ from './App.vue'
 import router from './router'
 import { createAppI18n, mergeMessageObjects, setI18nLanguage } from './plugins/i18n'
+import { DEFAULT_LOCALE, readLocalePreference } from './config/locale'
 import type { AppI18n } from './plugins/i18n'
 import { createAppPinia } from './plugins/pinia'
 import { installTooltipDirective } from './plugins/tooltip'
@@ -101,13 +102,14 @@ export default class InvoiceShelf {
     // i18n
     this.i18n = createAppI18n(this.messages)
 
-    // If the install wizard's Language step set a locale before the DB
-    // existed, honor it now so the rest of the wizard renders in the right
-    // language. Falls through to 'en' silently on any failure.
-    const installLanguage = this.readInstallLanguage()
-    if (installLanguage && installLanguage !== 'en') {
+    // Render pre-login screens in the language picked on this browser (the
+    // switcher, or the install wizard's Language step), else the default.
+    // Once signed in, the user/company setting takes over in the stores.
+    const initialLanguage =
+      readLocalePreference() ?? this.readInstallLanguage() ?? DEFAULT_LOCALE
+    if (initialLanguage !== 'en') {
       try {
-        await setI18nLanguage(this.i18n, installLanguage)
+        await setI18nLanguage(this.i18n, initialLanguage)
       } catch {
         // Locale file missing or load failed — fall back to en, no-op.
       }

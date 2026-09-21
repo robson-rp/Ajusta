@@ -128,7 +128,8 @@
       "showing": "Showing",
       "to": "to",
       "of": "of",
-      "results": "results"
+      "results": "results",
+      "label": "Pagination"
     },
     "file_upload": {
       "drag_a_file": "Drag a file here or",
@@ -139,7 +140,23 @@
       "the_list_is_empty": "The list is empty",
       "no_results_found": "No results found"
     },
-    "copy_to_clipboard": "Copy to Clipboard"
+    "copy_to_clipboard": "Copy to Clipboard",
+    "select_an_option": "Please select an option",
+    "submission_errors": "There were some errors with your submission",
+    "dismiss": "Dismiss",
+    "options": "Options",
+    "close_sidebar": "Close sidebar",
+    "optional_cc": "Optional: CC recipient",
+    "optional_bcc": "Optional: BCC recipient",
+    "sent_with": "Sent with",
+    "successful": "Successful",
+    "something_went_wrong": "Something went wrong",
+    "email": "Email",
+    "no_company_selected": "No company selected",
+    "select_company_to_continue": "Select a company to continue.",
+    "go_to_dashboard": "Go to Dashboard",
+    "logged_out_successfully_toast": "Logged out successfully.",
+    "connection_lost": "Please check your internet connection or wait until servers are back online."
   },
   "dashboard": {
     "select_year": "Select year",
@@ -432,7 +449,8 @@
       "select_an_item": "Type or click to select an item",
       "type_item_description": "Type Item Description (optional)"
     },
-    "mark_as_default_estimate_template_description": "If enabled, the selected template will be automatically selected for new estimates."
+    "mark_as_default_estimate_template_description": "If enabled, the selected template will be automatically selected for new estimates.",
+    "estimate_sent_successfully": "Estimate sent successfully"
   },
   "invoices": {
     "title": "Invoices",
@@ -549,7 +567,8 @@
     "marked_as_sent_message": "Invoice marked as sent successfully",
     "something_went_wrong": "something went wrong",
     "invalid_due_amount_message": "Total Invoice amount cannot be less than total paid amount for this Invoice. Please update the invoice or delete the associated payments to continue.",
-    "mark_as_default_invoice_template_description": "If enabled, the selected template will be automatically selected for new invoices."
+    "mark_as_default_invoice_template_description": "If enabled, the selected template will be automatically selected for new invoices.",
+    "allocated_payments": "Allocated Payments"
   },
   "recurring_invoices": {
     "title": "Recurring Invoices",
@@ -732,7 +751,8 @@
     "allocated": "Allocated",
     "unapplied_credit": "Unapplied Credit",
     "remove_allocation": "Remove allocation",
-    "allocation_exceeds_amount": "Invoice allocations cannot exceed the payment amount."
+    "allocation_exceeds_amount": "Invoice allocations cannot exceed the payment amount.",
+    "payment_sent_successfully": "Payment sent successfully"
   },
   "expenses": {
     "title": "Expenses",
@@ -806,7 +826,9 @@
     "password_reset_successfully": "Password Reset Successfully",
     "enter_email": "Enter email",
     "enter_password": "Enter Password",
-    "retype_password": "Retype Password"
+    "retype_password": "Retype Password",
+    "name": "Name",
+    "confirm_password": "Confirm Password"
   },
   "modules": {
     "buy_now": "Buy Now",
@@ -842,7 +864,7 @@
     "module_not_purchased": "Module Not Purchased",
     "module_not_found": "Module Not Found",
     "runtime_missing": "The module files are missing. Install the module again before enabling it.",
-    "version_not_supported": "The minimum required version for this module does not match. Please upgrade your invoiceshelf app to version: {version} to proceed.",
+    "version_not_supported": "The minimum required version for this module does not match. Please upgrade the app to version: {version} to proceed.",
     "last_updated": "Last Updated On",
     "connect_installation": "Connect your installation",
     "api_token_description": "Login to {url} and connect this installation by entering the API Token. Your purchased modules will show up here after the connection is established.",
@@ -875,6 +897,19 @@
     },
     "sidebar": {
       "section_title": "Modules"
+    },
+    "marketplace": {
+      "access_title": "Marketplace access",
+      "access_description": "Pair this instance with your marketplace account. The device credential stays encrypted on this server.",
+      "enter_code": "Enter code {code} at the marketplace verification page.",
+      "open_verification": "Open verification page",
+      "pair": "Pair marketplace",
+      "approved": "I have approved this device",
+      "disconnect": "Disconnect",
+      "none_available": "No marketplace modules are available yet.",
+      "paired": "Marketplace paired",
+      "waiting": "Waiting for marketplace approval",
+      "disconnected": "Marketplace disconnected"
     }
   },
   "members": {
@@ -913,7 +948,9 @@
     "cancel_invitation": "Cancel Invitation",
     "role": "Role",
     "invited_by": "Invited By",
-    "sent_at": "Sent At"
+    "sent_at": "Sent At",
+    "no_users": "No members yet!",
+    "list_of_users": "This section will contain the list of company members."
   },
   "reports": {
     "title": "Report",
@@ -1118,7 +1155,7 @@
       "tax_id": "Tax Identification Number",
       "vat_id": "VAT Identification Number",
       "company_logo": "Company Logo",
-      "section_description": "Information about your company that will be displayed on invoices, estimates and other documents created by InvoiceShelf.",
+      "section_description": "Information about your company that will be displayed on invoices, estimates and other documents created by AJUSTA.",
       "phone": "Phone",
       "country": "Country",
       "state": "State",
@@ -1180,7 +1217,8 @@
         "estimate": "Estimate",
         "expense": "Expense",
         "payment": "Payment"
-      }
+      },
+      "created_message": "Custom Field added successfully"
     },
     "customization": {
       "customization": "customization",
@@ -1268,7 +1306,9 @@
         "convert_estimate_description": "Specify what happens to the estimate after it gets converted to an invoice.",
         "no_action": "No action",
         "delete_estimate": "Delete estimate",
-        "mark_estimate_as_accepted": "Mark estimate as accepted"
+        "mark_estimate_as_accepted": "Mark estimate as accepted",
+        "convert_estimate_setting": "Estimate Convert Action",
+        "expiry_date_setting": "Expiry Date"
       },
       "payments": {
         "title": "Payments",
@@ -1347,9 +1387,9 @@
       "email": "Send Notifications to",
       "description": "Which email notifications would you like to receive when something changes?",
       "invoice_viewed": "Invoice viewed",
-      "invoice_viewed_desc": "When your customer views the invoice sent via invoiceshelf dashboard.",
+      "invoice_viewed_desc": "When your customer views the invoice sent via AJUSTA.",
       "estimate_viewed": "Estimate viewed",
-      "estimate_viewed_desc": "When your customer views the estimate sent via invoiceshelf dashboard.",
+      "estimate_viewed_desc": "When your customer views the estimate sent via AJUSTA.",
       "save": "Save",
       "email_save_message": "Email saved successfully",
       "please_enter_email": "Please Enter Email"
@@ -1377,7 +1417,7 @@
     "exchange_rate": {
       "exchange_rate": "Exchange Rate",
       "title": "Fix Currency Exchange issues",
-      "description": "Please enter exchange rate of all the currencies mentioned below to help InvoiceShelf properly calculate the amounts in {currency}.",
+      "description": "Please enter exchange rate of all the currencies mentioned below to help AJUSTA properly calculate the amounts in {currency}.",
       "drivers": "Drivers",
       "new_driver": "Add New Provider",
       "edit_driver": "Edit Provider",
@@ -1410,7 +1450,7 @@
       "title": "Tax Types",
       "add_tax": "Add Tax",
       "edit_tax": "Edit Tax",
-      "description": "You can add or Remove Taxes as you please. InvoiceShelf supports Taxes on Individual Items as well as on the invoice.",
+      "description": "You can add or Remove Taxes as you please. AJUSTA supports Taxes on Individual Items as well as on the invoice.",
       "add_new_tax": "Add New Tax",
       "tax_settings": "Tax Settings",
       "tax_per_item": "Tax Per Item",
@@ -1446,7 +1486,9 @@
       "payment_mode_confirm_delete": "You will not be able to recover this Payment Mode",
       "payments_attached": "This payment method is already attached to payments. Please delete the attached payments to proceed with deletion.",
       "expenses_attached": "This payment method is already attached to expenses. Please delete the attached expenses to proceed with deletion.",
-      "deleted_message": "Payment Mode deleted successfully"
+      "deleted_message": "Payment Mode deleted successfully",
+      "updated_message": "Payment Mode Updated",
+      "created_message": "Payment Mode Added"
     },
     "expense_category": {
       "title": "Expense Categories",
@@ -1523,7 +1565,7 @@
     },
     "update_app": {
       "title": "Update App",
-      "description": "You can easily update InvoiceShelf by checking for a new update by clicking the button below",
+      "description": "You can easily update AJUSTA by checking for a new update by clicking the button below",
       "check_update": "Check for updates",
       "insider_consent": "Opt-in for Insider releases. Recommended for testing purposes only.",
       "avail_update": "New Update available",
@@ -1574,7 +1616,7 @@
     },
     "disk": {
       "title": "File Disks | File Disks",
-      "description": "By default, InvoiceShelf will use your local disk for saving backups, avatar and other image files. You can configure more than one disk drivers like DigitalOcean, S3 and Dropbox according to your preference.",
+      "description": "By default, AJUSTA will use your local disk for saving backups, avatar and other image files. You can configure more than one disk drivers like DigitalOcean, S3 and Dropbox according to your preference.",
       "created_at": "created at",
       "dropbox": "dropbox",
       "name": "Name",
@@ -1625,7 +1667,7 @@
       "disk_setting_description": " Enable this, if you wish to save a copy of each Invoice, Estimate & Payment Receipt PDF on your default disk automatically. Turning this option will decrease the load-time when viewing the PDFs.",
       "select_disk": "Select Disk",
       "disk_settings": "Disk Settings",
-      "confirm_delete": "Your existing files & folders in the specified disk will not be affected but your disk configuration will be deleted from InvoiceShelf",
+      "confirm_delete": "Your existing files & folders in the specified disk will not be affected but your disk configuration will be deleted from AJUSTA",
       "action": "Action",
       "edit_file_disk": "Edit File Disk",
       "success_create": "Disk added successfully",
@@ -1697,7 +1739,7 @@
     "skip": "Skip",
     "install_language": {
       "title": "Choose your language",
-      "description": "Select language wizard to install InvoiceShelf"
+      "description": "Select language wizard to install AJUSTA"
     },
     "database": {
       "database": "Site URL & Database",
@@ -1712,7 +1754,8 @@
       "db_path": "Database Path",
       "overwrite": "Overwrite existing database and proceed",
       "overwrite_confirm_desc": "This will permanently wipe the selected database before installation continues. Make sure you do not need any existing data.",
-      "desc": "Create a database on your server and set the credentials using the form below."
+      "desc": "Create a database on your server and set the credentials using the form below.",
+      "hostname": "Database Host"
     },
     "permissions": {
       "permissions": "Permissions",
@@ -1722,7 +1765,7 @@
     },
     "verify_domain": {
       "title": "Domain Verification",
-      "desc": "InvoiceShelf uses Session based authentication which requires domain verification for security purposes. Please enter the domain on which you will be accessing your web application.",
+      "desc": "AJUSTA uses Session based authentication which requires domain verification for security purposes. Please enter the domain on which you will be accessing your web application.",
       "app_domain": "App Domain",
       "verify_now": "Verify Now",
       "success": "Domain Verify Successfully.",
@@ -1781,7 +1824,7 @@
       "system_req": "System Requirements",
       "php_req_version": "Php (version {version} required)",
       "check_req": "Check Requirements",
-      "system_req_desc": "InvoiceShelf has a few server requirements. Make sure that your server has the required php version and all the extensions mentioned below."
+      "system_req_desc": "AJUSTA has a few server requirements. Make sure that your server has the required php version and all the extensions mentioned below."
     },
     "errors": {
       "migrate_failed": "Migrate Failed",
@@ -1797,8 +1840,8 @@
   },
   "validation": {
     "invalid_phone": "Invalid Phone Number",
-    "invalid_url": "Invalid url (ex: http://www.invoiceshelf.com)",
-    "invalid_domain_url": "Invalid url (ex: invoiceshelf.com)",
+    "invalid_url": "Invalid url (ex: https://www.example.com)",
+    "invalid_domain_url": "Invalid url (ex: example.com)",
     "required": "Field is required",
     "email_incorrect": "Incorrect Email.",
     "email_already_taken": "The email has already been taken.",
@@ -1839,7 +1882,10 @@
     "valid_driver_key": "Please enter a valid {driver} key.",
     "valid_exchange_rate": "Please enter a valid exchange rate.",
     "company_name_not_same": "Company name must match with given name.",
-    "invalid_length": "Enter a number and a unit, e.g. \"210mm\". Accepts: pt, px, pc, mm, cm, in."
+    "invalid_length": "Enter a number and a unit, e.g. \"210mm\". Accepts: pt, px, pc, mm, cm, in.",
+    "url_incorrect": "Invalid URL",
+    "numeric": "Numbers only.",
+    "name_max_length": "Must not be longer than {count} characters."
   },
   "errors": {
     "starter_plan": "This feature is available on Starter plan and onwards!",
@@ -1888,7 +1934,8 @@
     "api_error": "Server not responding.",
     "feature_not_enabled": "Feature not enabled.",
     "request_limit_met": "Api request limit exceeded.",
-    "address_incomplete": "Incomplete Address"
+    "address_incomplete": "Incomplete Address",
+    "page_not_found": "Page not found"
   },
   "pdf_estimate_label": "Estimate",
   "pdf_estimate_number": "Estimate Number",
@@ -1961,12 +2008,14 @@
   "pdf_amount_credited": "Amount Credited",
   "pdf_amount_paid": "Amount Paid",
   "pdf_amount_due": "Amount Due",
+  "unapplied_credit": "Unapplied Credit",
   "mail_thanks": "Thanks",
   "mail_view_estimate": "View Estimate",
   "mail_viewed_estimate": ":name viewed this Estimate.",
   "mail_view_invoice": "View Invoice",
   "mail_viewed_invoice": ":name viewed this Invoice.",
   "mail_view_payment": "View Payment",
+  "mail_sent_with": "Sent with :app",
   "notification_view_estimate": "[Notification] Estimate viewed",
   "notification_view_invoice": "[Notification] Invoice viewed",
   "You have received a new invoice from <b>{COMPANY_NAME}</b>.</br> Please download using the button below:": "You have received a new invoice from <b>{COMPANY_NAME}</b>.</br> Please download using the button below:",
@@ -1979,7 +2028,8 @@
       "address": "Address",
       "updated_message": "Company updated successfully",
       "no_companies": "No companies found",
-      "list_description": "Manage all companies across the system"
+      "list_description": "Manage all companies across the system",
+      "updated_toast": "Company updated successfully."
     },
     "settings": {
       "title": "Global Settings"
@@ -1994,7 +2044,45 @@
       "impersonate": "Impersonate",
       "impersonate_confirm": "You are about to impersonate {name}. You will be logged in as this user with a temporary session that expires in 2 hours. This action is logged.",
       "impersonating_banner": "You are currently impersonating a user. All actions are logged.",
-      "stop_impersonating": "Stop Impersonating"
+      "stop_impersonating": "Stop Impersonating",
+      "updated_toast": "User updated successfully."
     }
+  },
+  "auth_layout": {
+    "login": {
+      "heading": "Welcome back",
+      "subheading": "Sign in to continue to your account"
+    },
+    "forgot_password": {
+      "heading": "Forgot your password?",
+      "subheading": "Enter your email and we will send you a reset link"
+    },
+    "reset_password": {
+      "heading": "Set a new password",
+      "subheading": "Choose a strong password to secure your account"
+    },
+    "register": {
+      "heading": "Create your account",
+      "subheading": "Complete your registration to get started"
+    }
+  },
+  "invitation_register": {
+    "loading": "Loading invitation details...",
+    "invalid_title": "Invalid Invitation",
+    "go_to_login": "Go to Login",
+    "title": "Create Your Account",
+    "invited_to_join": "You've been invited to join {company} as {role}",
+    "have_account": "Already have an account? Log in",
+    "submit": "Create Account & Join",
+    "no_token": "No invitation token provided.",
+    "invalid_or_expired": "This invitation is invalid or has expired."
+  },
+  "users": {
+    "name": "Name",
+    "phone": "Phone",
+    "password": "Password"
+  },
+  "exchange_rates": {
+    "bulk_update": "Update Exchange Rates"
   }
 }

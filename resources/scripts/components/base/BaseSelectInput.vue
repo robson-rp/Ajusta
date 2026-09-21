@@ -46,7 +46,7 @@
           {{ placeholder }}
         </span>
         <span v-else class="block text-subtle truncate">
-          Please select an option
+          {{ $t('general.select_an_option') }}
         </span>
 
         <span

@@ -118,7 +118,7 @@ export function handleApiError(err: unknown): NormalizedApiError {
 
   if (!axiosError.response) {
     return {
-      message: 'Please check your internet connection or wait until servers are back online.',
+      message: 'general.connection_lost',
       statusCode: null,
       validationErrors: {},
       isUnauthorized: false,

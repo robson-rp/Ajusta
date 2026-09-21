@@ -1,22 +1,22 @@
 <x-mail::message>
-# You've been invited!
+# {{ __('You\'ve been invited!') }}
 
-**{{ $inviterName }}** has invited you to join **{{ $companyName }}** as **{{ $roleName }}**.
+{!! __('**:inviter** has invited you to join **:company** as **:role**.', ['inviter' => e($inviterName), 'company' => e($companyName), 'role' => e($roleName)]) !!}
 
 @if($hasAccount)
-Log in to accept the invitation:
+{{ __('Log in to accept the invitation:') }}
 @else
-Create your account to get started:
+{{ __('Create your account to get started:') }}
 @endif
 
 <x-mail::button :url="$acceptUrl">
-{{ $hasAccount ? 'Log In & Accept' : 'Create Account & Accept' }}
+{{ $hasAccount ? __('Log In & Accept') : __('Create Account & Accept') }}
 </x-mail::button>
 
-If you don't want to join, you can <a href="{{ $declineUrl }}">decline this invitation</a>.
+{!! __('If you don\'t want to join, you can <a href=":url">decline this invitation</a>.', ['url' => e($declineUrl)]) !!}
 
-This invitation will expire in 7 days.
+{{ __('This invitation will expire in 7 days.') }}
 
-Thanks,<br>
+{{ __('Thanks') }},<br>
 {{ config('app.name') }}
 </x-mail::message>

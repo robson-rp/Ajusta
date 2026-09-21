@@ -81,8 +81,8 @@ import { Vietnamese } from 'flatpickr/dist/l10n/vn.js'
 import { Mandarin } from 'flatpickr/dist/l10n/zh.js'
 import type { CustomLocale, Locale } from 'flatpickr/dist/types/locale'
 import { computed, reactive, watch, ref, useSlots } from 'vue'
+import { useI18n } from 'vue-i18n'
 import { useCompanyStore } from '@/scripts/stores/company.store'
-import { useUserStore } from '@/scripts/stores/user.store'
 
 interface FlatPickrInstance {
   fp: { open: () => void }
@@ -127,10 +127,10 @@ const slots = useSlots()
 
 const companyStore = useCompanyStore()
 
-const userStore = useUserStore()
-
-// Localize Flatpicker
-const lang: string = userStore.currentUserSettings.language
+// Localize Flatpicker to the active UI language. The user setting alone is
+// not enough: 'default' defers to the company, and the portal has no user.
+const { locale } = useI18n()
+const lang: string = locale.value
 
 const localeMap: Record<string, CustomLocale | Locale> = {
   ar: Arabic,
@@ -154,6 +154,7 @@ const localeMap: Record<string, CustomLocale | Locale> = {
   pl: Polish,
   pt: Portuguese,
   pt_BR: Portuguese,
+  pt_AO: Portuguese,
   ro: Romanian,
   ru: Russian,
   sk: Slovak,

@@ -45,7 +45,7 @@
                 "
                 @click="globalStore.setSidebarVisibility(false)"
               >
-                <span class="sr-only">Close sidebar</span>
+                <span class="sr-only">{{ $t('general.close_sidebar') }}</span>
                 <BaseIcon
                   name="XMarkIcon"
                   class="w-6 h-6 text-white"
@@ -59,7 +59,7 @@
             <div class="flex items-center shrink-0 px-4 mb-10">
               <MainLogo
                 class="block h-auto max-w-full w-36 text-primary-400"
-                alt="InvoiceShelf Logo"
+                alt="AJUSTA"
               />
             </div>
 

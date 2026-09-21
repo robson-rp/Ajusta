@@ -2,6 +2,7 @@
 import { computed, ref } from 'vue'
 import { useRouter, useRoute } from 'vue-router'
 import { useI18n } from 'vue-i18n'
+import { toBcp47 } from '@/scripts/config/locale'
 import {
   required,
   minLength,
@@ -37,7 +38,7 @@ const modalStore = useModalStore()
 const companyStore = useCompanyStore()
 const userStore = useUserStore()
 
-const { t } = useI18n()
+const { t, locale } = useI18n()
 const route = useRoute()
 const router = useRouter()
 
@@ -66,7 +67,7 @@ const taxes = computed({
           tax_type_id: tax.id,
           tax_name: `${tax.name} (${
             tax.calculation_type === 'fixed'
-              ? new Intl.NumberFormat(undefined, {
+              ? new Intl.NumberFormat(toBcp47(locale.value), {
                   style: 'currency',
                   currency: currencyCode,
                 }).format(tax.fixed_amount / 100)
@@ -93,7 +94,7 @@ const getTaxTypes = computed<TaxOption[]>(() => {
       tax_type_id: tax.id,
       tax_name: `${tax.name} (${
         tax.calculation_type === 'fixed'
-          ? new Intl.NumberFormat(undefined, {
+          ? new Intl.NumberFormat(toBcp47(locale.value), {
               style: 'currency',
               currency: currencyCode,
             }).format(tax.fixed_amount / 100)

@@ -1,6 +1,10 @@
 <template>
-  <div class="bg-glass-gradient relative min-h-screen w-full overflow-hidden">
+  <div class="relative min-h-screen w-full bg-surface-secondary">
     <NotificationRoot />
+
+    <div class="absolute top-4 right-4 sm:top-6 sm:right-6">
+      <LanguageSwitcher />
+    </div>
 
     <main
       class="
@@ -8,37 +12,30 @@
         px-4 py-12 sm:px-6
       "
     >
-      <!-- Logo above the card -->
-      <div class="mb-8 flex justify-center">
-        <MainLogo
-          v-if="!loginPageLogo"
-          class="h-12 w-auto text-primary-500"
-        />
+      <div class="mb-10 flex justify-center">
+        <MainLogo v-if="!loginPageLogo" class="h-10 w-auto" />
         <img
           v-else
           :src="loginPageLogo"
-          alt="InvoiceShelf"
-          class="h-12 w-auto"
+          alt="AJUSTA"
+          class="h-10 w-auto"
         />
       </div>
 
-      <!-- Auth card — same visual language as BaseCard -->
       <article
         class="
           w-full max-w-md
           bg-surface
           rounded-xl
-          border border-line-default
-          shadow-sm
-          backdrop-blur-sm
-          px-8 py-10 sm:px-10 sm:py-12
+          border border-line-light
+          px-8 py-10 sm:px-10
         "
       >
-        <header class="text-center mb-8">
-          <h1 class="text-2xl font-semibold text-heading">
+        <header class="mb-8">
+          <h1 class="text-xl font-semibold text-heading">
             {{ heading }}
           </h1>
-          <p class="mt-2 text-sm text-muted">
+          <p class="mt-1.5 text-sm text-muted">
             {{ subheading }}
           </p>
         </header>
@@ -46,18 +43,9 @@
         <router-view />
       </article>
 
-      <!-- Footer -->
-      <footer class="mt-8 text-center text-xs text-subtle">
+      <footer class="mt-10 text-center text-xs text-subtle">
         <span v-if="copyrightText">{{ copyrightText }}</span>
-        <span v-else>
-          Powered by
-          <a
-            href="https://invoiceshelf.com/"
-            target="_blank"
-            rel="noopener noreferrer"
-            class="text-primary-500 hover:text-primary-600 font-medium transition-colors"
-          >InvoiceShelf</a>
-        </span>
+        <span v-else>© {{ new Date().getFullYear() }} AJUSTA</span>
       </footer>
     </main>
   </div>
@@ -66,8 +54,10 @@
 <script setup lang="ts">
 import { computed } from 'vue'
 import { useRoute } from 'vue-router'
+import { useI18n } from 'vue-i18n'
 import NotificationRoot from '@/scripts/components/notifications/NotificationRoot.vue'
 import MainLogo from '@/scripts/components/icons/MainLogo.vue'
+import LanguageSwitcher from '@/scripts/components/LanguageSwitcher.vue'
 
 declare global {
   interface Window {
@@ -79,6 +69,7 @@ declare global {
 }
 
 const route = useRoute()
+const { t } = useI18n()
 
 interface RouteCopy {
   heading: string
@@ -87,33 +78,33 @@ interface RouteCopy {
 
 const COPY: Record<string, RouteCopy> = {
   login: {
-    heading: 'Welcome back',
-    subheading: 'Sign in to continue to your account',
+    heading: 'auth_layout.login.heading',
+    subheading: 'auth_layout.login.subheading',
   },
   'forgot-password': {
-    heading: 'Forgot your password?',
-    subheading: 'Enter your email and we will send you a reset link',
+    heading: 'auth_layout.forgot_password.heading',
+    subheading: 'auth_layout.forgot_password.subheading',
   },
   'reset-password': {
-    heading: 'Set a new password',
-    subheading: 'Choose a strong password to secure your account',
+    heading: 'auth_layout.reset_password.heading',
+    subheading: 'auth_layout.reset_password.subheading',
   },
   'register-with-invitation': {
-    heading: 'Create your account',
-    subheading: 'Complete your registration to get started',
+    heading: 'auth_layout.register.heading',
+    subheading: 'auth_layout.register.subheading',
   },
 }
 
 const heading = computed<string>(() => {
   if (window.login_page_heading) return window.login_page_heading
   const name = route.name?.toString() ?? 'login'
-  return COPY[name]?.heading ?? COPY.login.heading
+  return t(COPY[name]?.heading ?? COPY.login.heading)
 })
 
 const subheading = computed<string>(() => {
   if (window.login_page_description) return window.login_page_description
   const name = route.name?.toString() ?? 'login'
-  return COPY[name]?.subheading ?? COPY.login.subheading
+  return t(COPY[name]?.subheading ?? COPY.login.subheading)
 })
 
 const copyrightText = computed<string | null>(() => window.copyright_text ?? null)

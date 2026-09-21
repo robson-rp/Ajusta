@@ -10,24 +10,26 @@
     <BaseCard class="mt-6">
       <div class="flex flex-col gap-4 lg:flex-row lg:items-start lg:justify-between">
         <div>
-          <h6 class="text-heading text-lg font-medium">Marketplace access</h6>
+          <h6 class="text-heading text-lg font-medium">{{ $t('modules.marketplace.access_title') }}</h6>
           <p class="mt-1 text-sm text-muted">
-            Pair this InvoiceShelf instance with your marketplace account. The device credential stays encrypted on this server.
+            {{ $t('modules.marketplace.access_description') }}
           </p>
           <div v-if="pairingCode" class="mt-4 space-y-1 text-sm text-body">
-            <p>Enter code <strong>{{ pairingCode.user_code }}</strong> at the marketplace verification page.</p>
-            <a v-if="pairingCode.verification_uri_complete || pairingCode.verification_uri" class="text-primary-600 underline" :href="pairingCode.verification_uri_complete || pairingCode.verification_uri || undefined" target="_blank" rel="noopener">Open verification page</a>
+            <i18n-t keypath="modules.marketplace.enter_code" tag="p">
+              <template #code><strong>{{ pairingCode.user_code }}</strong></template>
+            </i18n-t>
+            <a v-if="pairingCode.verification_uri_complete || pairingCode.verification_uri" class="text-primary-600 underline" :href="pairingCode.verification_uri_complete || pairingCode.verification_uri || undefined" target="_blank" rel="noopener">{{ $t('modules.marketplace.open_verification') }}</a>
           </div>
         </div>
         <div class="flex flex-wrap gap-3">
           <BaseButton v-if="!moduleStore.marketplacePairing?.paired" :loading="isPairing" @click="startPairing">
-            Pair marketplace
+            {{ $t('modules.marketplace.pair') }}
           </BaseButton>
           <BaseButton v-if="pairingCode" variant="primary-outline" :loading="isPolling" @click="pollPairing">
-            I have approved this device
+            {{ $t('modules.marketplace.approved') }}
           </BaseButton>
           <BaseButton v-if="moduleStore.marketplacePairing?.paired" variant="primary-outline" @click="disconnect">
-            Disconnect
+            {{ $t('modules.marketplace.disconnect') }}
           </BaseButton>
         </div>
       </div>
@@ -46,7 +48,7 @@
       </div>
       <div v-else class="mt-24">
         <label class="flex items-center justify-center text-muted">
-          {{ activeTab === 'INSTALLED' ? $t('modules.no_modules_installed') : 'No marketplace modules are available yet.' }}
+          {{ activeTab === 'INSTALLED' ? $t('modules.no_modules_installed') : $t('modules.marketplace.none_available') }}
         </label>
       </div>
     </div>
@@ -54,6 +56,7 @@
 </template>
 
 <script setup lang="ts">
+import { useI18n } from 'vue-i18n'
 import { computed, onMounted, ref } from 'vue'
 import { useModuleStore } from '../store'
 import ModuleCard from '../components/ModuleCard.vue'
@@ -62,6 +65,7 @@ import type { Module } from '@/scripts/types/domain/module'
 import { useNotificationStore } from '@/scripts/stores/notification.store'
 
 const moduleStore = useModuleStore()
+const { t } = useI18n()
 const notificationStore = useNotificationStore()
 const activeTab = ref('')
 const isFetchingModule = ref(false)
@@ -101,10 +105,10 @@ async function pollPairing(): Promise<void> {
     const result = await moduleStore.pollMarketplacePairing()
     if (result.status === 'paired') {
       pairingCode.value = null
-      notificationStore.showNotification({ type: 'success', message: 'Marketplace paired' })
+      notificationStore.showNotification({ type: 'success', message: t('modules.marketplace.paired') })
       await fetchModulesData()
     } else {
-      notificationStore.showNotification({ type: 'info', message: 'Waiting for marketplace approval' })
+      notificationStore.showNotification({ type: 'info', message: t('modules.marketplace.waiting') })
     }
   } finally {
     isPolling.value = false
@@ -113,7 +117,7 @@ async function pollPairing(): Promise<void> {
 
 async function disconnect(): Promise<void> {
   await moduleStore.disconnectMarketplace()
-  notificationStore.showNotification({ type: 'success', message: 'Marketplace disconnected' })
+  notificationStore.showNotification({ type: 'success', message: t('modules.marketplace.disconnected') })
   await fetchModulesData()
 }
 

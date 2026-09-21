@@ -106,6 +106,11 @@
         <CompanySwitcher />
       </li>
 
+      <!-- Language switcher -->
+      <li class="ml-2">
+        <LanguageSwitcher persist="user" variant="header" />
+      </li>
+
       <!-- User dropdown -->
       <li class="relative block float-left ml-2">
         <BaseDropdown width-class="w-48">
@@ -189,6 +194,7 @@ import { ABILITIES } from '@/scripts/config/abilities'
 import { THEME } from '@/scripts/config/constants'
 import type { Theme } from '@/scripts/config/constants'
 import CompanySwitcher from './CompanySwitcher.vue'
+import LanguageSwitcher from '@/scripts/components/LanguageSwitcher.vue'
 import GlobalSearchBar from './GlobalSearchBar.vue'
 import MainLogo from '@/scripts/components/icons/MainLogo.vue'
 import ExtensionSlot from '@/scripts/extensions/ExtensionSlot.vue'

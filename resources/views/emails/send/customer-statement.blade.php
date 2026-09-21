@@ -13,7 +13,7 @@
 
     @slot('footer')
         @component('mail::footer')
-            Powered by <a class="footer-link" href="https://invoiceshelf.com" target="_blank">InvoiceShelf</a>
+            @lang('mail_sent_with', ['app' => config('app.name')])
         @endcomponent
     @endslot
 @endcomponent

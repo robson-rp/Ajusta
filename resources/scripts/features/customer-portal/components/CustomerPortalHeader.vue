@@ -39,6 +39,8 @@
     </div>
 
     <div class="flex items-center gap-3">
+      <LanguageSwitcher variant="header" />
+
       <div class="hidden text-right sm:block">
         <p class="text-sm font-medium text-heading">
           {{ store.currentUser?.name ?? '' }}
@@ -105,6 +107,7 @@ import { useRoute, useRouter } from 'vue-router'
 import { useCustomerPortalStore } from '../store'
 import { buildCustomerPortalPath, prefixCustomerPortalMenuLink } from '../utils/routes'
 import MainLogo from '@/scripts/components/icons/MainLogo.vue'
+import LanguageSwitcher from '@/scripts/components/LanguageSwitcher.vue'
 
 declare global {
   interface Window {

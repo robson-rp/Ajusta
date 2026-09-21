@@ -169,7 +169,7 @@ loadCustomers()
         <BaseIcon name="MagnifyingGlassIcon" class="text-muted" />
       </BaseInput>
 
-      <div class="flex mb-6 ml-3" role="group" aria-label="First group">
+      <div class="flex mb-6 ml-3" role="group" :aria-label="$t('general.actions')">
         <BaseDropdown
           :close-on-select="false"
           position="bottom-start"

@@ -1,5 +1,5 @@
 <template>
-  <div class="bg-glass-gradient relative min-h-screen w-full overflow-hidden">
+  <div class="relative min-h-screen w-full bg-surface-secondary">
     <NotificationRoot />
 
     <main
@@ -9,16 +9,13 @@
       "
     >
       <!-- Logo above the card -->
-      <div class="mb-8 flex justify-center">
-        <MainLogo
-          v-if="!loginPageLogo"
-          class="h-12 w-auto text-primary-500"
-        />
+      <div class="mb-10 flex justify-center">
+        <MainLogo v-if="!loginPageLogo" class="h-10 w-auto" />
         <img
           v-else
           :src="loginPageLogo"
-          alt="InvoiceShelf"
-          class="h-12 w-auto"
+          alt="AJUSTA"
+          class="h-10 w-auto"
         />
       </div>
 
@@ -28,9 +25,7 @@
           w-full max-w-3xl
           bg-surface
           rounded-xl
-          border border-line-default
-          shadow-sm
-          backdrop-blur-sm
+          border border-line-light
           px-8 py-10 sm:px-10 sm:py-12
         "
       >
@@ -57,17 +52,9 @@
       </article>
 
       <!-- Footer -->
-      <footer class="mt-8 text-center text-xs text-subtle">
+      <footer class="mt-10 text-center text-xs text-subtle">
         <span v-if="copyrightText">{{ copyrightText }}</span>
-        <span v-else>
-          Powered by
-          <a
-            href="https://invoiceshelf.com/"
-            target="_blank"
-            rel="noopener noreferrer"
-            class="text-primary-500 hover:text-primary-600 font-medium transition-colors"
-          >InvoiceShelf</a>
-        </span>
+        <span v-else>© {{ new Date().getFullYear() }} AJUSTA</span>
       </footer>
     </main>
   </div>

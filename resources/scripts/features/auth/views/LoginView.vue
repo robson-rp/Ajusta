@@ -125,7 +125,7 @@ async function onSubmit(): Promise<void> {
 
     notificationStore.showNotification({
       type: 'success',
-      message: 'Logged in successfully.',
+      message: 'general.login_successfully',
     })
   } catch (err: unknown) {
     const { handleApiError } = await import('../../../utils/error-handling')

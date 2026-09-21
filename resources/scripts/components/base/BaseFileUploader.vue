@@ -44,7 +44,7 @@
 
     <!-- Avatar Not Selected -->
     <div v-if="!localFiles.length && avatar" class="">
-      <img :src="getDefaultAvatar()" class="rounded" alt="Default Avatar" />
+      <img :src="getDefaultAvatar()" class="rounded" :alt="$t('settings.account_settings.profile_picture')" />
 
       <a
         href="#"

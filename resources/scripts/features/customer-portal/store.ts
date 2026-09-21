@@ -5,6 +5,7 @@ import type { Estimate, EstimateStatus } from '@/scripts/types/domain/estimate'
 import type { Payment, PaymentMethod } from '@/scripts/types/domain/payment'
 import type { Currency } from '@/scripts/types/domain/currency'
 import type { Customer, Country } from '@/scripts/types/domain/customer'
+import { DEFAULT_LOCALE, readLocalePreference } from '@/scripts/config/locale'
 
 // ----------------------------------------------------------------
 // Types
@@ -283,11 +284,12 @@ export const useCustomerPortalStore = defineStore('customerPortal', {
       this.mainMenu = data.meta.menu ?? []
       this.currency = data.data.currency ?? data.meta.current_customer_currency ?? data.meta.current_company_currency ?? null
       this.enabledModules = data.meta.modules ?? []
-      this.currentCompanyLanguage = data.meta.current_company_language ?? 'en'
+      this.currentCompanyLanguage = data.meta.current_company_language ?? DEFAULT_LOCALE
       this.userForm = hydrateUserForm(data.data)
       this.isAppLoaded = true
 
-      await window.loadLanguage?.(this.currentCompanyLanguage)
+      // A language picked in the portal's switcher overrides the company's.
+      await window.loadLanguage?.(readLocalePreference() ?? this.currentCompanyLanguage)
 
       return data
     },

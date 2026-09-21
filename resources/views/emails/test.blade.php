@@ -1,5 +1,5 @@
 @component('mail::message')
-# Test Email from InvoiceShelf
+# {{ __('Test Email from :app', ['app' => config('app.name')]) }}
 
 {{ $my_message }}
 

@@ -12,7 +12,7 @@ interface Emits {
 }
 
 withDefaults(defineProps<Props>(), {
-  title: 'There were some errors with your submission',
+  title: '',
   lists: null,
   actions: () => ['Dismiss'],
 })
@@ -38,7 +38,7 @@ defineEmits<Emits>()
         </div>
         <div class="ml-3">
           <h3 class="text-sm font-medium text-alert-warning-text">
-            {{ title }}
+            {{ title || $t('general.submission_errors') }}
           </h3>
           <div class="mt-2 text-sm text-alert-warning-text">
             <ul role="list" class="list-disc pl-5 space-y-1">
@@ -73,7 +73,7 @@ defineEmits<Emits>()
             "
             @click="$emit(`${action}`)"
           >
-            {{ action }}
+            {{ $te(`general.${action.toLowerCase()}`) ? $t(`general.${action.toLowerCase()}`) : action }}
           </button>
         </div>
       </div>

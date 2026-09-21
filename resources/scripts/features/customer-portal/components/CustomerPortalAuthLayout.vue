@@ -1,11 +1,15 @@
 <template>
   <div
     class="
-      flex min-h-screen items-center justify-center bg-surface-tertiary px-4 py-12
+      relative flex min-h-screen items-center justify-center bg-surface-secondary px-4 py-12
       sm:px-6 lg:px-8
     "
   >
     <NotificationRoot />
+
+    <div class="absolute top-4 right-4 sm:top-6 sm:right-6">
+      <LanguageSwitcher />
+    </div>
 
     <div class="w-full max-w-md">
       <div class="mb-10 flex justify-center">
@@ -21,7 +25,7 @@
         />
       </div>
 
-      <div class="rounded-2xl border border-line-default bg-surface px-6 py-8 shadow-sm sm:px-8">
+      <div class="rounded-xl border border-line-light bg-surface px-6 py-8 sm:px-8">
         <div class="mb-8 text-left">
           <h1 class="text-2xl font-semibold tracking-tight text-heading">
             {{ pageTitle }}
@@ -43,6 +47,7 @@ import { useRoute } from 'vue-router'
 import { useI18n } from 'vue-i18n'
 import NotificationRoot from '@/scripts/components/notifications/NotificationRoot.vue'
 import MainLogo from '@/scripts/components/icons/MainLogo.vue'
+import LanguageSwitcher from '@/scripts/components/LanguageSwitcher.vue'
 
 declare global {
   interface Window {

@@ -11,6 +11,7 @@ use App\Domains\Contacts\Http\Middleware\CustomerPortalMiddleware;
 use App\Domains\Contacts\Http\Middleware\CustomerRedirectIfAuthenticated;
 use App\Http\Middleware\EncryptCookies;
 use App\Http\Middleware\PreventRequestForgery;
+use App\Http\Middleware\SetLocale;
 use App\Http\Middleware\TrimStrings;
 use App\Http\Middleware\TrustProxies;
 use App\Platform\Modules\Runtime\ModuleRuntimeAutoloader;
@@ -89,6 +90,7 @@ return Application::configure(basePath: dirname(__DIR__))
             'customer-portal' => CustomerPortalMiddleware::class,
             'guest' => RedirectIfAuthenticated::class,
             'install' => EnsureInstalled::class,
+            'locale' => SetLocale::class,
             'not-containerized' => EnsureNotContainerized::class,
             'pdf-auth' => PdfMiddleware::class,
             'redirect-if-installed' => RedirectIfInstalled::class,

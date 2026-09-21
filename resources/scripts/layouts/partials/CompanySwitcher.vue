@@ -103,7 +103,7 @@
                     <img
                       v-else
                       :src="company.logo"
-                      alt="Company logo"
+                      :alt="$t('settings.company_info.company_logo')"
                       class="w-full h-full object-contain"
                     />
                   </span>

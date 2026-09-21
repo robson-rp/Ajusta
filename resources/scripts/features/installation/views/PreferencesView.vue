@@ -132,6 +132,7 @@ import { required, helpers } from '@vuelidate/validators'
 import useVuelidate from '@vuelidate/core'
 import { installClient } from '../../../api/install-client'
 import { API } from '../../../api/endpoints'
+import { DEFAULT_LOCALE, readLocalePreference } from '@/scripts/config/locale'
 import { useDialogStore } from '../../../stores/dialog.store'
 import { clearInstallWizardAuth } from '../install-auth'
 import { useInstallationFeedback } from '../use-installation-feedback'
@@ -152,6 +153,13 @@ interface KeyValueOption {
 interface DateFormatOption {
   display_date: string
   carbon_format_value: string
+}
+
+interface CompanyDefaults {
+  language: string
+  time_zone: string
+  carbon_date_format: string
+  currency_code: string
 }
 
 interface CurrencyOption {
@@ -181,9 +189,9 @@ const fiscalYears = ref<KeyValueOption[]>([])
 
 const currentPreferences = reactive<PreferencesData>({
   currency: null,
-  language: 'en',
-  carbon_date_format: 'd M Y',
-  time_zone: 'UTC',
+  language: localStorage.getItem('install_language') ?? readLocalePreference() ?? DEFAULT_LOCALE,
+  carbon_date_format: 'd/m/Y',
+  time_zone: 'Africa/Luanda',
   fiscal_year: '1-12',
 })
 
@@ -217,13 +225,22 @@ const v$ = useVuelidate(rules, currentPreferences)
 onMounted(async () => {
   isFetchingInitialData.value = true
   try {
-    const [currRes, dateRes, tzRes, fyRes, langRes] = await Promise.all([
+    const [currRes, dateRes, tzRes, fyRes, langRes, defaultsRes] = await Promise.all([
       installClient.get(API.CURRENCIES),
       installClient.get(API.DATE_FORMATS),
       installClient.get(API.TIMEZONES),
       installClient.get(`${API.CONFIG}?key=fiscal_years`),
       installClient.get(`${API.CONFIG}?key=languages`),
+      installClient.get(`${API.CONFIG}?key=company_defaults`),
     ])
+    const defaults: Partial<CompanyDefaults> = defaultsRes.data.company_defaults ?? {}
+    currentPreferences.time_zone = defaults.time_zone ?? currentPreferences.time_zone
+    currentPreferences.carbon_date_format =
+      defaults.carbon_date_format ?? currentPreferences.carbon_date_format
+    if (!localStorage.getItem('install_language') && !readLocalePreference() && defaults.language) {
+      currentPreferences.language = defaults.language
+    }
+
     const rawCurrencies: CurrencyOption[] = currRes.data.data ?? currRes.data
     currencies.value = rawCurrencies.map((c) => ({
       ...c,
@@ -231,9 +248,11 @@ onMounted(async () => {
     }))
 
     if (!currentPreferences.currency) {
-      const usd = currencies.value.find((c) => c.code === 'USD')
-      if (usd) {
-        currentPreferences.currency = usd.id
+      const preferred =
+        currencies.value.find((c) => c.code === (defaults.currency_code ?? 'AOA')) ??
+        currencies.value.find((c) => c.code === 'USD')
+      if (preferred) {
+        currentPreferences.currency = preferred.id
       }
     }
 

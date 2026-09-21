@@ -114,7 +114,7 @@ export const useAdminStore = defineStore('admin', () => {
       const notificationStore = useNotificationStore()
       notificationStore.showNotification({
         type: 'success',
-        message: 'Company updated successfully.',
+        message: 'administration.companies.updated_toast',
       })
     } catch (err: unknown) {
       handleApiError(err)
@@ -151,7 +151,7 @@ export const useAdminStore = defineStore('admin', () => {
       const notificationStore = useNotificationStore()
       notificationStore.showNotification({
         type: 'success',
-        message: 'User updated successfully.',
+        message: 'administration.users.updated_toast',
       })
     } catch (err: unknown) {
       handleApiError(err)

@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import MainLogo from '@/scripts/components/icons/MainLogo.vue'
 import { ref, computed } from 'vue'
 import type { Ref, ComputedRef } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
@@ -40,11 +41,6 @@ async function loadInvoice(): Promise<void> {
 const shareableLink = computed<string>(() => {
   return route.path + '?pdf'
 })
-
-function getLogo(): URL {
-  const imgUrl = new URL('$images/logo-gray.png', import.meta.url)
-  return imgUrl
-}
 
 const customerLogo = computed<string | false>(() => {
   if (window.customer_logo) {
@@ -132,12 +128,10 @@ function payInvoice(): void {
 
       <div
         v-if="!customerLogo"
-        class="flex items-center justify-center mt-4 text-muted font-normal"
+        class="flex items-center justify-center gap-2 mt-6 text-xs text-subtle"
       >
-        Powered by
-        <a href="https://invoiceshelf.com" target="_blank">
-          <img :src="getLogo().href" class="h-4 ml-1 mb-1" />
-        </a>
+        {{ $t('general.sent_with') }}
+        <MainLogo class="h-3.5 w-auto" />
       </div>
     </div>
   </div>

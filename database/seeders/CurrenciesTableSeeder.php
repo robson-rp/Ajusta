@@ -655,6 +655,15 @@ class CurrenciesTableSeeder extends Seeder
                 'thousand_separator' => ',',
                 'decimal_separator' => '.',
             ],
+            [
+                'name' => 'Angolan Kwanza',
+                'code' => 'AOA',
+                'symbol' => 'Kz',
+                'precision' => '2',
+                'thousand_separator' => '.',
+                'decimal_separator' => ',',
+                'swap_currency_symbol' => true,
+            ],
         ];
 
         foreach ($currencies as $currency) {

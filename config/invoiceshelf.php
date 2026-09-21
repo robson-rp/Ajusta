@@ -114,47 +114,23 @@ return [
     ],
 
     /*
+    * Preferences given to every new company (AJUSTA: Angolan defaults).
+    * Overridable per install; the test suite pins the upstream values.
+    */
+    'company_defaults' => [
+        'language' => env('COMPANY_DEFAULT_LANGUAGE', 'pt_AO'),
+        'time_zone' => env('COMPANY_DEFAULT_TIME_ZONE', 'Africa/Luanda'),
+        'carbon_date_format' => env('COMPANY_DEFAULT_DATE_FORMAT', 'd/m/Y'),
+        'moment_date_format' => env('COMPANY_DEFAULT_MOMENT_DATE_FORMAT', 'DD/MM/YYYY'),
+        'currency_code' => env('COMPANY_DEFAULT_CURRENCY', 'AOA'),
+    ],
+
+    /*
     * List of languages supported by InvoiceShelf.
     */
     'languages' => [
-        ['code' => 'ar', 'name' => 'Arabic'],
-        ['code' => 'bg', 'name' => 'Bulgarian'],
-        ['code' => 'zh_CN', 'name' => 'Chinese (Simplified)'],
-        ['code' => 'zh', 'name' => 'Chinese (Traditional)'],
-        ['code' => 'hr', 'name' => 'Croatian'],
-        ['code' => 'cs', 'name' => 'Czech'],
-        ['code' => 'nl', 'name' => 'Dutch'],
+        ['code' => 'pt_AO', 'name' => 'Português (Angola)'],
         ['code' => 'en', 'name' => 'English'],
-        ['code' => 'fi', 'name' => 'Finnish'],
-        ['code' => 'fr', 'name' => 'French'],
-        ['code' => 'de', 'name' => 'German'],
-        ['code' => 'el', 'name' => 'Greek'],
-        ['code' => 'he', 'name' => 'עברית'],
-        ['code' => 'hi', 'name' => 'Hindi'],
-        ['code' => 'id', 'name' => 'Indonesian'],
-        ['code' => 'it', 'name' => 'Italian'],
-        ['code' => 'ja', 'name' => 'Japanese'],
-        ['code' => 'ko', 'name' => 'Korean'],
-        ['code' => 'lv', 'name' => 'Latvian'],
-        ['code' => 'lt', 'name' => 'Lithuanian'],
-        ['code' => 'mk', 'name' => 'Macedonian'],
-        ['code' => 'no', 'name' => 'Norwegian'],
-        ['code' => 'fa', 'name' => 'Persian'],
-        ['code' => 'pl', 'name' => 'Polish'],
-        ['code' => 'pt', 'name' => 'Portuguese'],
-        ['code' => 'pt_BR', 'name' => 'Portuguese (Brazilian)'],
-        ['code' => 'ro', 'name' => 'Romanian'],
-        ['code' => 'ru', 'name' => 'Russian'],
-        ['code' => 'sr', 'name' => 'Serbian Latin'],
-        ['code' => 'sk', 'name' => 'Slovak'],
-        ['code' => 'sl', 'name' => 'Slovenian'],
-        ['code' => 'es', 'name' => 'Spanish'],
-        ['code' => 'sv', 'name' => 'Svenska'],
-        ['code' => 'th', 'name' => 'ไทย'],
-        ['code' => 'vi', 'name' => 'Tiếng Việt'],
-        ['code' => 'tr', 'name' => 'Turkish'],
-        ['code' => 'uk', 'name' => 'Ukrainian'],
-        ['code' => 'ur', 'name' => 'اردو'],
     ],
 
     /*

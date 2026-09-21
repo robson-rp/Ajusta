@@ -42,6 +42,7 @@
 </template>
 
 <script setup lang="ts">
+import { DEFAULT_LOCALE, readLocalePreference, writeLocalePreference } from '@/scripts/config/locale'
 import { ref, reactive, computed, onMounted } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { useRouter } from 'vue-router'
@@ -77,7 +78,7 @@ const isSaving = ref<boolean>(false)
 const languages = ref<LanguageOption[]>([])
 
 const formData = reactive<{ language: string }>({
-  language: localStorage.getItem(STORAGE_KEY) ?? 'en',
+  language: localStorage.getItem(STORAGE_KEY) ?? readLocalePreference() ?? DEFAULT_LOCALE,
 })
 
 const rules = computed(() => ({
@@ -120,6 +121,7 @@ async function next(): Promise<void> {
     // Persist the choice client-side so a page reload mid-wizard doesn't
     // lose the language. The DB doesn't exist yet at this step.
     localStorage.setItem(STORAGE_KEY, formData.language)
+    writeLocalePreference(formData.language)
     await router.push({ name: 'installation.requirements' })
   } finally {
     isSaving.value = false

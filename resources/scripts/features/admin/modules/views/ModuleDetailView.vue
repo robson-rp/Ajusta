@@ -395,6 +395,7 @@
 import { ref, computed, watch, onMounted, reactive } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import { useI18n } from 'vue-i18n'
+import { toBcp47 } from '@/scripts/config/locale'
 import { useModuleStore } from '../store'
 import type { InstallationStep } from '../store'
 import ModuleCard from '../components/ModuleCard.vue'
@@ -419,7 +420,7 @@ const dialogStore = useDialogStore()
 const notificationStore = useNotificationStore()
 const route = useRoute()
 const router = useRouter()
-const { t } = useI18n()
+const { t, locale } = useI18n()
 
 const isFetchingInitialData = ref<boolean>(true)
 const isInstalling = ref<boolean>(false)
@@ -636,7 +637,7 @@ function setDisplayVideo(): void {
 
 function formatDate(dateStr: string): string {
   const date = new Date(dateStr)
-  return date.toLocaleDateString('en-US', {
+  return date.toLocaleDateString(toBcp47(locale.value), {
     year: 'numeric',
     month: 'long',
     day: 'numeric',

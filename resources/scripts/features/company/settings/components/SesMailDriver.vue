@@ -183,7 +183,7 @@ function onChangeDriver(): void {
           :content-loading="isFetchingInitialData"
           :options="encryptions"
           :invalid="v$.mail_encryption.$error"
-          placeholder="Select option"
+          :placeholder="$t('general.select_an_option')"
           @input="v$.mail_encryption.$touch()"
         />
       </BaseInputGroup>

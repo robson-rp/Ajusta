@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { computed, onMounted, reactive, ref, watch } from 'vue'
 import { useI18n } from 'vue-i18n'
+import { toBcp47 } from '@/scripts/config/locale'
 import { useModalStore } from '../../../../stores/modal.store'
 import { useCompanyStore } from '../../../../stores/company.store'
 import { useUserStore } from '../../../../stores/user.store'
@@ -48,7 +49,7 @@ const userStore = useUserStore()
 const notificationStore = useNotificationStore()
 const { taxTypes, fetchTaxTypes } = useTaxTypes()
 
-const { t } = useI18n()
+const { t, locale } = useI18n()
 const isLoading = ref<boolean>(false)
 const triedSubmit = ref<boolean>(false)
 const taxPerItemSetting = ref<string>(
@@ -129,7 +130,7 @@ const getTaxTypes = computed<TaxOption[]>(() => {
     const currencyCode = companyStore.selectedCompanyCurrency?.code ?? 'USD'
     const amount =
       tax.calculation_type === 'fixed'
-        ? new Intl.NumberFormat(undefined, {
+        ? new Intl.NumberFormat(toBcp47(locale.value), {
             style: 'currency',
             currency: currencyCode,
           }).format(tax.fixed_amount / 100)

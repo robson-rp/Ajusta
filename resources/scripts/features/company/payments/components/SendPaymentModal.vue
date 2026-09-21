@@ -49,7 +49,7 @@
               v-model="paymentMailForm.cc"
               type="email"
               :invalid="v$.cc && v$.cc.$error"
-              placeholder="Optional: CC recipient"
+              :placeholder="$t('general.optional_cc')"
               @input="v$.cc && v$.cc.$touch()"
             />
           </BaseInputGroup>
@@ -61,7 +61,7 @@
               v-model="paymentMailForm.bcc"
               type="email"
               :invalid="v$.bcc && v$.bcc.$error"
-              placeholder="Optional: BCC recipient"
+              :placeholder="$t('general.optional_bcc')"
               @input="v$.bcc && v$.bcc.$touch()"
             />
           </BaseInputGroup>
