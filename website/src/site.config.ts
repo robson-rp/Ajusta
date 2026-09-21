@@ -24,6 +24,17 @@ export function contactLink(subject: string): string {
   return `mailto:${site.contactEmail}?subject=${encodeURIComponent(subject)}`
 }
 
+/** Indicative monthly prices in Kwanza. TODO: confirm before launch. */
+export const prices = {
+  start: 15000,
+  business: 45000,
+}
+
+export function formatKz(value: number): string {
+  // Same grouping as the app's Kwanza: 15.000 Kz
+  return `${String(value).replace(/\B(?=(\d{3})+(?!\d))/g, '.')} Kz`
+}
+
 export const cta = {
   start: contactLink('Quero começar a usar o AJUSTA'),
   demo: contactLink('Pedido de demonstração do AJUSTA'),

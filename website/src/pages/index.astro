@@ -4,7 +4,7 @@ import Button from '../components/Button.astro'
 import Icon from '../components/Icon.astro'
 import Logo from '../components/Logo.astro'
 import Screenshot from '../components/Screenshot.astro'
-import { site, cta } from '../site.config'
+import { site, cta, prices, formatKz } from '../site.config'
 
 // Real captures from the app live in /public/screenshots. Leave a value
 // undefined to show a labelled placeholder until the capture exists.
@@ -38,12 +38,14 @@ const plans = [
   {
     name: 'Start',
     for: 'Para começar a facturar.',
+    price: formatKz(prices.start),
     items: ['Facturas', 'Proformas', 'Recibos', 'Clientes', 'Pagamentos', 'Despesas', 'Relatórios básicos'],
     action: { label: 'Começar agora', href: cta.start },
   },
   {
     name: 'Empresa',
     for: 'Para equipas que precisam de mais controlo.',
+    price: formatKz(prices.business),
     items: ['Tudo do plano Start', 'Vários utilizadores', 'Portal do cliente', 'Facturas recorrentes', 'Várias empresas', 'Permissões', 'Relatórios avançados'],
     action: { label: 'Começar agora', href: cta.start },
     featured: true,
@@ -51,6 +53,7 @@ const plans = [
   {
     name: 'À medida',
     for: 'Para necessidades específicas.',
+    price: undefined,
     items: ['Instalação própria', 'Várias empresas', 'Grupos empresariais', 'Configuração personalizada', 'Suporte dedicado'],
     action: { label: 'Falar connosco', href: cta.talk },
   },
@@ -248,7 +251,16 @@ const h2 = 'text-3xl font-semibold tracking-tight sm:text-[2.5rem] sm:leading-[1
           <div class:list={['flex flex-col rounded-xl border p-7', plan.featured ? 'border-teal' : 'border-line']}>
             <h3 class="text-lg font-semibold">{plan.name}</h3>
             <p class="mt-1 text-[15px] text-muted">{plan.for}</p>
-            <p class="mt-6 text-sm font-medium text-muted">Preço a anunciar</p>
+            <p class="mt-6">
+              {plan.price ? (
+                <>
+                  <span class="text-3xl font-semibold tracking-tight">{plan.price}</span>
+                  <span class="text-[15px] text-muted"> /mês</span>
+                </>
+              ) : (
+                <span class="text-3xl font-semibold tracking-tight">Sob consulta</span>
+              )}
+            </p>
             <ul class="mt-6 flex-1 space-y-2 text-[15px]">
               {plan.items.map((item) => (
                 <li class="flex items-center gap-3">
@@ -267,6 +279,7 @@ const h2 = 'text-3xl font-semibold tracking-tight sm:text-[2.5rem] sm:leading-[1
           </div>
         ))}
       </div>
+      <p class="mt-6 text-sm text-muted">Valores mensais por empresa, sem IVA.</p>
     </div>
   </section>
 
@@ -298,38 +311,24 @@ const h2 = 'text-3xl font-semibold tracking-tight sm:text-[2.5rem] sm:leading-[1
     </div>
   </section>
 
-  <!-- CONFIANÇA -->
-  <section id="sobre" class="bg-white py-24">
-    <div class:list={[section, 'text-center']}>
-      <h2 class={h2}>Simples para a empresa. Aberto por natureza.</h2>
-      <p class="mx-auto mt-5 max-w-2xl text-muted">
-        O AJUSTA é baseado em software livre (<a href={site.upstreamUrl} class="underline underline-offset-2 hover:text-ink">InvoiceShelf</a>) e o código está disponível sob licença AGPL-3.0. Use o serviço alojado ou instale na sua infraestrutura.
-      </p>
-      <ul class="mt-10 flex flex-wrap justify-center gap-3 text-[15px]">
-        <li class="flex items-center gap-2 rounded-full border border-line px-4 py-2"><Icon name="license" class="h-4 w-4 text-teal-strong" />AGPL-3.0</li>
-        <li class="flex items-center gap-2 rounded-full border border-line px-4 py-2"><Icon name="code" class="h-4 w-4 text-teal-strong" />Open Source</li>
-        <li class="flex items-center gap-2 rounded-full border border-line px-4 py-2"><Icon name="server" class="h-4 w-4 text-teal-strong" />Self-hosted</li>
-      </ul>
-      <a href={site.sourceUrl} class="mt-8 inline-block text-[15px] font-medium text-teal-strong hover:text-ink">Ver o código-fonte</a>
-    </div>
-  </section>
-
   <!-- PARA QUEM -->
-  <section id="para-quem" class:list={[section, 'py-24']}>
+  <section id="para-quem" class="bg-white py-24">
+    <div class={section}>
     <h2 class={h2}>Para empresas que precisam de facturar.</h2>
     <div class="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-5">
       {audiences.map((a) => (
-        <div class="rounded-xl border border-line bg-white p-5">
+        <div class="rounded-xl border border-line p-5">
           <Icon name={a.icon} class="h-6 w-6 text-teal-strong" />
           <p class="mt-4 text-[15px] font-medium">{a.label}</p>
         </div>
       ))}
     </div>
     <p class="mt-8 text-muted">Se a sua empresa factura em Angola, o AJUSTA foi pensado para si.</p>
+    </div>
   </section>
 
   <!-- FAQ -->
-  <section id="faq" class="border-t border-line bg-white py-24">
+  <section id="faq" class="py-24">
     <div class="mx-auto max-w-3xl px-5 sm:px-8">
       <h2 class={h2}>Perguntas frequentes</h2>
       <div class="mt-10 divide-y divide-line border-y border-line">
