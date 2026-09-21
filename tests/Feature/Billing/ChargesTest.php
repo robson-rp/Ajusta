@@ -37,11 +37,11 @@ test('a reference charge returns entity and reference and is priced per month', 
         ->assertJsonPath('data.status', 'pending')
         ->assertJsonPath('data.entity_number', '00123')
         ->assertJsonPath('data.reference_number', '123456789')
-        ->assertJsonPath('data.amount', 1500000 * 3);
+        ->assertJsonPath('data.amount', 600000 * 3);
 
     Http::assertSent(function (Request $request) {
         return str_ends_with($request->url(), '/v2.0/charges')
-            && $request['amount'] == 45000.0
+            && $request['amount'] == 18000.0
             && $request['paymentMethod'] === 'REF_test'
             && ! isset($request['paymentInfo'])
             && strlen($request['merchantTransactionId']) <= 15

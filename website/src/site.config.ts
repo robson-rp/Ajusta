@@ -7,7 +7,7 @@
  * (e.g. http://invoiceshelf.test locally); production defaults to the real
  * domain.
  */
-const appBase = (import.meta.env.PUBLIC_APP_URL || 'https://app.ajusta.ao').replace(/\/+$/, '')
+export const appBase = (import.meta.env.PUBLIC_APP_URL || 'https://app.ajusta.ao').replace(/\/+$/, '')
 
 export const site = {
   name: 'AJUSTA',
@@ -43,10 +43,13 @@ export function contactLink(subject: string): string {
   return `mailto:${site.contactEmail}?subject=${encodeURIComponent(subject)}`
 }
 
-/** Indicative monthly prices in Kwanza. TODO: confirm before launch. */
+/**
+ * Fallback monthly prices in Kwanza, used only when the app cannot be reached
+ * at build time. The real prices come from the app (see src/plans.ts).
+ */
 export const prices = {
-  start: 15000,
-  business: 45000,
+  start: 6000,
+  business: 25000,
 }
 
 export function formatKz(value: number): string {

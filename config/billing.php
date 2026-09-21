@@ -42,7 +42,7 @@ return [
         [
             'code' => 'start',
             'name' => 'Start',
-            'price_monthly' => 1500000,
+            'price_monthly' => 600000,
             'sort' => 1,
             'features' => [
                 'max_users' => 1,
@@ -55,7 +55,7 @@ return [
         [
             'code' => 'business',
             'name' => 'Empresa',
-            'price_monthly' => 4500000,
+            'price_monthly' => 2500000,
             'sort' => 2,
             'features' => [
                 'max_users' => null,

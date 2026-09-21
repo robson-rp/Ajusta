@@ -36,7 +36,10 @@ test('public plans are listed for the signup page', function () {
         ->assertOk()
         ->assertJsonPath('trial_days', 14)
         ->assertJsonCount(2, 'plans')
-        ->assertJsonPath('plans.0.code', 'start');
+        ->assertJsonPath('plans.0.code', 'start')
+        ->assertJsonPath('plans.0.price_monthly', 600000)
+        ->assertJsonPath('plans.1.code', 'business')
+        ->assertJsonPath('plans.1.price_monthly', 2500000);
 });
 
 test('signup creates the owner, the company with its NIF and a trial', function () {

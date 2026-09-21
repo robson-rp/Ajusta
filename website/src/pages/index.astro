@@ -4,7 +4,10 @@ import Button from '../components/Button.astro'
 import Icon from '../components/Icon.astro'
 import Logo from '../components/Logo.astro'
 import Screenshot from '../components/Screenshot.astro'
-import { site, cta, prices, formatKz } from '../site.config'
+import { site, cta, formatKz } from '../site.config'
+import { loadPlans } from '../plans'
+
+const livePlans = await loadPlans()
 
 // Real captures from the app live in /public/screenshots. Leave a value
 // undefined to show a labelled placeholder until the capture exists.
@@ -36,16 +39,16 @@ const angola = [
 
 const plans = [
   {
-    name: 'Start',
+    name: livePlans.start.name,
     for: 'Para começar a facturar.',
-    price: formatKz(prices.start),
+    price: formatKz(livePlans.start.price),
     items: ['Facturas', 'Proformas', 'Recibos', 'Clientes', 'Pagamentos', 'Despesas', 'Relatórios básicos'],
     action: { label: 'Começar agora', href: cta.start },
   },
   {
-    name: 'Empresa',
+    name: livePlans.business.name,
     for: 'Para equipas que precisam de mais controlo.',
-    price: formatKz(prices.business),
+    price: formatKz(livePlans.business.price),
     items: ['Tudo do plano Start', 'Vários utilizadores', 'Portal do cliente', 'Facturas recorrentes', 'Várias empresas', 'Permissões', 'Relatórios avançados'],
     action: { label: 'Começar agora', href: cta.startBusiness },
     featured: true,
