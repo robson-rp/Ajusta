@@ -10,6 +10,9 @@ use App\Domains\Accounts\Models\CompanySetting;
 use App\Domains\Accounts\Models\ImpersonationLog;
 use App\Domains\Accounts\Models\User;
 use App\Domains\Accounts\Models\UserSetting;
+use App\Domains\Billing\Models\BillingCharge;
+use App\Domains\Billing\Models\Plan;
+use App\Domains\Billing\Models\Subscription;
 use App\Domains\Catalog\Models\Item;
 use App\Domains\Catalog\Models\Unit;
 use App\Domains\Contacts\Models\Address;
@@ -68,6 +71,7 @@ final class ModelIdentityMap
     {
         return [
             'address' => Address::class,
+            'billing_charge' => BillingCharge::class,
             'company' => Company::class,
             'company_invitation' => CompanyInvitation::class,
             'company_setting' => CompanySetting::class,
@@ -95,8 +99,10 @@ final class ModelIdentityMap
             self::PAYMENT_ALIAS => Payment::class,
             'payment_allocation' => PaymentAllocation::class,
             'payment_method' => PaymentMethod::class,
+            'plan' => Plan::class,
             'recurring_invoice' => RecurringInvoice::class,
             'setting' => Setting::class,
+            'subscription' => Subscription::class,
             'tax' => Tax::class,
             'tax_type' => TaxType::class,
             'transaction' => Transaction::class,

@@ -1,6 +1,7 @@
 <?php
 
 use App\Domains\Accounts\AccountsServiceProvider;
+use App\Domains\Billing\BillingServiceProvider;
 use App\Domains\Catalog\CatalogServiceProvider;
 use App\Domains\Contacts\ContactsServiceProvider;
 use App\Domains\Metadata\MetadataServiceProvider;
@@ -29,6 +30,7 @@ return [
     ViewServiceProvider::class,
     PdfServiceProvider::class,
     AccountsServiceProvider::class,
+    BillingServiceProvider::class,
     CatalogServiceProvider::class,
     ContactsServiceProvider::class,
     MetadataServiceProvider::class,

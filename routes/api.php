@@ -41,6 +41,11 @@ Route::prefix('/v1')->group(function () {
 
     require app_path('Domains/Contacts/routes/public.php');
 
+    // Signup (AJUSTA)
+    // ----------------------------------
+
+    require app_path('Domains/Billing/routes/public.php');
+
     // Onboarding
     // ----------------------------------
 
@@ -54,6 +59,7 @@ Route::prefix('/v1')->group(function () {
     Route::middleware(['auth:sanctum', 'super-admin'])->prefix('super-admin')->group(function () {
         require app_path('Platform/Operations/routes/admin.php');
         require app_path('Domains/Accounts/routes/admin.php');
+        require app_path('Domains/Billing/routes/admin.php');
     });
 
     // Stop impersonation - uses auth:sanctum only (the impersonated user's token, not super-admin)
@@ -61,7 +67,10 @@ Route::prefix('/v1')->group(function () {
         require app_path('Domains/Accounts/routes/impersonation.php');
     });
 
-    Route::middleware(['auth:sanctum', 'company', 'locale'])->group(function () {
+    Route::middleware(['auth:sanctum', 'company', 'locale', 'subscribed', 'plan-limits'])->group(function () {
+        // Subscription (AJUSTA)
+        require app_path('Domains/Billing/routes/company.php');
+
         Route::middleware(['bouncer'])->group(function () {
             require app_path('Domains/Accounts/routes/company.php');
             require app_path('Platform/Operations/routes/company.php');
@@ -161,3 +170,4 @@ Route::prefix('/v1')->group(function () {
 });
 
 require app_path('Platform/Operations/routes/webhooks.php');
+require app_path('Domains/Billing/routes/webhooks.php');

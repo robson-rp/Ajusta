@@ -6,6 +6,8 @@ use App\Domains\Accounts\Http\Middleware\RedirectIfAuthenticated;
 use App\Domains\Accounts\Http\Middleware\RedirectIfUnauthorized;
 use App\Domains\Accounts\Http\Middleware\ScopeBouncer;
 use App\Domains\Accounts\Http\Middleware\SuperAdminMiddleware;
+use App\Domains\Billing\Http\Middleware\EnforcePlanLimits;
+use App\Domains\Billing\Http\Middleware\EnsureSubscriptionWritable;
 use App\Domains\Contacts\Http\Middleware\CustomerGuest;
 use App\Domains\Contacts\Http\Middleware\CustomerPortalMiddleware;
 use App\Domains\Contacts\Http\Middleware\CustomerRedirectIfAuthenticated;
@@ -93,8 +95,10 @@ return Application::configure(basePath: dirname(__DIR__))
             'locale' => SetLocale::class,
             'not-containerized' => EnsureNotContainerized::class,
             'pdf-auth' => PdfMiddleware::class,
+            'plan-limits' => EnforcePlanLimits::class,
             'redirect-if-installed' => RedirectIfInstalled::class,
             'redirect-if-unauthenticated' => RedirectIfUnauthorized::class,
+            'subscribed' => EnsureSubscriptionWritable::class,
             'super-admin' => SuperAdminMiddleware::class,
         ]);
 

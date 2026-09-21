@@ -21,6 +21,11 @@ if (InstallationState::isDbCreated()) {
     Schedule::command('check:estimates:status')
         ->daily();
 
+    // AJUSTA subscriptions: reminders, grace period, suspension.
+    Schedule::command('billing:sweep')
+        ->dailyAt('07:00')
+        ->timezone('Africa/Luanda');
+
     $recurringInvoices = RecurringInvoice::where('status', 'ACTIVE')->get();
     foreach ($recurringInvoices as $recurringInvoice) {
         $timeZone = CompanySetting::getSetting('time_zone', $recurringInvoice->company_id);

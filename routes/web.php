@@ -43,6 +43,13 @@ Route::get('/register', function () {
     return view('app');
 })->middleware(['install']);
 
+// Self-service signup (serves SPA)
+// -------------------------------------------------
+
+Route::get('/signup', function () {
+    return view('app');
+})->name('signup')->middleware(['install', 'guest']);
+
 // Move other http requests to the Vue App
 // -------------------------------------------------
 

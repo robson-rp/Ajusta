@@ -51,4 +51,19 @@ return [
         'region' => env('SES_REGION', 'us-east-1'),
     ],
 
+    /*
+    | AppyPay Charges API (Multicaixa Express / GPO and ATM reference).
+    */
+    'appypay' => [
+        'token_url' => env('APPYPAY_TOKEN_URL'),
+        'client_id' => env('APPYPAY_CLIENT_ID'),
+        'client_secret' => env('APPYPAY_CLIENT_SECRET'),
+        'resource' => env('APPYPAY_RESOURCE'),
+        'base_url' => env('APPYPAY_BASE_URL', 'https://gwy-api-tst.appypay.co.ao'),
+        'method_gpo' => env('APPYPAY_METHOD_GPO'),
+        'method_reference' => env('APPYPAY_METHOD_REFERENCE'),
+        'webhook_token' => env('APPYPAY_WEBHOOK_TOKEN'),
+        'reference_valid_days' => 10,
+    ],
+
 ];

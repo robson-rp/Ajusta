@@ -8,6 +8,8 @@ use App\Domains\Accounts\Http\Resources\UserResource;
 use App\Domains\Accounts\Models\Company;
 use App\Domains\Accounts\Models\CompanyInvitation;
 use App\Domains\Accounts\Models\CompanySetting;
+use App\Domains\Billing\Application\SubscriptionService;
+use App\Domains\Billing\Http\Resources\SubscriptionResource;
 use App\Domains\Money\Models\Currency;
 use App\Platform\Http\Controller;
 use App\Platform\Modules\Models\Module;
@@ -154,7 +156,22 @@ class BootstrapController extends Controller
             'setting_menu' => $settingMenu,
             'modules' => Module::where('enabled', true)->pluck('name'),
             'user_menu' => $this->moduleUserMenu(),
+            // AJUSTA: the account's subscription (null = unrestricted account).
+            'current_company_subscription' => $this->subscriptionFor($company, $user),
         ]);
+    }
+
+    private function subscriptionFor(Company $company, $user): ?array
+    {
+        $subscription = app(SubscriptionService::class)->forCompany($company);
+
+        if ($subscription === null) {
+            return null;
+        }
+
+        return (new SubscriptionResource($subscription))->resolve() + [
+            'is_owner' => $subscription->user_id === $user->id,
+        ];
     }
 
     /**

@@ -107,7 +107,9 @@ test('the accounts domain preserves public and super-admin routes', function () 
 
     $adminRoutes = $routes
         ->filter(fn ($route): bool => str_starts_with($route->uri(), 'api/v1/super-admin/'))
-        ->reject(fn ($route): bool => $route->uri() === 'api/v1/super-admin/dashboard');
+        ->reject(fn ($route): bool => $route->uri() === 'api/v1/super-admin/dashboard')
+        // AJUSTA: subscription admin routes belong to the Billing domain.
+        ->reject(fn ($route): bool => str_starts_with($route->uri(), 'api/v1/super-admin/billing/'));
 
     expect($adminRoutes)->toHaveCount(8);
 
