@@ -2,13 +2,20 @@
  * Everything that must be confirmed before launch lives here.
  * TODO: replace the placeholders with the real domain and contacts.
  */
+/**
+ * Where the AJUSTA app lives. Set PUBLIC_APP_URL in website/.env
+ * (e.g. http://invoiceshelf.test locally); production defaults to the real
+ * domain.
+ */
+const appBase = (import.meta.env.PUBLIC_APP_URL || 'https://app.ajusta.ao').replace(/\/+$/, '')
+
 export const site = {
   name: 'AJUSTA',
   tagline: 'Uma conta. Um NIF. Um ciclo.',
   positioning: 'Facturação ajustada à realidade de Angola.',
 
   /** Where "Iniciar sessão" goes. */
-  appUrl: 'https://app.ajusta.ao/login',
+  appUrl: `${appBase}/login`,
 
   /** Contact for demos and questions. TODO: confirm. */
   contactEmail: 'ola@ajusta.ao',
@@ -49,7 +56,7 @@ export function formatKz(value: number): string {
 
 /** Self-service signup in the app, with the plan pre-selected. */
 export function signupLink(plan: 'start' | 'business' = 'start'): string {
-  return `${site.appUrl.replace(/\/login$/, '')}/signup?plan=${plan}`
+  return `${appBase}/signup?plan=${plan}`
 }
 
 export const cta = {
