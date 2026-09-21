@@ -2066,6 +2066,15 @@
     "register": {
       "heading": "Create your account",
       "subheading": "Complete your registration to get started"
+    },
+    "hero": {
+      "eyebrow": "Built for small businesses in Angola",
+      "title": "Your accounts, finally in order.",
+      "description": "Issue invoices, follow payments and keep every document in line with Angolan rules — without spreadsheets or paperwork.",
+      "point_invoicing": "Invoices, proformas and receipts with VAT and NIF",
+      "point_payroll": "Payments and expenses always up to date",
+      "point_one_place": "All in Kwanza, in one place",
+      "tagline": "One account. One NIF. One cycle."
     }
   },
   "invitation_register": {
