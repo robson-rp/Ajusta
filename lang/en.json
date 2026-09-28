@@ -967,7 +967,7 @@
   },
   "client": {
     "connect_heading": "Connect to your server",
-    "connect_description": "Enter the address of the InvoiceShelf server you want to use.",
+    "connect_description": "Enter the address of the AJUSTA server you want to use.",
     "server_address": "Server address",
     "connect": "Connect",
     "connect_anyway": "Connect anyway",
@@ -990,8 +990,8 @@
     "app_lock_toggle": "Require Face ID or fingerprint to open the app",
     "app_lock_toggle_description": "The app locks when you open it, and when you come back to it after a while.",
     "app_lock_enable_failed": "The app lock was not turned on: this device did not confirm it is you.",
-    "app_lock_reason": "Unlock InvoiceShelf",
-    "app_lock_locked_heading": "InvoiceShelf is locked",
+    "app_lock_reason": "Unlock AJUSTA",
+    "app_lock_locked_heading": "AJUSTA is locked",
     "app_lock_locked_description": "Confirm it is you to get back to your account.",
     "app_lock_unlock": "Unlock",
     "app_lock_sign_out": "Sign out instead"
@@ -1097,7 +1097,7 @@
     "consent": {
       "page_title": "Connect an app",
       "title": "Connect {client}",
-      "subtitle": "{client} is asking to use your InvoiceShelf account.",
+      "subtitle": "{client} is asking to use your AJUSTA account.",
       "redirect_notice": "After you decide, you will be sent back to {host}. Only continue if you started this from there.",
       "signed_in_as": "Signed in as {email}",
       "company": "Company",
@@ -1114,9 +1114,9 @@
     },
     "connected_apps": {
       "title": "Connected apps",
-      "description": "AI assistants you have connected to InvoiceShelf. Each works in one of your companies, with the access you gave it.",
+      "description": "AI assistants you have connected to AJUSTA. Each works in one of your companies, with the access you gave it.",
       "connect_title": "Connect an assistant",
-      "connect_description": "Add this server to an assistant that supports MCP. It opens InvoiceShelf in your browser, where you sign in and choose the company and what the assistant may do.",
+      "connect_description": "Add this server to an assistant that supports MCP. It opens AJUSTA in your browser, where you sign in and choose the company and what the assistant may do.",
       "server_url": "Server address",
       "unavailable_title": "Not switched on",
       "unavailable_description": "An administrator has to allow AI assistants first, under Administration, Settings, AI connections.",
@@ -1148,12 +1148,12 @@
     "admin": {
       "menu_title": "AI connections",
       "title": "AI connections",
-      "description": "Let AI assistants such as Claude or ChatGPT work with InvoiceShelf through the Model Context Protocol (MCP). Each user connects their own assistant and chooses the company and what it may do.",
+      "description": "Let AI assistants such as Claude or ChatGPT work with AJUSTA through the Model Context Protocol (MCP). Each user connects their own assistant and chooses the company and what it may do.",
       "enable": "Allow AI assistants to connect",
       "enable_description": "When off, the server and its sign-in pages are closed and connected apps stop working. Turning it on again restores them.",
       "server_url": "Server address",
       "insecure_title": "This site is not served over HTTPS",
-      "insecure_description": "Assistants refuse servers without HTTPS, and sign-in tokens would travel unencrypted. Serve InvoiceShelf over HTTPS before allowing assistants.",
+      "insecure_description": "Assistants refuse servers without HTTPS, and sign-in tokens would travel unencrypted. Serve AJUSTA over HTTPS before allowing assistants.",
       "connections": "No connected apps yet | One connected app | {count} connected apps",
       "keys_title": "Signing keys",
       "keys_description": "The keys that sign every connected app's access.",
@@ -2575,7 +2575,7 @@
     "info": "Note"
   },
   "demo": {
-    "banner": "This is the InvoiceShelf demo. Everyone shares it, and changes are wiped at every reset.",
+    "banner": "This is the AJUSTA demo. Everyone shares it, and changes are wiped at every reset.",
     "resets_in_hours": "Next reset in {hours} h {minutes} min.",
     "resets_in_minutes": "Next reset in {minutes} min.",
     "blocked": "This is turned off in the demo.",

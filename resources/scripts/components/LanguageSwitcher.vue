@@ -30,8 +30,11 @@
           :key="language.code"
           role="option"
           :aria-selected="language.code === currentLocale"
-          class="flex items-center justify-between gap-3 px-3 py-2 text-sm cursor-pointer text-body hover:bg-hover"
+          tabindex="0"
+          class="flex items-center justify-between gap-3 px-3 py-2 text-sm cursor-pointer text-body hover:bg-hover focus:bg-hover focus:outline-hidden"
           @click="select(language.code)"
+          @keydown.enter.prevent="select(language.code)"
+          @keydown.space.prevent="select(language.code)"
         >
           <span class="whitespace-nowrap" :class="{ 'font-medium text-heading': language.code === currentLocale }">
             {{ language.name }}

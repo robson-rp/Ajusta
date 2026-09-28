@@ -18,7 +18,12 @@
     "admin": "Administração",
     "administration": "Administração",
     "companies": "Empresas",
-    "all_users": "Utilizadores"
+    "all_users": "Utilizadores",
+    "more": "Mais",
+    "menu": "Menu",
+    "account_settings": "Definições da conta",
+    "account_menu": "Menu da conta de {name}",
+    "source_code": "Código-fonte"
   },
   "general": {
     "add_company": "Adicionar empresa",
@@ -129,12 +134,17 @@
       "to": "a",
       "of": "de",
       "results": "resultados",
-      "label": "Paginação"
+      "label": "Paginação",
+      "page": "Página {page}"
     },
     "file_upload": {
       "drag_a_file": "Arraste um ficheiro para aqui ou",
       "browse": "procure",
-      "to_choose": "para escolher um ficheiro"
+      "to_choose": "para escolher um ficheiro",
+      "take_photo": "Tirar fotografia",
+      "capture_failed": "Não foi possível tirar a fotografia. Escolha um ficheiro.",
+      "choose_file": "Escolher um ficheiro",
+      "remove_file": "Remover ficheiro"
     },
     "multiselect": {
       "the_list_is_empty": "A lista está vazia",
@@ -158,7 +168,55 @@
     "logged_out_successfully_toast": "Sessão terminada com sucesso.",
     "connection_lost": "Verifique a sua ligação à internet ou aguarde até que os servidores voltem a estar disponíveis.",
     "based_on": "Baseado no",
-    "source_code": "Código-fonte"
+    "source_code": "Código-fonte",
+    "check_highlighted_fields": "Faltam alguns dados. Verifique os campos assinalados e tente novamente.",
+    "taxes_are_added_in_settings": "Os impostos são adicionados em Definições, Tipos de imposto.",
+    "new": "Novo",
+    "expand": "Expandir",
+    "theme": "Tema",
+    "theme_light": "Claro",
+    "theme_dark": "Escuro",
+    "theme_system": "Sistema",
+    "breadcrumb": "Navegação estrutural",
+    "selected_count": "{count} seleccionados",
+    "close": "Fechar",
+    "apply": "Aplicar",
+    "show_password": "Mostrar palavra-passe",
+    "hide_password": "Ocultar palavra-passe",
+    "skip_to_content": "Saltar para o conteúdo",
+    "current": "(actual)",
+    "list": "Lista",
+    "sort_ascending": "Ordem: ascendente",
+    "sort_descending": "Ordem: descendente",
+    "remove_named": "Remover {name}",
+    "editor": {
+      "toolbar": "Formatação",
+      "bold": "Negrito",
+      "italic": "Itálico",
+      "strike": "Rasurado",
+      "code": "Código em linha",
+      "paragraph": "Parágrafo",
+      "h1": "Título 1",
+      "h2": "Título 2",
+      "h3": "Título 3",
+      "bulletList": "Lista com marcadores",
+      "orderedList": "Lista numerada",
+      "blockquote": "Citação",
+      "codeBlock": "Bloco de código",
+      "undo": "Anular",
+      "redo": "Refazer",
+      "alignLeft": "Alinhar à esquerda",
+      "alignRight": "Alinhar à direita",
+      "alignJustify": "Justificar",
+      "alignCenter": "Centrar",
+      "addLink": "Ligação",
+      "link_url": "Endereço da ligação"
+    },
+    "email_preview": "Pré-visualização do e-mail",
+    "pdf_preview": "Pré-visualização do PDF",
+    "step_of": "Passo {step} de {count}",
+    "actions_for": "Acções para {name}",
+    "select_named": "Seleccionar {name}"
   },
   "dashboard": {
     "select_year": "Seleccionar ano",
@@ -185,7 +243,10 @@
       "customer": "Cliente",
       "amount_due": "Valor em dívida",
       "actions": "Acções",
-      "view_all": "Ver todas"
+      "view_all": "Ver todas",
+      "empty_title": "Nada por receber",
+      "empty_description": "As facturas enviadas que ainda estão por pagar aparecem aqui.",
+      "portal_empty_description": "As facturas que ainda tem de pagar aparecem aqui."
     },
     "recent_estimate_card": {
       "title": "Proformas recentes",
@@ -193,7 +254,39 @@
       "customer": "Cliente",
       "amount_due": "Valor em dívida",
       "actions": "Acções",
-      "view_all": "Ver todas"
+      "view_all": "Ver todas",
+      "empty_title": "Ainda sem proformas",
+      "empty_description": "As proformas que enviar aparecem aqui.",
+      "portal_empty_description": "As proformas que lhe forem enviadas aparecem aqui."
+    },
+    "load_failed": "Não foi possível carregar o painel.",
+    "receivables": {
+      "title": "A receber",
+      "on_invoices": "Em {count} factura enviada | Em {count} facturas enviadas",
+      "overdue": "Em atraso",
+      "due_soon": "Vence nos próximos 30 dias",
+      "due_later": "Vence mais tarde",
+      "invoice_count": "{count} factura | {count} facturas",
+      "nothing_owed": "De momento ninguém lhe deve nada.",
+      "first_invoice_hint": "Envie a sua primeira factura e o que os clientes lhe devem aparece aqui.",
+      "view_invoices": "Ver facturas"
+    },
+    "cashflow": {
+      "no_activity": "Sem actividade neste período",
+      "no_activity_hint": "As facturas, pagamentos e despesas que registar aparecem aqui.",
+      "title": "Fluxo de caixa",
+      "show_table": "Mostrar como tabela",
+      "hide_table": "Ocultar tabela",
+      "month": "Mês",
+      "chart_style": "Estilo do gráfico",
+      "area": "Área",
+      "bars": "Barras",
+      "day": "Dia"
+    },
+    "counts": {
+      "customers": "cliente | clientes",
+      "invoices": "factura | facturas",
+      "estimates": "proforma | proformas"
     }
   },
   "tax_types": {
@@ -212,7 +305,10 @@
     "search": "Pesquisar...",
     "customers": "Clientes",
     "users": "Utilizadores",
-    "no_results_found": "Nenhum resultado encontrado"
+    "no_results_found": "Nenhum resultado encontrado",
+    "placeholder": "Pesquisar ou ir para…",
+    "go_to": "Ir para",
+    "create": "Criar"
   },
   "company_switcher": {
     "label": "MUDAR DE EMPRESA",
@@ -231,7 +327,14 @@
     "previous_month": "Mês anterior",
     "previous_quarter": "Trimestre anterior",
     "previous_year": "Ano anterior",
-    "custom": "Personalizado"
+    "custom": "Personalizado",
+    "last_12_months": "Últimos 12 meses",
+    "custom_range": "Intervalo personalizado",
+    "period": "Período",
+    "showing": "A mostrar {range}",
+    "pick_start": "Escolha o primeiro dia",
+    "pick_end": "Agora escolha o último dia",
+    "too_long": "Escolha um intervalo de até {years} anos"
   },
   "customers": {
     "title": "Clientes",
@@ -324,7 +427,12 @@
     "apply_credit_description": "Escolha o crédito disponível e as facturas a liquidar. Os valores só são aplicados quando confirmar.",
     "statement_sent": "Extracto enviado com sucesso",
     "credit_applied": "Crédito do cliente aplicado com sucesso",
-    "statement_email_body": "Segue em anexo o extracto da sua conta."
+    "statement_email_body": "Segue em anexo o extracto da sua conta.",
+    "empty_description": "Adicione as pessoas e empresas a quem factura e emita-lhes facturas em poucos cliques.",
+    "add_first_customer": "Adicione o seu primeiro cliente para começar a facturar.",
+    "activity_load_failed": "Não foi possível carregar a actividade deste cliente.",
+    "statement_load_failed": "Não foi possível carregar o extracto.",
+    "ask_to_add_customers": "Alguém que possa gerir clientes tem de adicionar um primeiro."
   },
   "items": {
     "title": "Artigos",
@@ -352,7 +460,9 @@
     "confirm_delete": "Não será possível recuperar este artigo | Não será possível recuperar estes artigos",
     "created_message": "Artigo criado com sucesso",
     "updated_message": "Artigo actualizado com sucesso",
-    "deleted_message": "Artigo eliminado com sucesso | Artigos eliminados com sucesso"
+    "deleted_message": "Artigo eliminado com sucesso | Artigos eliminados com sucesso",
+    "empty_description": "Guarde os produtos e serviços que vende para os adicionar às facturas num clique.",
+    "no_matching_items": "Nenhum artigo corresponde a estes filtros"
   },
   "estimates": {
     "title": "Proformas",
@@ -452,7 +562,9 @@
       "type_item_description": "Descrição do artigo (opcional)"
     },
     "mark_as_default_estimate_template_description": "Se activo, o modelo seleccionado será usado automaticamente nas novas proformas.",
-    "estimate_sent_successfully": "Proforma enviada com sucesso"
+    "estimate_sent_successfully": "Proforma enviada com sucesso",
+    "empty_description": "Envie uma proforma e converta-a em factura quando for aceite.",
+    "portal_empty_description": "As proformas que lhe forem enviadas aparecem aqui."
   },
   "invoices": {
     "title": "Facturas",
@@ -559,7 +671,16 @@
       "tax": "Imposto",
       "amount": "Valor",
       "select_an_item": "Escreva ou clique para seleccionar um artigo",
-      "type_item_description": "Descrição do artigo (opcional)"
+      "type_item_description": "Descrição do artigo (opcional)",
+      "options": "Opções",
+      "item_actions": "Acções do artigo",
+      "move_up": "Mover para cima",
+      "move_down": "Mover para baixo",
+      "remove": "Remover artigo",
+      "item_actions_for": "Acções do artigo {position}",
+      "discount_type": "Tipo de desconto: {type}",
+      "reorder": "Mover o artigo {position} de {count}. Use as setas para cima e para baixo",
+      "moved": "Movido para a posição {position} de {count}"
     },
     "payment_attached_message": "Uma das facturas seleccionadas já tem um pagamento associado. Elimine primeiro os pagamentos associados para poder continuar.",
     "confirm_delete": "Não será possível recuperar esta factura | Não será possível recuperar estas facturas",
@@ -570,7 +691,9 @@
     "something_went_wrong": "ocorreu um erro",
     "invalid_due_amount_message": "O total da factura não pode ser inferior ao total já pago. Actualize a factura ou elimine os pagamentos associados para continuar.",
     "mark_as_default_invoice_template_description": "Se activo, o modelo seleccionado será usado automaticamente nas novas facturas.",
-    "allocated_payments": "Pagamentos alocados"
+    "allocated_payments": "Pagamentos alocados",
+    "empty_description": "Crie uma factura e envie-a a um cliente para receber.",
+    "portal_empty_description": "As facturas que lhe forem enviadas aparecem aqui."
   },
   "recurring_invoices": {
     "title": "Facturas Recorrentes",
@@ -689,7 +812,8 @@
       "on_the_first_day_of_every_month_at_midnight": "No primeiro dia de cada mês às 00:00",
       "every_6_month": "A cada 6 meses",
       "every_year_on_the_first_day_of_january_at_midnight": "Todos os anos a 1 de Janeiro às 00:00",
-      "custom": "Personalizado"
+      "custom": "Personalizado",
+      "label": "Frequência"
     },
     "confirm_delete": "Não será possível recuperar esta factura | Não será possível recuperar estas facturas",
     "created_message": "Factura recorrente criada com sucesso",
@@ -704,7 +828,10 @@
       "date": "Data",
       "count": "Número"
     },
-    "make_recurring": "Tornar recorrente"
+    "make_recurring": "Tornar recorrente",
+    "empty_description": "Configure uma factura que é emitida periodicamente, como uma avença mensal.",
+    "no_generated_invoices": "Ainda sem facturas",
+    "no_generated_invoices_description": "As facturas criadas por este agendamento aparecem aqui."
   },
   "payments": {
     "title": "Pagamentos",
@@ -754,7 +881,10 @@
     "unapplied_credit": "Crédito por aplicar",
     "remove_allocation": "Remover alocação",
     "allocation_exceeds_amount": "As alocações não podem exceder o valor do pagamento.",
-    "payment_sent_successfully": "Pagamento enviado com sucesso"
+    "payment_sent_successfully": "Pagamento enviado com sucesso",
+    "empty_description": "Registe um pagamento quando um cliente paga e aplique-o às facturas dele.",
+    "portal_empty_description": "Os pagamentos que fizer aparecem aqui.",
+    "no_open_invoices": "Este cliente não tem facturas em aberto, por isso o pagamento fica como crédito do cliente."
   },
   "expenses": {
     "title": "Despesas",
@@ -815,7 +945,9 @@
       "new_category": "Nova categoria",
       "category": "Categoria | Categorias",
       "select_a_category": "Seleccione uma categoria"
-    }
+    },
+    "empty_description": "Registe o que a empresa gasta para ver o seu lucro e recuperar impostos.",
+    "no_matching_expenses": "Nenhuma despesa corresponde a estes filtros"
   },
   "login": {
     "email": "E-mail",
@@ -912,7 +1044,8 @@
       "paired": "Marketplace associado",
       "waiting": "A aguardar aprovação do marketplace",
       "disconnected": "Marketplace desligado"
-    }
+    },
+    "no_marketplace_modules": "Ainda não há módulos disponíveis no marketplace."
   },
   "members": {
     "title": "Membros",
@@ -952,7 +1085,10 @@
     "invited_by": "Convidado por",
     "sent_at": "Enviado a",
     "no_users": "Ainda não há membros.",
-    "list_of_users": "Aqui aparecerá a lista de membros da empresa."
+    "list_of_users": "Aqui aparecerá a lista de membros da empresa.",
+    "add_member_hint": "Iniciam sessão com o e-mail e a palavra-passe que definir aqui, por isso transmita-lhes a palavra-passe. Para que escolham a sua, convide-os.",
+    "empty_description": "Convide as pessoas que trabalham consigo nesta empresa.",
+    "no_matching_members": "Nenhum membro corresponde a estes filtros"
   },
   "reports": {
     "title": "Relatório",
@@ -1039,7 +1175,9 @@
       "address_information": "Morada",
       "pdf_generation": "Geração de PDF",
       "appearance": "Aspecto",
-      "module_configuration": "Configuração de módulos"
+      "module_configuration": "Configuração de módulos",
+      "currencies": "Moedas",
+      "role_presets": "Funções predefinidas"
     },
     "appearance": {
       "title": "Aspecto",
@@ -1074,7 +1212,16 @@
       "right": "Direita",
       "left": "Esquerda",
       "action": "Acção",
-      "add_currency": "Adicionar moeda"
+      "add_currency": "Adicionar moeda",
+      "description": "Todas as moedas em que esta instalação pode facturar. A lista é partilhada por todas as empresas, não definida por empresa.",
+      "refresh": "Actualizar lista",
+      "search": "Pesquisar por nome ou código",
+      "count": "Sem moedas | 1 moeda | {count} moedas",
+      "decimals": "sem casas decimais | 1 casa decimal | {count} casas decimais",
+      "refreshed": "Lista de moedas actualizada: {added} adicionadas, {updated} corrigidas.",
+      "already_current": "A lista de moedas já está actualizada.",
+      "refresh_failed": "Não foi possível actualizar a lista de moedas.",
+      "none_found": "Nenhuma moeda corresponde a essa pesquisa."
     },
     "mail": {
       "host": "Servidor de e-mail",
@@ -1218,9 +1365,34 @@
         "invoice": "Factura",
         "estimate": "Proforma",
         "expense": "Despesa",
-        "payment": "Pagamento"
+        "payment": "Pagamento",
+        "item": "Artigo",
+        "company": "Empresa",
+        "user": "Utilizador"
       },
-      "created_message": "Campo personalizado adicionado com sucesso"
+      "created_message": "Campo personalizado adicionado com sucesso",
+      "show_on_document": "Mostrar no documento",
+      "show_on_document_description": "Imprimir este campo na factura, proforma ou recibo a que pertence.",
+      "section_field": "Campo",
+      "section_behaviour": "Comportamento",
+      "section_validation": "Validação",
+      "validation_description": "limitar o que pode ser introduzido",
+      "name_help": "Gera o marcador que os modelos referenciam.",
+      "label_help": "Mostrado junto ao campo e no documento.",
+      "min_length": "Comprimento mínimo",
+      "max_length": "Comprimento máximo",
+      "min_value": "Mínimo",
+      "max_value": "Máximo",
+      "pattern": "Padrão",
+      "pattern_help": "Uma expressão regular que a resposta tem de cumprir. Deixe vazio se não precisar.",
+      "earliest": "Mais cedo",
+      "latest": "Mais tarde",
+      "bound_none": "Sem limite",
+      "bound_today": "Hoje",
+      "bound_fixed_date": "Uma data fixa",
+      "bound_fixed_time": "Uma hora fixa",
+      "empty_title": "Ainda sem campos personalizados",
+      "empty_description": "Adicione os seus próprios campos a facturas, clientes, artigos e mais."
     },
     "customization": {
       "customization": "personalização",
@@ -1358,8 +1530,11 @@
           "estimate": "Proforma",
           "invoice": "Factura",
           "payment": "Pagamento"
-        }
-      }
+        },
+        "empty_title": "Ainda sem notas",
+        "empty_description": "Guarde textos que usa com frequência, como condições de pagamento, e insira-os em qualquer documento."
+      },
+      "reorder_component": "Mover {name}, {position} de {count}. Use as setas para cima e para baixo"
     },
     "account_settings": {
       "profile_picture": "Fotografia de perfil",
@@ -1414,7 +1589,16 @@
       "created_message": "Função criada com sucesso",
       "updated_message": "Função actualizada com sucesso",
       "deleted_message": "Função eliminada com sucesso",
-      "already_in_use": "A função já está a ser utilizada"
+      "already_in_use": "A função já está a ser utilizada",
+      "preset": "Predefinida",
+      "preset_hint": "Definida pelo administrador para todas as empresas. Pode atribuí-la, mas não alterá-la.",
+      "view_permissions_of": "Ver as permissões de {role}",
+      "view_only": "Apenas ver",
+      "all": "Todas",
+      "view": "Ver",
+      "group_all": "Todas as permissões de {group}",
+      "group_view": "Apenas ver {group}",
+      "group_none": "Nenhuma das permissões de {group}"
     },
     "exchange_rate": {
       "exchange_rate": "Taxa de câmbio",
@@ -1446,7 +1630,10 @@
       "url": "URL",
       "active": "Activo",
       "currency_help_text": "Este fornecedor só será usado nas moedas seleccionadas acima",
-      "currency_in_used": "As moedas seguintes já estão activas noutro fornecedor. Remova-as da selecção para voltar a activar este fornecedor."
+      "currency_in_used": "As moedas seguintes já estão activas noutro fornecedor. Remova-as da selecção para voltar a activar este fornecedor.",
+      "fetch_latest": "Obter a taxa de câmbio mais recente",
+      "empty_title": "Ainda sem fornecedores de taxas de câmbio",
+      "empty_description": "Ligue um fornecedor para obter taxas para documentos noutras moedas."
     },
     "tax_types": {
       "title": "Tipos de imposto",
@@ -1475,7 +1662,9 @@
       "tax_included": "Impostos incluídos",
       "tax_included_description": "Active para indicar que os impostos já estão incluídos nos preços dos artigos ou no total da factura.",
       "tax_included_by_default": "Impostos incluídos por predefinição",
-      "tax_included_by_default_description": "Active para usar impostos incluídos por predefinição"
+      "tax_included_by_default_description": "Active para usar impostos incluídos por predefinição",
+      "empty_title": "Ainda sem tipos de imposto",
+      "empty_description": "Adicione um imposto uma vez e escolha-o em qualquer factura ou despesa."
     },
     "payment_modes": {
       "title": "Meios de pagamento",
@@ -1505,7 +1694,9 @@
       "deleted_message": "Categoria de despesa eliminada com sucesso",
       "updated_message": "Categoria de despesa actualizada com sucesso",
       "confirm_delete": "Não será possível recuperar esta categoria de despesa",
-      "already_in_use": "A categoria já está a ser utilizada"
+      "already_in_use": "A categoria já está a ser utilizada",
+      "empty_title": "Ainda sem categorias de despesa",
+      "empty_description": "Agrupe as despesas pela finalidade, como viagens ou software. Todas as despesas precisam de uma."
     },
     "preferences": {
       "currency": "Moeda",
@@ -1591,7 +1782,10 @@
       "update_warning": "Todos os ficheiros da aplicação e os modelos predefinidos serão substituídos ao actualizar com esta ferramenta. Faça uma cópia de segurança dos modelos e da base de dados antes de actualizar.",
       "requirements_not_met": "Não é possível continuar a actualização porque alguns requisitos do sistema não são cumpridos (incluindo a versão mínima do PHP). Corrija os requisitos em falha e tente novamente.",
       "containerized_title": "A executar em Docker",
-      "containerized_message": "O actualizador integrado está desactivado em instalações Docker. Para actualizar, obtenha a imagem mais recente e recrie o contentor:"
+      "containerized_message": "O actualizador integrado está desactivado em instalações Docker. Para actualizar, obtenha a imagem mais recente e recrie o contentor:",
+      "client_title": "Actualização do servidor",
+      "client_description": "Verifique se o servidor a que esta aplicação está ligada tem uma nova versão do AJUSTA e instale-a. A aplicação em si é actualizada pela loja de aplicações do seu dispositivo.",
+      "client_versions": "Ligado a {server}, servidor {serverVersion}, aplicação {appVersion}"
     },
     "backup": {
       "title": "Cópia de segurança | Cópias de segurança",
@@ -1614,7 +1808,9 @@
       "action": "Acção",
       "deleted_message": "Cópia de segurança eliminada com sucesso",
       "created_message": "Cópia de segurança criada com sucesso",
-      "invalid_disk_credentials": "Credenciais inválidas para o disco seleccionado"
+      "invalid_disk_credentials": "Credenciais inválidas para o disco seleccionado",
+      "empty_title": "Ainda sem cópias de segurança",
+      "empty_description": "Crie uma cópia de segurança para guardar os seus dados e ficheiros."
     },
     "disk": {
       "title": "Disco de ficheiros | Discos de ficheiros",
@@ -1702,6 +1898,25 @@
       "state_placeholder": "Exemplo: Luanda",
       "zip_placeholder": "Exemplo: 1234",
       "invalid_address": "Indique uma morada válida."
+    },
+    "role_presets": {
+      "title": "Funções predefinidas",
+      "description": "Funções que todas as empresas recebem. Os proprietários podem atribuí-las a membros, mas não alterá-las; o que alterar aqui muda em todas as empresas.",
+      "add": "Adicionar função predefinida",
+      "edit": "Editar função predefinida",
+      "view": "Ver função predefinida",
+      "name": "Nome",
+      "permissions": "Permissões",
+      "permission_count": "{count} permissão | {count} permissões",
+      "built_in": "Incorporada",
+      "owner_hint": "Os proprietários das empresas têm esta função. Tem sempre todas as permissões.",
+      "applies_everywhere": "Guardar altera esta função em todas as empresas.",
+      "created": "Função predefinida criada e atribuída a todas as empresas",
+      "updated": "Função predefinida actualizada em todas as empresas",
+      "deleted": "Função predefinida removida de todas as empresas",
+      "confirm_delete": "A função predefinida é removida de todas as empresas. Esta acção não pode ser anulada.",
+      "in_use": "Há membros com esta função ou convites que a oferecem, por isso ainda não pode ser removida.",
+      "locked": "A função Proprietário não pode ser alterada nem removida."
     }
   },
   "wizard": {
@@ -2047,7 +2262,21 @@
       "impersonate_confirm": "Vai entrar como {name}. A sessão temporária expira em 2 horas e esta acção fica registada.",
       "impersonating_banner": "Está a usar a conta de outro utilizador. Todas as acções ficam registadas.",
       "stop_impersonating": "Voltar à minha conta",
-      "updated_toast": "Utilizador actualizado com sucesso."
+      "updated_toast": "Utilizador actualizado com sucesso.",
+      "new_user": "Novo utilizador",
+      "created_message": "Utilizador criado",
+      "super_admin": "Super administrador",
+      "super_admin_description": "Pode abrir a Administração: todas as empresas, utilizadores e definições desta instalação.",
+      "super_admin_self": "Não pode remover o seu próprio acesso de super administrador.",
+      "companies_title": "Empresas",
+      "companies_description": "As empresas a que este utilizador pertence, com uma função em cada. Sem nenhuma, é-lhe pedido que crie a primeira empresa ao iniciar sessão.",
+      "add_company": "Adicionar empresa",
+      "company": "Empresa",
+      "select_company": "Seleccione uma empresa",
+      "select_role": "Seleccione uma função",
+      "owner_locked": "É proprietário desta empresa, por isso mantém-se nela como Proprietário.",
+      "remove_company": "Remover {company}",
+      "password_new_hint": "Inicia sessão com esta palavra-passe; transmita-lha."
     }
   },
   "auth_layout": {
@@ -2244,5 +2473,160 @@
   "Cash": "Numerário",
   "Check": "Cheque",
   "Credit Card": "Cartão (Multicaixa)",
-  "Bank Transfer": "Transferência bancária"
+  "Bank Transfer": "Transferência bancária",
+  "client": {
+    "connect_heading": "Ligar ao seu servidor",
+    "connect_description": "Introduza o endereço do servidor AJUSTA que pretende usar.",
+    "server_address": "Endereço do servidor",
+    "connect": "Ligar",
+    "connect_anyway": "Ligar mesmo assim",
+    "invalid_server_url": "Introduza o endereço completo, incluindo http:// ou https://",
+    "insecure_warning": "Este endereço não está cifrado. Qualquer pessoa na rede pode ler o que lhe envia.",
+    "app_url_mismatch": "O servidor identifica-se como {host}. Logótipos e anexos podem não carregar.",
+    "unreachable_heading": "Não foi possível contactar o servidor",
+    "unreachable_description": "Ninguém respondeu em {server}. Verifique o endereço e se o servidor está a funcionar e acessível a partir deste dispositivo.",
+    "too_old_heading": "Este servidor é demasiado antigo",
+    "too_old_description": "Corre a versão {version} e esta aplicação precisa da {required} ou mais recente.",
+    "too_old_short": "Este servidor é demasiado antigo para esta aplicação.",
+    "update_app_heading": "Actualize a aplicação",
+    "update_app_description": "Este servidor precisa da versão {required} da aplicação ou mais recente. Esta aplicação é a {current}.",
+    "retry": "Tentar novamente",
+    "change_server": "Mudar de servidor",
+    "connected_to": "Ligado a {server}",
+    "modules_failed": "Alguns módulos não carregaram: {names}",
+    "app_lock_title": "Bloqueio da aplicação",
+    "app_lock_description": "Pedir o Face ID, a impressão digital ou o código deste dispositivo antes de abrir a aplicação.",
+    "app_lock_toggle": "Exigir Face ID ou impressão digital para abrir a aplicação",
+    "app_lock_toggle_description": "A aplicação bloqueia quando a abre e quando volta a ela passado algum tempo.",
+    "app_lock_enable_failed": "O bloqueio não foi activado: este dispositivo não confirmou que é você.",
+    "app_lock_reason": "Desbloquear o AJUSTA",
+    "app_lock_locked_heading": "O AJUSTA está bloqueado",
+    "app_lock_locked_description": "Confirme que é você para voltar à sua conta.",
+    "app_lock_unlock": "Desbloquear",
+    "app_lock_sign_out": "Terminar sessão"
+  },
+  "devices": {
+    "title": "Dispositivos",
+    "description": "Os dispositivos com sessão iniciada na sua conta. Revogar um termina a sessão dele da próxima vez que contactar o servidor.",
+    "this_device": "Este dispositivo",
+    "added_on": "Adicionado a {date}",
+    "last_used": "Usado pela última vez a {date}",
+    "never_used": "Nunca usado",
+    "revoke": "Revogar",
+    "revoke_confirm": "A sessão de {name} termina da próxima vez que contactar o servidor.",
+    "revoke_current_confirm": "Este é o dispositivo que está a usar. Revogá-lo termina a sua sessão aqui.",
+    "revoked_message": "Dispositivo revogado com sucesso",
+    "no_devices": "Sem dispositivos",
+    "no_devices_description": "Os dispositivos com sessão iniciada na aplicação móvel aparecem aqui."
+  },
+  "mcp": {
+    "consent": {
+      "page_title": "Ligar uma aplicação",
+      "title": "Ligar {client}",
+      "subtitle": "{client} está a pedir para usar a sua conta AJUSTA.",
+      "redirect_notice": "Depois de decidir, será enviado de volta para {host}. Continue apenas se começou a partir daí.",
+      "signed_in_as": "Sessão iniciada como {email}",
+      "company": "Empresa",
+      "company_help": "A aplicação trabalha apenas nesta empresa. Ligue-a novamente para usar outra.",
+      "access": "Acesso",
+      "access_read": "Apenas leitura",
+      "access_read_help": "Consultar clientes, artigos, facturas, proformas, pagamentos, despesas e relatórios.",
+      "access_write": "Leitura e escrita",
+      "access_write_help": "Também criar e alterar registos, enviar documentos por e-mail e registar pagamentos.",
+      "role_notice": "Nunca pode fazer mais do que a sua própria função permite nessa empresa.",
+      "allow": "Permitir acesso",
+      "deny": "Cancelar",
+      "no_company": "A sua conta ainda não pertence a nenhuma empresa, por isso não há nada para ligar."
+    },
+    "connected_apps": {
+      "title": "Aplicações ligadas",
+      "description": "Assistentes de IA que ligou ao AJUSTA. Cada um trabalha numa das suas empresas, com o acesso que lhe deu.",
+      "connect_title": "Ligar um assistente",
+      "connect_description": "Adicione este servidor a um assistente compatível com MCP. Ele abre o AJUSTA no seu navegador, onde inicia sessão e escolhe a empresa e o que o assistente pode fazer.",
+      "server_url": "Endereço do servidor",
+      "unavailable_title": "Não activado",
+      "unavailable_description": "Um administrador tem de permitir primeiro os assistentes de IA, em Administração, Definições, Ligações de IA.",
+      "claude_code": "Claude Code",
+      "claude": "Claude",
+      "chatgpt": "ChatGPT",
+      "cursor": "Cursor",
+      "claude_code_hint": "Execute isto num terminal e depois escreva /mcp no Claude Code para iniciar sessão:",
+      "claude_hint": "No Claude, abra Definições, depois Conectores, escolha Adicionar conector personalizado e cole o endereço do servidor.",
+      "chatgpt_hint": "No ChatGPT, abra Definições, depois Aplicações e Conectores, active o modo de programador em Avançado e crie um conector com o endereço do servidor.",
+      "cursor_hint": "Adicione isto a .cursor/mcp.json no seu projecto, ou a ~/.cursor/mcp.json:",
+      "list_title": "As suas ligações",
+      "none_title": "Sem aplicações ligadas",
+      "none_description": "Os assistentes que ligar aparecem aqui, com a empresa em que trabalham e o que podem fazer.",
+      "access_read": "Apenas leitura",
+      "access_write": "Leitura e escrita",
+      "returns_to": "Regressa a {host}",
+      "connected_on": "Ligado a {date}",
+      "last_used": "Usado pela última vez a {date}",
+      "never_used": "Ainda não usado",
+      "make_read_only": "Tornar apenas leitura",
+      "made_read_only": "{client} agora só pode ler.",
+      "disconnect": "Desligar",
+      "disconnect_confirm": "A sessão de {client} termina e perde o acesso a {company}. Pode voltar a ligá-lo mais tarde.",
+      "disconnected": "{client} foi desligado.",
+      "write_again_hint": "Para deixar uma aplicação voltar a escrever depois de a tornar apenas leitura, desligue-a e ligue-a de novo.",
+      "unnamed_client": "Aplicação sem nome"
+    },
+    "admin": {
+      "menu_title": "Ligações de IA",
+      "title": "Ligações de IA",
+      "description": "Deixe assistentes de IA como o Claude ou o ChatGPT trabalhar com o AJUSTA através do Model Context Protocol (MCP). Cada utilizador liga o seu próprio assistente e escolhe a empresa e o que ele pode fazer.",
+      "enable": "Permitir a ligação de assistentes de IA",
+      "enable_description": "Quando desligado, o servidor e as suas páginas de início de sessão ficam fechados e as aplicações ligadas deixam de funcionar. Voltar a ligá-lo restaura-as.",
+      "server_url": "Endereço do servidor",
+      "insecure_title": "Este site não é servido por HTTPS",
+      "insecure_description": "Os assistentes recusam servidores sem HTTPS e os tokens de sessão viajariam sem cifra. Sirva o AJUSTA por HTTPS antes de permitir assistentes.",
+      "connections": "Ainda sem aplicações ligadas | Uma aplicação ligada | {count} aplicações ligadas",
+      "keys_title": "Chaves de assinatura",
+      "keys_description": "As chaves que assinam o acesso de cada aplicação ligada.",
+      "key_status_file": "Guardadas na pasta de armazenamento da aplicação.",
+      "key_status_env": "Definidas através de PASSPORT_PRIVATE_KEY e PASSPORT_PUBLIC_KEY. Substitua-as aí.",
+      "key_status_missing": "Ainda não criadas. São criadas quando os assistentes são permitidos.",
+      "regenerate": "Substituir chaves",
+      "regenerate_confirm": "A sessão de todas as aplicações ligadas termina e têm de voltar a ligar-se.",
+      "regenerated": "As chaves foram substituídas e a sessão de todas as aplicações ligadas foi terminada.",
+      "redirect_title": "Para onde os assistentes o podem devolver",
+      "redirect_description": "Depois de aprovar um assistente, o navegador regressa ao endereço do próprio assistente. Os endereços abaixo são permitidos; adicione o endereço https de qualquer outro assistente que use.",
+      "redirect_defaults": "Permitidos em todas as instalações",
+      "redirect_extra": "Adicionados aqui",
+      "redirect_none": "Nenhum adicionado.",
+      "redirect_add": "Adicionar",
+      "redirect_input": "Endereço do assistente",
+      "redirect_placeholder": "https://assistant.example.com",
+      "redirect_invalid": "Indique um endereço https como https://assistant.example.com, sem caminho.",
+      "redirect_remove": "Remover {domain}",
+      "saved": "Guardado."
+    },
+    "copied": "Copiado."
+  },
+  "pdf": {
+    "open_pdf": "Abrir PDF",
+    "download_failed": "Não foi possível descarregar o documento"
+  },
+  "notifications": {
+    "success": "Sucesso",
+    "error": "Erro",
+    "warning": "Aviso",
+    "info": "Nota"
+  },
+  "demo": {
+    "banner": "Esta é a demonstração do AJUSTA. Todos a partilham e as alterações são apagadas a cada reposição.",
+    "resets_in_hours": "Próxima reposição dentro de {hours} h {minutes} min.",
+    "resets_in_minutes": "Próxima reposição dentro de {minutes} min.",
+    "blocked": "Isto está desactivado na demonstração.",
+    "login_title": "Experimente a demonstração",
+    "login_note": "Inicie sessão como {email} com a palavra-passe {password}. Todos os visitantes partilham esta conta e os dados são repostos de poucas em poucas horas.",
+    "try_portal": "Experimente o portal do cliente",
+    "portal_note": "Aí, inicie sessão como {email} com a palavra-passe {password}.",
+    "portal_login_note": "Este é o portal do cliente da demonstração: os dados de acesso já estão preenchidos."
+  },
+  "managed": {
+    "blocked": "O seu fornecedor de alojamento gere esta definição.",
+    "modules_note": "O seu fornecedor de alojamento instala e actualiza os módulos desta conta.",
+    "paid_modules_note": "Os módulos pagos ainda não estão disponíveis nesta conta alojada."
+  }
 }

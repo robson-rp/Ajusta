@@ -9,7 +9,7 @@
 
     <div class="flex flex-wrap gap-3 mt-6">
       <BaseInput v-model="search" :placeholder="$t('general.search')" class="max-w-xs" @input="debouncedLoad" />
-      <select v-model="status" class="rounded-lg border-line-default text-sm" @change="load(1)">
+      <select v-model="status" :aria-label="$t('billing.state')" class="rounded-lg text-sm" @change="load(1)">
         <option value="">{{ $t('general.all') }}</option>
         <option v-for="s in statuses" :key="s" :value="s">{{ $t(`billing.status.${s}`) }}</option>
       </select>
@@ -74,18 +74,21 @@
     </div>
 
     <!-- Manual payment -->
-    <div v-if="paying" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/30" @click.self="paying = null">
-      <form class="w-full max-w-md p-6 bg-surface border rounded-xl border-line-light shadow-lg" @submit.prevent="submitPayment">
-        <h3 class="text-lg font-semibold text-heading">{{ $t('billing.admin.record_payment') }}</h3>
-        <p class="mt-1 text-sm text-muted">{{ paying.owner?.name }} · {{ $t('billing.admin.manual_hint') }}</p>
+    <BaseModal :show="!!paying" closable size="sm" @close="paying = null">
+      <template #header>
+        {{ $t('billing.admin.record_payment') }}
+      </template>
+
+      <form class="p-6" @submit.prevent="submitPayment">
+        <p class="text-sm text-muted">{{ paying?.owner?.name }} · {{ $t('billing.admin.manual_hint') }}</p>
 
         <BaseInputGroup :label="$t('billing.plan')" class="mt-5">
-          <select v-model="payment.plan" class="w-full rounded-lg border-line-default text-sm">
+          <select v-model="payment.plan" :aria-label="$t('billing.plan')" class="w-full rounded-lg text-sm">
             <option v-for="plan in plans" :key="plan.code" :value="plan.code">{{ plan.name }}</option>
           </select>
         </BaseInputGroup>
         <BaseInputGroup :label="$t('billing.period')" class="mt-4">
-          <select v-model.number="payment.months" class="w-full rounded-lg border-line-default text-sm">
+          <select v-model.number="payment.months" :aria-label="$t('billing.period')" class="w-full rounded-lg text-sm">
             <option v-for="m in [1, 3, 6, 12]" :key="m" :value="m">{{ $t('billing.months', { n: m }, m) }}</option>
           </select>
         </BaseInputGroup>
@@ -98,7 +101,7 @@
           <BaseButton type="submit" :loading="isSaving">{{ $t('general.save') }}</BaseButton>
         </div>
       </form>
-    </div>
+    </BaseModal>
   </BasePage>
 </template>
 
