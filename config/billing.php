@@ -32,10 +32,14 @@ return [
     // How many months can be prepaid at once.
     'periods' => [1, 3, 6, 12],
 
-    // Payment gateways offered at checkout, in display order.
+    // Payment gateways offered at checkout, in display order. StrongPay wraps
+    // AppyPay, so the direct AppyPay gateway is not offered alongside it.
     'gateways' => array_filter([
-        env('APPYPAY_CLIENT_ID') ? 'appypay' : null,
+        env('STRONGPAY_API_KEY') ? 'strongpay' : null,
     ]),
+
+    // Multicaixa Express (GPO) is implemented but not offered at checkout yet.
+    'gpo_enabled' => env('BILLING_GPO_ENABLED', false),
 
     // Plans seeded on install. Editable afterwards by the super admin.
     'plans' => [

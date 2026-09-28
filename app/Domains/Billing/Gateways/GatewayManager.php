@@ -4,6 +4,7 @@ namespace App\Domains\Billing\Gateways;
 
 use App\Domains\Billing\Gateways\AppyPay\AppyPayGateway;
 use App\Domains\Billing\Gateways\Contracts\PaymentGateway;
+use App\Domains\Billing\Gateways\StrongPay\StrongPayGateway;
 use InvalidArgumentException;
 
 /**
@@ -15,6 +16,7 @@ class GatewayManager
 {
     /** @var array<string, class-string<PaymentGateway>> */
     protected array $classes = [
+        'strongpay' => StrongPayGateway::class,
         'appypay' => AppyPayGateway::class,
         'manual' => ManualGateway::class,
     ];

@@ -31,7 +31,7 @@ class AppyPayGateway implements PaymentGateway
         $config = config('services.appypay');
         $methods = [];
 
-        if (! empty($config['method_gpo'])) {
+        if (! empty($config['method_gpo']) && config('billing.gpo_enabled')) {
             $methods['gpo'] = ['label' => 'billing.methods.gpo', 'requires_phone' => true];
         }
 

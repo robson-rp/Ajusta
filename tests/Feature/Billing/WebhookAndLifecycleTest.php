@@ -18,24 +18,45 @@ require_once __DIR__.'/BillingTestHelpers.php';
 beforeEach(function () {
     Cache::flush();
     $this->account = billingSignup('start');
-    fakeAppyPay();
+    fakeStrongPay();
     $this->charge = BillingCharge::where('uuid',
         postJson('api/v1/billing/charges', ['plan' => 'business', 'months' => 3, 'method' => 'reference'])->json('data.uuid')
     )->firstOrFail();
 });
 
-function appyPayHook(BillingCharge $charge, bool $successful, string $status = 'paid', string $token = 'hook-secret')
+function paymentUpdated(BillingCharge $charge, string $status = 'paid', string $secret = 'hook-secret')
 {
-    return postJson('api/webhooks/appypay?token='.$token, [
-        'id' => 'prov-1',
-        'merchantTransactionId' => $charge->merchant_transaction_id,
-        'amount' => $charge->amountInKwanza(),
-        'responseStatus' => ['successful' => $successful, 'status' => $status, 'code' => 200, 'message' => $status],
-    ]);
+    return strongPayHook([
+        'payment_id' => $charge->provider_id,
+        'transaction_id' => 'appy-tx-1',
+        'product' => 'ajusta',
+        'status' => $status,
+        'amount' => number_format($charge->amountInKwanza(), 2, '.', ''),
+        'currency' => 'AOA',
+        'payment_reference' => $charge->reference_number,
+        'entity_number' => $charge->entity_number,
+        'paid_at' => $status === 'paid' ? now()->toIso8601String() : null,
+        'updated_at' => now()->toIso8601String(),
+    ], $secret);
 }
 
-test('a webhook with the wrong token is rejected', function () {
-    appyPayHook($this->charge, true, token: 'wrong')->assertStatus(401);
+test('a webhook with a wrong signature is rejected', function () {
+    paymentUpdated($this->charge, secret: 'wrong')->assertStatus(401);
+
+    expect($this->charge->fresh()->status)->toBe(BillingCharge::PENDING);
+});
+
+test('an unsigned webhook is rejected', function () {
+    postJson('api/webhooks/strongpay', ['event' => 'payment.updated', 'payment_id' => $this->charge->provider_id, 'status' => 'paid'])
+        ->assertStatus(401);
+
+    expect($this->charge->fresh()->status)->toBe(BillingCharge::PENDING);
+});
+
+test('webhooks are rejected while no secret is configured', function () {
+    config()->set('services.strongpay.webhook_secret', null);
+
+    paymentUpdated($this->charge)->assertStatus(401);
 
     expect($this->charge->fresh()->status)->toBe(BillingCharge::PENDING);
 });
@@ -43,7 +64,7 @@ test('a webhook with the wrong token is rejected', function () {
 test('a paid webhook activates the subscription from the end of the trial', function () {
     $trialEnd = $this->account['subscription']->trial_ends_at;
 
-    appyPayHook($this->charge, true)->assertOk()->assertJson(['success' => true]);
+    paymentUpdated($this->charge)->assertOk()->assertJson(['success' => true]);
 
     $charge = $this->charge->fresh();
     $subscription = Subscription::find($this->account['subscription']->id);
@@ -60,11 +81,11 @@ test('a paid webhook activates the subscription from the end of the trial', func
 });
 
 test('repeated or late webhooks never change a paid charge or extend twice', function () {
-    appyPayHook($this->charge, true)->assertOk();
+    paymentUpdated($this->charge)->assertOk();
     $end = Subscription::find($this->account['subscription']->id)->current_period_ends_at;
 
-    appyPayHook($this->charge, true)->assertOk();
-    appyPayHook($this->charge, false, 'failed')->assertOk();
+    paymentUpdated($this->charge)->assertOk();
+    paymentUpdated($this->charge, 'failed')->assertOk();
 
     $charge = $this->charge->fresh();
     expect($charge->status)->toBe(BillingCharge::PAID)
@@ -72,25 +93,24 @@ test('repeated or late webhooks never change a paid charge or extend twice', fun
         ->and(Subscription::find($this->account['subscription']->id)->current_period_ends_at->equalTo($end))->toBeTrue();
 });
 
-test('failure statuses map to failed, cancelled and expired', function (string $status, string $expected) {
-    appyPayHook($this->charge, false, $status)->assertOk();
+test('StrongPay statuses map onto the charge', function (string $status, string $expected) {
+    paymentUpdated($this->charge, $status)->assertOk();
 
     expect($this->charge->fresh()->status)->toBe($expected);
 })->with([
+    ['pending', BillingCharge::PENDING],
+    ['failed', BillingCharge::FAILED],
     ['cancelled', BillingCharge::CANCELLED],
-    ['canceled', BillingCharge::CANCELLED],
     ['expired', BillingCharge::EXPIRED],
-    ['declined', BillingCharge::FAILED],
 ]);
 
-test('an unknown transaction is acknowledged without changes', function () {
-    postJson('api/webhooks/appypay?token=hook-secret', [
-        'merchantTransactionId' => 'NOPE',
-        'responseStatus' => ['successful' => true],
-    ])->assertOk();
+test('an unknown payment is acknowledged without changes', function () {
+    strongPayHook(['payment_id' => 'NOPE', 'status' => 'paid'])->assertOk();
+
+    expect($this->charge->fresh()->status)->toBe(BillingCharge::PENDING);
 });
 
-test('the simulator drives the same handler', function () {
+test('the simulator drives the StrongPay handler for StrongPay charges', function () {
     Artisan::call('billing:simulate-webhook', ['charge' => $this->charge->uuid, 'status' => 'paid']);
 
     expect($this->charge->fresh()->status)->toBe(BillingCharge::PAID);
@@ -126,7 +146,7 @@ test('trial → reminder → past due → suspended, then payment reactivates', 
     expect($this->charge->fresh()->status)->toBe(BillingCharge::EXPIRED);
     $uuid = postJson('api/v1/billing/charges', ['plan' => 'start', 'months' => 1, 'method' => 'reference'])
         ->assertCreated()->json('data.uuid');
-    appyPayHook(BillingCharge::where('uuid', $uuid)->first(), true)->assertOk();
+    paymentUpdated(BillingCharge::where('uuid', $uuid)->first())->assertOk();
     $subscription->refresh();
     expect($subscription->status)->toBe(Subscription::ACTIVE)
         ->and($subscription->current_period_ends_at->isFuture())->toBeTrue();

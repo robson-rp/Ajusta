@@ -52,6 +52,15 @@ return [
     ],
 
     /*
+    | StrongPay payments API (checkout gateway; wraps AppyPay).
+    */
+    'strongpay' => [
+        'base_url' => env('STRONGPAY_BASE_URL', 'https://strongpay.strongbox.ao'),
+        'api_key' => env('STRONGPAY_API_KEY'),
+        'webhook_secret' => env('STRONGPAY_WEBHOOK_SECRET'),
+    ],
+
+    /*
     | AppyPay Charges API (Multicaixa Express / GPO and ATM reference).
     */
     'appypay' => [

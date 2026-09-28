@@ -39,6 +39,60 @@ function billingSignup(string $plan = 'start', string $nif = '5417000001', strin
     return $result;
 }
 
+function configureStrongPay(): void
+{
+    config()->set('services.strongpay', [
+        'base_url' => 'https://strongpay.example.test',
+        'api_key' => 'sp_test',
+        'webhook_secret' => 'hook-secret',
+    ]);
+    config()->set('billing.gateways', ['strongpay']);
+}
+
+function fakeStrongPay(array $paymentResponse = [], int $status = 201): void
+{
+    configureStrongPay();
+
+    if ($paymentResponse !== []) {
+        Http::fake(['strongpay.example.test/*' => Http::response($paymentResponse, $status)]);
+
+        return;
+    }
+
+    $sequence = 0;
+
+    Http::fake([
+        'strongpay.example.test/*' => function () use (&$sequence, $status) {
+            return Http::response([
+                'id' => 'sp-pay-'.(++$sequence),
+                'transaction_id' => 'appy-tx-1',
+                'provider_id' => 'appy-prov-1',
+                'product' => 'ajusta',
+                'method' => 'reference',
+                'status' => 'pending',
+                'amount' => '18000.00',
+                'currency' => 'AOA',
+                'payment_reference' => '360886123',
+                'entity_number' => '11466',
+                'expires_at' => now()->addMinutes(45)->toIso8601String(),
+                'provider_successful' => true,
+                'provider_status' => 'SUCCESSFUL',
+                'provider_code' => 101,
+                'provider_message' => 'The request has been accepted for processing.',
+            ], $status);
+        },
+    ]);
+}
+
+/** POSTs a signed StrongPay payment.updated notification. */
+function strongPayHook(array $payload, string $secret = 'hook-secret')
+{
+    $payload = ['event' => 'payment.updated'] + $payload;
+    $signature = 'sha256='.hash_hmac('sha256', json_encode($payload), $secret);
+
+    return test()->postJson('api/webhooks/strongpay', $payload, ['X-StrongPay-Signature' => $signature]);
+}
+
 function configureAppyPay(): void
 {
     config()->set('services.appypay', [
@@ -53,6 +107,11 @@ function configureAppyPay(): void
         'reference_valid_days' => 10,
     ]);
     config()->set('billing.gateways', ['appypay']);
+}
+
+function enableGpo(): void
+{
+    config()->set('billing.gpo_enabled', true);
 }
 
 function fakeAppyPay(array $chargeResponse = [], int $chargeStatus = 200): void
