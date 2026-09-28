@@ -28,7 +28,7 @@
     {{-- Footer --}}
     @slot('footer')
         @component('mail::footer')
-            @lang('mail_sent_with', ['app' => config('app.name')])
+            @include('emails.partials.powered-by')
         @endcomponent
     @endslot
 @endcomponent

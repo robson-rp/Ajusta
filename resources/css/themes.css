@@ -1,114 +1,240 @@
+/*
+ * Colour tokens. Every name here is part of the module contract: installed
+ * modules compile these names into their own stylesheets and read the values
+ * at runtime, so a name may gain a sibling but is never renamed or removed.
+ * Values are free to change.
+ */
 :root {
-    /* AJUSTA teal — 500 (#00BFA6) is the brand signature: focus, active
-       states, highlights. Text-bearing fills use 600+ for contrast. */
-    --color-primary-50: rgb(239, 252, 249);
-    --color-primary-100: rgb(204, 247, 238);
-    --color-primary-200: rgb(153, 238, 221);
-    --color-primary-300: rgb(92, 224, 200);
-    --color-primary-400: rgb(31, 205, 178);
-    --color-primary-500: rgb(0, 191, 166);
-    --color-primary-600: rgb(0, 133, 116);
-    --color-primary-700: rgb(0, 110, 97);
-    --color-primary-800: rgb(3, 89, 79);
-    --color-primary-900: rgb(7, 74, 67);
-    --color-primary-950: rgb(1, 45, 41);
+    /* Accent: AJUSTA teal. 500 (#00BFA6) is the brand signature for focus,
+       active states and highlights; text-bearing fills use 600 and darker. */
+    --color-primary-50: #effcf9;
+    --color-primary-100: #ccf7ee;
+    --color-primary-200: #99eedd;
+    --color-primary-300: #5ce0c8;
+    --color-primary-400: #1fcdb2;
+    --color-primary-500: #00bfa6;
+    --color-primary-600: #008574;
+    --color-primary-700: #006e61;
+    --color-primary-800: #03594f;
+    --color-primary-900: #074a43;
+    --color-primary-950: #012d29;
 
-    /* Surfaces — white with an almost invisible cool tint underneath */
-    --color-surface: rgb(255, 255, 255);
-    --color-surface-secondary: rgb(247, 250, 249);
-    --color-surface-tertiary: rgb(241, 245, 244);
-    --color-surface-muted: rgb(227, 234, 232);
+    /* Text and icons drawn on a primary fill */
+    --color-on-primary: #ffffff;
 
-    /* Text — graphite from the AJUSTA wordmark */
-    --color-heading: rgb(15, 38, 36);
-    --color-body: rgb(51, 65, 63);
-    --color-muted: rgb(98, 112, 110);
-    --color-subtle: rgb(145, 158, 156);
+    /* Surfaces: surface (cards) > secondary (insets) > tertiary (canvas) */
+    --color-surface: #ffffff;
+    --color-surface-secondary: #f7faf9;
+    --color-surface-tertiary: #f1f5f4;
+    --color-surface-muted: #e3eae8;
+
+    /* Text */
+    --color-heading: #0f2624;
+    --color-body: #33413f;
+    --color-muted: #5f6d6a;
+    --color-subtle: #66726f;
 
     /* Borders */
-    --color-line-light: rgb(230, 236, 235);
-    --color-line-default: rgb(212, 221, 219);
-    --color-line-strong: rgb(183, 196, 193);
+    --color-line-light: #e6eceb;
+    --color-line-default: #d4dddb;
+    --color-line-strong: #b7c4c1;
+    /*
+     * Checkbox and switch outlines: 3:1 against the darkest surface they sit
+     * on, a modal's glass over the dimmed page (WCAG 1.4.11). Text fields use
+     * line-strong instead (see the form base styles in invoiceshelf.css).
+     */
+    --color-control-border: #7d8a87;
 
     /* Hover */
-    --color-hover: rgb(244, 248, 247);
-    --color-hover-strong: rgb(234, 241, 239);
+    --color-hover: #f4f8f7;
+    --color-hover-strong: #eaf1ef;
 
-    /* Header (fixed, not affected by dark mode) — a light surface, not a
-       brand-coloured band: teal marks what matters, it is not a background */
-    --color-header-from: rgb(255, 255, 255);
-    --color-header-to: rgb(255, 255, 255);
+    /* Kept for modules; the host header no longer paints a gradient */
+    --color-header-from: var(--color-primary-600);
+    --color-header-to: var(--color-primary-500);
 
-    /* Button colors (fixed, always bold) — white text on teal-600 ≈ 4.5:1 */
-    --color-btn-primary: rgb(0, 133, 116);
-    --color-btn-primary-hover: rgb(0, 110, 97);
+    /*
+     * Brand chrome: the sidebar and the phone app bar. A deep shade of the
+     * accent, so the navigation carries the identity and the content stays
+     * light and readable.
+     */
+    --color-chrome: #0f2624;
+    --color-chrome-raised: #16322f;
+    --color-chrome-fg: #effaf8;
+    --color-chrome-muted: #9dbab5;
+    --color-chrome-line: rgb(255 255 255 / 0.1);
+    --color-chrome-hover: rgb(255 255 255 / 0.07);
+    --color-chrome-active: rgb(255 255 255 / 0.13);
+    --color-chrome-accent: #5ce0c8;
 
-    /* Status badge text */
-    --color-status-yellow: rgb(113, 63, 18);
-    --color-status-green: rgb(20, 83, 45);
-    --color-status-blue: rgb(0, 110, 97);
-    --color-status-red: rgb(127, 29, 29);
-    --color-status-purple: rgb(107, 33, 168);
+    /* The brand gradient behind the dashboard's lead figure */
+    --color-hero-from: #0a3b36;
+    --color-hero-to: #008574;
 
-    /* Alert backgrounds & text */
-    --color-alert-warning-bg: rgb(254, 252, 232);
-    --color-alert-warning-text: rgb(133, 77, 14);
-    --color-alert-error-bg: rgb(254, 242, 242);
-    --color-alert-error-text: rgb(153, 27, 27);
-    --color-alert-success-bg: rgb(240, 253, 244);
-    --color-alert-success-text: rgb(22, 101, 52);
+    /*
+     * Glass. Translucent surfaces over the ambient canvas: the fill, a light
+     * top edge that catches the light, and the outer hairline that keeps the
+     * shape crisp on a pale ground.
+     */
+    --glass-fill: rgb(255 255 255 / 0.7);
+    --glass-fill-strong: rgb(255 255 255 / 0.8);
+    --glass-highlight: rgb(255 255 255 / 0.9);
+    --glass-edge: rgb(15 38 36 / 0.08);
+    --glass-bar: rgb(241 245 244 / 0.72);
+
+    /* Ambient light on the canvas, which the glass picks up */
+    --ambient-1: color-mix(in srgb, var(--color-primary-500) 16%, transparent);
+    --ambient-2: color-mix(in srgb, var(--color-chart-2) 10%, transparent);
+    --ambient-3: color-mix(in srgb, var(--color-primary-300) 12%, transparent);
+
+    /* Buttons */
+    --color-btn-primary: var(--color-primary-600);
+    --color-btn-primary-hover: var(--color-primary-700);
+
+    /* Status: text colour and the tint it sits on */
+    --color-status-green: #157f3d;
+    --color-status-green-bg: #e7f6ec;
+    --color-status-yellow: #a4460a;
+    --color-status-yellow-bg: #fef1e0;
+    --color-status-red: #b42318;
+    --color-status-red-bg: #fdeceb;
+    --color-status-blue: #006e61;
+    --color-status-blue-bg: #e6f7f4;
+    --color-status-purple: #6a3dd4;
+    --color-status-purple-bg: #f1ebfe;
+    --color-status-gray: #555a6d;
+    --color-status-gray-bg: #eff0f3;
+
+    /* Status as a filled mark (the receivables aging bar), validated as a set */
+    --color-status-red-fill: #d9342b;
+    --color-status-yellow-fill: #e08a12;
+    --color-status-blue-fill: #3f7fe8;
+
+    /* Alerts */
+    --color-alert-warning-bg: #fef6e8;
+    --color-alert-warning-text: #8a3b0a;
+    --color-alert-error-bg: #fdeceb;
+    --color-alert-error-text: #a3261b;
+    --color-alert-success-bg: #e7f6ec;
+    --color-alert-success-text: #126b34;
+
+    /* Destructive actions and invalid fields */
+    --color-danger: #d42a1e;
+    --color-danger-hover: #b42318;
+    /* Danger buttons carry white text; the fill keeps 4.5:1 in both themes */
+    --color-btn-danger: #d42a1e;
+    --color-btn-danger-hover: #b42318;
+
+    /*
+     * Chart series, in fixed order (validated for colour-vision deficiency on
+     * this surface): 1 sales, 2 receipts, 3 expenses.
+     */
+    --color-chart-1: #2a78d6;
+    --color-chart-2: #1baf7a;
+    --color-chart-3: #eb6834;
+
+    /* Focus ring and the scrim behind overlays */
+    --color-focus: var(--color-primary-500);
+    --color-overlay: rgb(17 19 27 / 0.42);
+
+    color-scheme: light;
 }
 
 [data-theme="dark"] {
-    /* Surfaces — layered depth: tertiary (body) < secondary < surface (cards) */
-    --color-surface: rgb(22, 33, 31);
-    --color-surface-secondary: rgb(17, 26, 25);
-    --color-surface-tertiary: rgb(11, 18, 17);
-    --color-surface-muted: rgb(36, 51, 47);
+    --color-primary-50: rgb(0 191 166 / 0.12);
+    --color-primary-100: rgb(0 191 166 / 0.2);
+    --color-primary-200: rgb(0 191 166 / 0.32);
+    --color-primary-300: #1a9e8a;
+    --color-primary-400: #33d1b8;
+    --color-primary-500: #1fcdb2;
+    --color-primary-600: #33d1b8;
+    --color-primary-700: #5ce0c8;
+    --color-primary-800: #99eedd;
+    --color-primary-900: #ccf7ee;
+    --color-primary-950: #effcf9;
+    --color-on-primary: #ffffff;
 
-    /* Text */
-    --color-heading: rgb(236, 243, 241);
-    --color-body: rgb(200, 212, 209);
-    --color-muted: rgb(146, 162, 158);
-    --color-subtle: rgb(104, 122, 118);
+    --color-surface: #16211f;
+    --color-surface-secondary: #111a19;
+    --color-surface-tertiary: #0b1211;
+    --color-surface-muted: #24332f;
 
-    /* Borders — brighter for visibility */
-    --color-line-light: rgb(36, 51, 47);
-    --color-line-default: rgb(58, 76, 71);
-    --color-line-strong: rgb(100, 120, 115);
+    --color-heading: #ecf3f1;
+    --color-body: #c8d4d1;
+    --color-muted: #92a29e;
+    --color-subtle: #7b8a86;
 
-    /* Hover */
-    --color-hover: rgb(29, 43, 40);
-    --color-hover-strong: rgb(36, 51, 47);
+    --color-line-light: #243330;
+    --color-line-default: #33443f;
+    --color-line-strong: #4a5e59;
+    --color-control-border: #62736f;
 
-    /* Status badge text */
-    --color-status-yellow: rgb(253, 224, 71);
-    --color-status-green: rgb(134, 239, 172);
-    --color-status-blue: rgb(92, 224, 200);
-    --color-status-red: rgb(252, 165, 165);
-    --color-status-purple: rgb(216, 180, 254);
+    --color-hover: #1d2b28;
+    --color-hover-strong: #24332f;
 
-    /* Alert backgrounds & text */
-    --color-alert-warning-bg: rgba(113, 63, 18, 0.2);
-    --color-alert-warning-text: rgb(253, 224, 71);
-    --color-alert-error-bg: rgba(127, 29, 29, 0.2);
-    --color-alert-error-text: rgb(252, 165, 165);
-    --color-alert-success-bg: rgba(20, 83, 45, 0.2);
-    --color-alert-success-text: rgb(134, 239, 172);
+    --color-header-from: #008574;
+    --color-header-to: #00bfa6;
 
-    /* Header follows the dark surface */
-    --color-header-from: rgb(22, 33, 31);
-    --color-header-to: rgb(22, 33, 31);
+    --color-chrome: #0b1715;
+    --color-chrome-raised: #12221f;
+    --color-chrome-fg: #ebf5f3;
+    --color-chrome-muted: #8fb0aa;
+    --color-chrome-line: rgb(255 255 255 / 0.07);
+    --color-chrome-hover: rgb(255 255 255 / 0.05);
+    --color-chrome-active: rgb(255 255 255 / 0.09);
+    --color-chrome-accent: #5ce0c8;
 
-    /* Button colors */
-    --color-btn-primary: rgb(0, 143, 124);
-    --color-btn-primary-hover: rgb(0, 165, 143);
+    --color-hero-from: #083530;
+    --color-hero-to: #007a6b;
 
-    /* Primary adjustments for dark mode — brighter teal for highlights */
-    --color-primary-50: rgba(0, 191, 166, 0.12);
-    --color-primary-100: rgba(0, 191, 166, 0.2);
-    --color-primary-400: rgb(51, 209, 184);
-    --color-primary-500: rgb(31, 205, 178);
-    --color-primary-600: rgb(51, 209, 184);
-    --color-primary-700: rgb(92, 224, 200);
+    --glass-fill: rgb(22 33 31 / 0.62);
+    --glass-fill-strong: rgb(26 38 36 / 0.8);
+    --glass-highlight: rgb(255 255 255 / 0.07);
+    --glass-edge: rgb(255 255 255 / 0.06);
+    --glass-bar: rgb(11 18 17 / 0.7);
+
+    --ambient-1: rgb(0 191 166 / 0.18);
+    --ambient-2: rgb(27 175 122 / 0.08);
+    --ambient-3: rgb(31 205 178 / 0.1);
+
+    --color-btn-primary: #008574;
+    --color-btn-primary-hover: #00917f;
+
+    --color-status-green: #5fd494;
+    --color-status-green-bg: rgb(52 199 120 / 0.14);
+    --color-status-yellow: #f3b35e;
+    --color-status-yellow-bg: rgb(245 166 35 / 0.14);
+    --color-status-red: #f98b82;
+    --color-status-red-bg: rgb(248 113 113 / 0.14);
+    --color-status-blue: #5ce0c8;
+    --color-status-blue-bg: rgb(0 191 166 / 0.14);
+    --color-status-purple: #bca3ff;
+    --color-status-purple-bg: rgb(160 120 255 / 0.16);
+    --color-status-gray: #aab0bf;
+    --color-status-gray-bg: rgb(160 166 184 / 0.14);
+
+    --color-status-red-fill: #d9453d;
+    --color-status-yellow-fill: #c98500;
+    --color-status-blue-fill: #3987e5;
+
+    --color-alert-warning-bg: rgb(245 166 35 / 0.12);
+    --color-alert-warning-text: #f3b35e;
+    --color-alert-error-bg: rgb(248 113 113 / 0.12);
+    --color-alert-error-text: #f98b82;
+    --color-alert-success-bg: rgb(52 199 120 / 0.12);
+    --color-alert-success-text: #5fd494;
+
+    --color-danger: #ef5b4f;
+    --color-danger-hover: #f46e63;
+    --color-btn-danger: #c9372c;
+    --color-btn-danger-hover: #b42318;
+    --color-focus: var(--color-primary-500);
+
+    --color-overlay: rgb(0 0 0 / 0.6);
+
+    --color-chart-1: #3987e5;
+    --color-chart-2: #199e70;
+    --color-chart-3: #d95926;
+
+    color-scheme: dark;
 }

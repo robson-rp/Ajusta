@@ -1,5 +1,5 @@
 <template>
-  <div class="relative min-h-screen w-full bg-surface-secondary">
+  <div class="bg-glass-gradient relative min-h-screen w-full overflow-hidden">
     <NotificationRoot />
 
     <main
@@ -9,13 +9,16 @@
       "
     >
       <!-- Logo above the card -->
-      <div class="mb-10 flex justify-center">
-        <MainLogo v-if="!loginPageLogo" class="h-10 w-auto" />
+      <div class="mb-8 flex justify-center">
+        <MainLogo
+          v-if="!loginPageLogo"
+          class="w-auto h-11 text-heading"
+        />
         <img
           v-else
           :src="loginPageLogo"
           alt="AJUSTA"
-          class="h-10 w-auto"
+          class="h-12 w-auto"
         />
       </div>
 
@@ -25,14 +28,20 @@
           w-full max-w-3xl
           bg-surface
           rounded-xl
-          border border-line-light
+          border border-line-default
+          shadow-sm
+          backdrop-blur-sm
           px-8 py-10 sm:px-10 sm:py-12
         "
       >
-        <!-- Step progress indicator -->
+        <!-- Step progress indicator: dots to see, a sentence to hear -->
+        <p v-if="totalSteps > 0" class="sr-only">
+          {{ $t('general.step_of', { step: currentStep, count: totalSteps }) }}
+        </p>
         <div
           v-if="totalSteps > 0"
           class="mb-8 flex items-center justify-center gap-2"
+          aria-hidden="true"
         >
           <span
             v-for="step in totalSteps"
@@ -52,9 +61,9 @@
       </article>
 
       <!-- Footer -->
-      <footer class="mt-10 text-center text-xs text-subtle">
+      <footer class="mt-8 text-center text-xs text-subtle">
         <span v-if="copyrightText">{{ copyrightText }}</span>
-        <span v-else>© {{ new Date().getFullYear() }} AJUSTA</span>
+        <PoweredBy v-else />
       </footer>
     </main>
   </div>
@@ -65,6 +74,7 @@ import { computed } from 'vue'
 import { useRoute } from 'vue-router'
 import NotificationRoot from '@/scripts/components/notifications/NotificationRoot.vue'
 import MainLogo from '@/scripts/components/icons/MainLogo.vue'
+import PoweredBy from '@/scripts/components/layout/PoweredBy.vue'
 
 declare global {
   interface Window {

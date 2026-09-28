@@ -60,6 +60,12 @@ Route::prefix('/v1')->group(function () {
         require app_path('Platform/Operations/routes/admin.php');
         require app_path('Domains/Accounts/routes/admin.php');
         require app_path('Domains/Billing/routes/admin.php');
+        require app_path('Platform/Mcp/routes/admin.php');
+
+        // Currencies are installation-wide reference data, so the list and
+        // its refresh live here rather than under a company.
+
+        require app_path('Domains/Money/routes/admin.php');
     });
 
     // Stop impersonation - uses auth:sanctum only (the impersonated user's token, not super-admin)
@@ -111,15 +117,17 @@ Route::prefix('/v1')->group(function () {
 
             require app_path('Domains/Metadata/routes/company.php');
 
-            // Backup & Disk
+            // Backup & Disk, PDF rendering and fonts, the server's mail
+            // transport: a hosting provider owns these on a managed install.
             // ----------------------------------
 
-            require app_path('Platform/Storage/routes/company.php');
+            Route::middleware('not-managed')->group(function () {
+                require app_path('Platform/Storage/routes/company.php');
 
-            // PDF rendering and fonts
-            // ----------------------------------
+                require app_path('Platform/Pdf/routes/admin.php');
 
-            require app_path('Platform/Pdf/routes/admin.php');
+                require app_path('Platform/Mail/routes/admin.php');
+            });
 
             require app_path('Platform/Operations/routes/settings.php');
 
@@ -143,6 +151,11 @@ Route::prefix('/v1')->group(function () {
         require app_path('Platform/Operations/routes/updater.php');
 
         require app_path('Domains/Accounts/routes/management.php');
+
+        // Connected AI apps (MCP)
+        // ----------------------------------
+
+        require app_path('Platform/Mcp/routes/api.php');
 
     });
 

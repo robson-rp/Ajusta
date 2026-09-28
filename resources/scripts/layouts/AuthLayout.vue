@@ -10,7 +10,7 @@
         class="absolute inset-0 h-full w-full object-cover object-[12%_center]"
       />
       <div
-        class="absolute inset-0 bg-linear-to-t from-[#0F2624]/80 via-[#0F2624]/20 via-30% to-transparent to-55%"
+        class="absolute inset-0 bg-linear-to-t from-chrome/80 via-chrome/20 via-30% to-transparent to-55%"
       />
 
       <div class="relative flex h-full flex-col justify-end p-12 xl:p-16">
@@ -33,7 +33,7 @@
 
       <main class="flex flex-1 flex-col justify-center px-6 py-12 sm:px-12 xl:px-20">
         <div class="mx-auto w-full max-w-sm">
-          <MainLogo v-if="!loginPageLogo" class="h-9 w-auto" />
+          <MainLogo v-if="!loginPageLogo" class="h-9 w-auto text-heading" />
           <img
             v-else
             :src="loginPageLogo"
@@ -41,7 +41,7 @@
             class="h-9 w-auto"
           />
 
-          <header class="mt-12 mb-8">
+          <header v-if="showHeading" class="mt-12 mb-8">
             <h1 class="text-2xl font-semibold text-heading">
               {{ heading }}
             </h1>
@@ -49,6 +49,7 @@
               {{ subheading }}
             </p>
           </header>
+          <div v-else class="mt-12" />
 
           <router-view />
         </div>
@@ -63,7 +64,7 @@
 </template>
 
 <script setup lang="ts">
-import { computed } from 'vue'
+import { computed, shallowRef } from 'vue'
 import { useRoute } from 'vue-router'
 import { useI18n } from 'vue-i18n'
 import NotificationRoot from '@/scripts/components/notifications/NotificationRoot.vue'
@@ -122,6 +123,30 @@ const subheading = computed<string>(() => {
   if (window.login_page_description) return window.login_page_description
   const name = route.name?.toString() ?? 'login'
   return t(COPY[name]?.subheading ?? COPY.login.subheading)
+})
+
+/**
+ * Before a client is connected the card belongs to the connect and retry
+ * screens, which carry their own headings. The generic "Welcome back" only
+ * makes sense once there is a server to sign in to.
+ *
+ * The boot state is imported lazily so `client/state` stays out of the web
+ * bundle, where the branch folds away entirely.
+ */
+const clientBoot = shallowRef<{ status: string } | null>(null)
+
+if (__INVOICESHELF_CLIENT__) {
+  void import('@/scripts/client/state').then((module) => {
+    clientBoot.value = module.clientState
+  })
+}
+
+const showHeading = computed<boolean>(() => {
+  if (!__INVOICESHELF_CLIENT__) {
+    return true
+  }
+
+  return clientBoot.value !== null && clientBoot.value.status === 'ready'
 })
 
 const copyrightText = computed<string | null>(() => window.copyright_text ?? null)

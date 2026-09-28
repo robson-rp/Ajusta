@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}" dir="{{ in_array(\Illuminate\Support\Str::before(str_replace('-', '_', app()->getLocale()), '_'), config('invoiceshelf.rtl_languages', []), true) ? 'rtl' : 'ltr' }}">
 
 <head>
     <meta charset="utf-8">
@@ -12,9 +12,9 @@
     <link rel="manifest" href="/favicons/site.webmanifest">
     <link rel="mask-icon" href="/favicons/safari-pinned-tab.svg" color="#00BFA6">
     <link rel="shortcut icon" href="/favicons/favicon.ico">
-    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileColor" content="#00BFA6">
     <meta name="msapplication-config" content="/favicons/browserconfig.xml">
-    <meta name="theme-color" content="#ffffff">
+    <meta name="theme-color" content="#0F2624">
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     @vite('resources/scripts/main.ts')
@@ -81,8 +81,19 @@
 
         @endif
 
-        @if(config('app.env') === 'demo')
+        {{-- @json eats the line break after it, so these end in semicolons. --}}
+        window.powered_by = @json(\App\Support\PoweredBy::clientState());
+        window.source_url = @json(\App\Support\PoweredBy::sourceUrl());
+        window.customer_portal_url = @json(\App\Support\Urls\CustomerUrl::portalUrl());
+
+        @if(\App\Platform\Operations\Managed\ManagedMode::enabled())
+            window.managed_mode = true
+            window.managed = @json(\App\Platform\Operations\Managed\ManagedMode::clientState())
+        @endif
+
+        @if(\App\Platform\Operations\Demo\DemoMode::enabled())
             window.demo_mode = true
+            window.demo = @json(\App\Platform\Operations\Demo\DemoMode::clientState())
         @endif
 
         window.InvoiceShelf.start()

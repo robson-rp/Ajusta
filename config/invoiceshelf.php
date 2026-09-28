@@ -15,7 +15,7 @@ return [
     /*
     * Minimum php version.
     */
-    'min_php_version' => '8.4.0',
+    'min_php_version' => '8.4.1',
 
     /*
     * Minimum mysql version.
@@ -55,6 +55,27 @@ return [
 
     /*
     |--------------------------------------------------------------------------
+    | Thin clients (mobile apps)
+    |--------------------------------------------------------------------------
+    |
+    | The hostname a Capacitor client serves its bundle from, which decides the
+    | two origins config/cors.php allows by default. It must not be `localhost`
+    | or `127.0.0.1`: Sanctum's default stateful list contains both, so a
+    | request from such an origin is treated as a same-site browser request and
+    | gets session plus CSRF handling, which makes every bearer POST fail
+    | with 419.
+    |
+    | `min_version` is the oldest client build this server will talk to; the
+    | client reads it from the manifest and tells the user to update.
+    |
+    */
+    'client' => [
+        'hostname' => env('INVOICESHELF_CLIENT_HOSTNAME', 'app.invoiceshelf.internal'),
+        'min_version' => env('INVOICESHELF_CLIENT_MIN_VERSION', '3.0.0-alpha.4'),
+    ],
+
+    /*
+    |--------------------------------------------------------------------------
     | Secure marketplace
     |--------------------------------------------------------------------------
     |
@@ -86,8 +107,39 @@ return [
     ],
 
     /*
-    * Whether the app runs inside the official Docker image. The image's
-    * docker/production/inject.sh sets CONTAINERIZED=true in .env at startup.
+    * The "Powered by" line under the sign-in pages, public documents and
+    * emails. A host may put its own name and address there, or hide it with
+    * INVOICESHELF_POWERED_BY=false.
+    */
+    'powered_by' => [
+        'enabled' => (bool) env('INVOICESHELF_POWERED_BY', true),
+        'name' => env('INVOICESHELF_POWERED_BY_NAME', 'AJUSTA'),
+        'url' => env('INVOICESHELF_POWERED_BY_URL', 'https://ajusta.ao'),
+    ],
+
+    /*
+    * The customer portal on a host of its own, such as
+    * https://clients-acme.example.com. When set, every link sent to a customer
+    * points there, that host serves the portal and public documents only, and
+    * the app host sends customers there. CUSTOMER_PORTAL_HOSTS lists every
+    * host that serves the portal (comma separated) when there is more than
+    * the URL's own. Unset, the portal lives on the app host as always.
+    */
+    'customer_portal' => [
+        'url' => env('CUSTOMER_PORTAL_URL'),
+        'hosts' => env('CUSTOMER_PORTAL_HOSTS'),
+    ],
+
+    /*
+    * Where the source code of the running version is, offered to everyone who
+    * uses the install (AGPL section 13). {version} becomes the running
+    * version. A modified build points it at its own source.
+    */
+    'source_url' => env('INVOICESHELF_SOURCE_URL', 'https://github.com/robson-rp/Ajusta'),
+
+    /*
+    * Whether the app runs inside the official Docker image, which sets
+    * CONTAINERIZED=true in its environment (and inject.sh in .env).
     * When true, the in-app updater is disabled (the API refuses and the UI hides
     * it) because containers upgrade via `docker compose pull`, not by copying
     * release files over the read-only/ephemeral image filesystem.
@@ -132,6 +184,12 @@ return [
         ['code' => 'pt_AO', 'name' => 'Português (Angola)'],
         ['code' => 'en', 'name' => 'English'],
     ],
+
+    /*
+    * Languages that read right to left. The app shell renders dir="rtl" for
+    * them; resources/scripts/utils/direction.ts keeps the same list.
+    */
+    'rtl_languages' => ['ar', 'fa', 'he', 'ur'],
 
     /*
     * List of Fiscal Years
@@ -223,6 +281,7 @@ return [
             'owner_only' => true,
             'ability' => '',
             'model' => '',
+            'hidden_in_demo' => true,
         ],
         [
             'title' => 'settings.menu_title.exchange_rate',
@@ -303,6 +362,7 @@ return [
             'owner_only' => true,
             'ability' => '',
             'model' => '',
+            'hidden_in_demo' => true,
         ],
         [
             'title' => 'settings.menu_title.module_configuration',
@@ -415,6 +475,7 @@ return [
             'owner_only' => true,
             'ability' => '',
             'model' => '',
+            'hidden_in_demo' => true,
         ],
         [
             'title' => 'navigation.reports',
@@ -614,5 +675,20 @@ return [
         'Invoice',
         'Payment',
         'Expense',
+    ],
+
+    /*
+    * The public demo (APP_ENV=demo): what `php artisan reset:app` rebuilds on
+    * the schedule below, and the sign-ins the login pages offer visitors.
+    * `modules` pins the marketplace releases to install, as slug@version
+    * separated by commas.
+    */
+    'demo' => [
+        'reset_cron' => env('DEMO_RESET_CRON', '0 */6 * * *'),
+        'modules' => env('DEMO_MODULES', ''),
+        'email' => 'demo@invoiceshelf.com',
+        'password' => 'demo',
+        'portal_email' => 'customer@invoiceshelf.com',
+        'portal_password' => 'demo',
     ],
 ];

@@ -19,7 +19,7 @@
       <BaseCard>
         <template #header>
           <div class="flex items-center">
-            <BaseIcon name="ServerIcon" class="w-5 h-5 mr-2 text-subtle" />
+            <BaseIcon name="ServerIcon" class="w-5 h-5 me-2 text-subtle" />
             <span class="font-medium text-body">{{ $t('general.app_version') }}</span>
           </div>
         </template>
@@ -33,7 +33,7 @@
       <BaseCard>
         <template #header>
           <div class="flex items-center">
-            <BaseIcon name="CodeBracketIcon" class="w-5 h-5 mr-2 text-subtle" />
+            <BaseIcon name="CodeBracketIcon" class="w-5 h-5 me-2 text-subtle" />
             <span class="font-medium text-body">PHP</span>
           </div>
         </template>
@@ -46,7 +46,7 @@
       <BaseCard>
         <template #header>
           <div class="flex items-center">
-            <BaseIcon name="CircleStackIcon" class="w-5 h-5 mr-2 text-subtle" />
+            <BaseIcon name="CircleStackIcon" class="w-5 h-5 me-2 text-subtle" />
             <span class="font-medium text-body">{{ $t('general.database') }}</span>
           </div>
         </template>
@@ -62,7 +62,7 @@
       <BaseCard>
         <template #header>
           <div class="flex items-center">
-            <BaseIcon name="BuildingOfficeIcon" class="w-5 h-5 mr-2 text-subtle" />
+            <BaseIcon name="BuildingOfficeIcon" class="w-5 h-5 me-2 text-subtle" />
             <span class="font-medium text-body">{{ $t('navigation.companies') }}</span>
           </div>
         </template>
@@ -75,7 +75,7 @@
       <BaseCard>
         <template #header>
           <div class="flex items-center">
-            <BaseIcon name="UsersIcon" class="w-5 h-5 mr-2 text-subtle" />
+            <BaseIcon name="UsersIcon" class="w-5 h-5 me-2 text-subtle" />
             <span class="font-medium text-body">{{ $t('navigation.all_users') }}</span>
           </div>
         </template>

@@ -1,13 +1,13 @@
 <template>
   <div
     class="
-      relative flex min-h-screen items-center justify-center bg-surface-secondary px-4 py-12
+      relative flex min-h-screen items-center justify-center bg-surface-tertiary px-4 py-12
       sm:px-6 lg:px-8
     "
   >
     <NotificationRoot />
 
-    <div class="absolute z-10 top-4 right-4 sm:top-6 sm:right-6">
+    <div class="absolute z-10 top-4 end-4 sm:top-6 sm:end-6">
       <LanguageSwitcher />
     </div>
 
@@ -15,18 +15,19 @@
       <div class="mb-10 flex justify-center">
         <MainLogo
           v-if="!customerLogo"
-          class="block h-auto w-44 max-w-full text-primary-500"
+          class="block w-auto max-w-full h-11 text-heading"
         />
 
         <img
           v-else
           :src="customerLogo"
+          alt=""
           class="block h-auto w-44 max-w-full"
         />
       </div>
 
-      <div class="rounded-xl border border-line-light bg-surface px-6 py-8 sm:px-8">
-        <div class="mb-8 text-left">
+      <div class="rounded-2xl border border-line-default bg-surface px-6 py-8 shadow-sm sm:px-8">
+        <div class="mb-8 text-start">
           <h1 class="text-2xl font-semibold tracking-tight text-heading">
             {{ pageTitle }}
           </h1>

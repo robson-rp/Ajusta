@@ -4,8 +4,10 @@ namespace App\Domains\Sales\Http\Requests;
 
 use App\Domains\Accounts\Models\CompanySetting;
 use App\Domains\Contacts\Models\Customer;
+use App\Domains\Metadata\Http\Requests\Concerns\ValidatesCustomFields;
 use App\Domains\Sales\Models\RecurringInvoice;
 use App\Support\DocumentTotals;
+use App\Support\MoneyConversion;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Validator;
 
@@ -21,6 +23,7 @@ use Illuminate\Validation\Validator;
 class RecurringInvoiceRequest extends FormRequest
 {
     use Concerns\ValidatesDocumentTaxPlaceholders;
+    use ValidatesCustomFields;
 
     /**
      * Every caller is let through; the controller holds the gate.
@@ -115,7 +118,11 @@ class RecurringInvoiceRequest extends FormRequest
             ];
         }
 
-        return $rules;
+        return array_merge(
+            $rules,
+            $this->customFieldRules(),
+            $this->customFieldRules('items.*.custom_fields'),
+        );
     }
 
     /**
@@ -124,6 +131,8 @@ class RecurringInvoiceRequest extends FormRequest
     public function withValidator(Validator $validator): void
     {
         $this->validateDocumentTaxPlaceholders($validator);
+        $this->validateCustomFieldAnswers($validator);
+        $this->validateCustomFieldAnswers($validator, 'items.*.custom_fields');
     }
 
     /**
@@ -146,7 +155,7 @@ class RecurringInvoiceRequest extends FormRequest
 
         $nextRun = RecurringInvoice::getNextInvoiceDate($this->frequency, $this->starts_at);
 
-        $perItemTax = CompanySetting::getSetting('tax_per_item', $company) ?? 'NO ';
+        $perItemTax = CompanySetting::getSetting('tax_per_item', $company) ?? 'NO';
         $perItemDiscount = CompanySetting::getSetting('discount_per_item', $company) ?? 'NO';
 
         $totals = DocumentTotals::compute(
@@ -158,7 +167,7 @@ class RecurringInvoiceRequest extends FormRequest
             $perItemDiscount
         );
 
-        $submitted = collect($this->except('items', 'taxes'));
+        $submitted = collect($this->withoutCustomFields($this->except('items', 'taxes')));
 
         return $submitted
             ->merge([
@@ -172,9 +181,9 @@ class RecurringInvoiceRequest extends FormRequest
                 'tax' => $totals['tax'],
                 'due_amount' => $totals['total'],
                 'exchange_rate' => $rate,
-                'base_sub_total' => $totals['sub_total'] * $rate,
-                'base_total' => $totals['total'] * $rate,
-                'base_tax' => $totals['tax'] * $rate,
+                'base_sub_total' => MoneyConversion::toBaseMinor($totals['sub_total'], $rate),
+                'base_total' => MoneyConversion::toBaseMinor($totals['total'], $rate),
+                'base_tax' => MoneyConversion::toBaseMinor($totals['tax'], $rate),
                 'currency_id' => $contactCurrency,
             ])
             ->toArray();

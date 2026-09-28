@@ -1,10 +1,10 @@
 <script setup lang="ts">
-import MainLogo from '@/scripts/components/icons/MainLogo.vue'
 import { ref, computed } from 'vue'
 import type { Ref, ComputedRef } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import { client } from '@/scripts/api/client'
 import InvoiceInformationCard from './InvoiceInformationCard.vue'
+import PoweredBy from '@/scripts/components/layout/PoweredBy.vue'
 import type { Currency } from '@/scripts/types/domain'
 import type { Company } from '@/scripts/types/domain'
 import type { Customer } from '@/scripts/types/domain'
@@ -41,6 +41,11 @@ async function loadInvoice(): Promise<void> {
 const shareableLink = computed<string>(() => {
   return route.path + '?pdf'
 })
+
+function getLogo(): URL {
+  const imgUrl = new URL('$images/logo-gray.png', import.meta.url)
+  return imgUrl
+}
 
 const customerLogo = computed<string | false>(() => {
   if (window.customer_logo) {
@@ -91,7 +96,7 @@ function payInvoice(): void {
               absolute
               md:relative
               bottom-2
-              left-0
+              start-0
               px-4
               md:px-0
               w-full
@@ -99,8 +104,9 @@ function payInvoice(): void {
               space-y-2
             "
           >
-            <a :href="shareableLink" target="_blank" class="block w-full">
+            <a :href="shareableLink" target="_blank" class="block w-full rounded-lg">
               <BaseButton
+                tag="span"
                 variant="primary-outline"
                 class="justify-center w-full"
               >
@@ -128,10 +134,9 @@ function payInvoice(): void {
 
       <div
         v-if="!customerLogo"
-        class="flex items-center justify-center gap-2 mt-6 text-xs text-subtle"
+        class="flex items-center justify-center mt-4 text-muted font-normal"
       >
-        {{ $t('general.sent_with') }}
-        <MainLogo class="h-3.5 w-auto" />
+        <PoweredBy :logo="getLogo().href" />
       </div>
     </div>
   </div>

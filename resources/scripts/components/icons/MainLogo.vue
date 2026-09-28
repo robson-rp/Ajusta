@@ -1,33 +1,48 @@
 <script setup lang="ts">
-import { computed } from 'vue'
+import { computed, useId } from 'vue'
 
+/**
+ * The AJUSTA lockup: the "A" symbol, then the wordmark.
+ *
+ * The wordmark takes its colour from the surrounding text colour (a
+ * text-heading or text-chrome-fg class, say), so it reads on the light pages
+ * and on the dark sidebar alike. `lightColor` still sets it directly for
+ * callers that pass one; `darkColor` is kept for compatibility and unused.
+ */
 interface Props {
   /** `full` = symbol + AJUSTA wordmark; `mark` = the "A" symbol only. */
   variant?: 'full' | 'mark'
   /** Single-colour lockup in `currentColor` (e.g. on a coloured surface). */
   mono?: boolean
+  darkColor?: string
+  lightColor?: string
 }
 
 const props = withDefaults(defineProps<Props>(), {
   variant: 'full',
   mono: false,
+  darkColor: undefined,
+  lightColor: undefined,
 })
 
 const viewBox = computed(() => (props.variant === 'mark' ? '0 0 70 51' : '0 0 296 51'))
 
-// Unique per instance so several logos on one page don't share a gradient id.
-const gradientId = `ajusta-mark-${Math.random().toString(36).slice(2, 9)}`
+const style = computed(() => (props.lightColor ? { color: props.lightColor } : undefined))
+
+// Each logo on the page gets its own gradient, so hiding one never blanks another
+const gradientId = `ajusta-mark-${useId()}`
 </script>
 
 <template>
   <!--
-    AJUSTA lockup. The symbol is two parts that fit together into an "A":
-    a long bar and a shorter one, separated by a parallel gap. Corners are
-    rounded by stroking each polygon with its own fill (round joins).
+    The symbol is two parts that fit together into an "A": a long bar and a
+    shorter one, separated by a parallel gap. Corners are rounded by stroking
+    each polygon with its own fill (round joins).
   -->
   <svg
     :viewBox="viewBox"
     xmlns="http://www.w3.org/2000/svg"
+    :style="style"
     role="img"
     aria-label="AJUSTA"
   >
@@ -61,7 +76,7 @@ const gradientId = `ajusta-mark-${Math.random().toString(36).slice(2, 9)}`
       font-family="'Inter Variable', Inter, system-ui, sans-serif"
       font-size="39"
       font-weight="600"
-      :fill="mono ? 'currentColor' : 'var(--color-heading, #0F2624)'"
+      fill="currentColor"
     >ΛJUSTΛ</text>
   </svg>
 </template>

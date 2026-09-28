@@ -9,8 +9,8 @@ use App\Domains\Metadata\Contracts\CustomFieldValueWriter;
 use App\Domains\Sales\Contracts\DocumentExchangeRateRecorder;
 use App\Domains\Sales\Models\Invoice;
 use App\Domains\Sales\Models\RecurringInvoice;
-use App\Facades\Hashids;
-use App\Support\Hashids\HashidConnection;
+use App\Support\MoneyConversion;
+use App\Support\PublicToken;
 use Carbon\Carbon;
 use Illuminate\Support\Collection;
 
@@ -42,10 +42,10 @@ class RecurringInvoiceService
             $this->exchangeRateRecorder->record($recurringInvoice);
         }
 
-        $this->createItems($recurringInvoice, $items);
+        $this->documentItemService->createItems($recurringInvoice, $items);
 
         if ($taxes) {
-            $this->createTaxes($recurringInvoice, $taxes);
+            $this->documentItemService->createTaxes($recurringInvoice, $taxes);
         }
 
         if ($customFields) {
@@ -70,12 +70,20 @@ class RecurringInvoiceService
             $this->exchangeRateRecorder->record($recurringInvoice);
         }
 
+        // Answers to item-level custom fields have no cascade of their own,
+        // so they are cleared row by row before the items are replaced.
+        foreach ($recurringInvoice->items as $lineItem) {
+            foreach ($lineItem->fields()->get() as $answer) {
+                $answer->delete();
+            }
+        }
+
         $recurringInvoice->items()->delete();
-        $this->createItems($recurringInvoice, $items);
+        $this->documentItemService->createItems($recurringInvoice, $items);
 
         $recurringInvoice->taxes()->delete();
         if ($taxes) {
-            $this->createTaxes($recurringInvoice, $taxes);
+            $this->documentItemService->createTaxes($recurringInvoice, $taxes);
         }
 
         if ($customFields) {
@@ -101,6 +109,14 @@ class RecurringInvoiceService
             $lineItems = $recurringInvoice->items();
 
             if ($lineItems->exists()) {
+                // Same reason as in update(): a bulk delete never reaches the
+                // per-row hook that would clear each line's answers.
+                foreach ($recurringInvoice->items as $lineItem) {
+                    foreach ($lineItem->fields()->get() as $answer) {
+                        $answer->delete();
+                    }
+                }
+
                 $lineItems->delete();
             }
 
@@ -114,7 +130,14 @@ class RecurringInvoiceService
         return true;
     }
 
-    public function generateInvoice(RecurringInvoice $recurringInvoice): void
+    /**
+     * Mint one invoice from a schedule, if the schedule is still owed one.
+     *
+     * `$advanceSchedule` is false when the caller has already claimed the row
+     * by moving `next_invoice_at` on itself, which is how the scheduled
+     * command stops two runs in the same minute from billing twice.
+     */
+    public function generateInvoice(RecurringInvoice $recurringInvoice, bool $advanceSchedule = true): void
     {
         if (Carbon::now()->lessThan($recurringInvoice->starts_at)) {
             return;
@@ -126,7 +149,7 @@ class RecurringInvoiceService
 
             if ($endDate >= $startDate) {
                 $this->createInvoiceFromRecurring($recurringInvoice);
-                $recurringInvoice->updateNextInvoiceDate();
+                $this->advance($recurringInvoice, $advanceSchedule);
             } else {
                 $recurringInvoice->markStatusAsCompleted();
             }
@@ -135,12 +158,22 @@ class RecurringInvoiceService
 
             if ($invoiceCount < $recurringInvoice->limit_count) {
                 $this->createInvoiceFromRecurring($recurringInvoice);
-                $recurringInvoice->updateNextInvoiceDate();
+                $this->advance($recurringInvoice, $advanceSchedule);
             } else {
                 $recurringInvoice->markStatusAsCompleted();
             }
         } else {
             $this->createInvoiceFromRecurring($recurringInvoice);
+            $this->advance($recurringInvoice, $advanceSchedule);
+        }
+    }
+
+    /**
+     * Move the schedule on, unless the caller already did it.
+     */
+    private function advance(RecurringInvoice $recurringInvoice, bool $advanceSchedule): void
+    {
+        if ($advanceSchedule) {
             $recurringInvoice->updateNextInvoiceDate();
         }
     }
@@ -184,11 +217,11 @@ class RecurringInvoiceService
         $newInvoice['exchange_rate'] = $recurringInvoice->exchange_rate;
         $newInvoice['sales_tax_type'] = $recurringInvoice->sales_tax_type;
         $newInvoice['sales_tax_address_type'] = $recurringInvoice->sales_tax_address_type;
-        $newInvoice['base_due_amount'] = $recurringInvoice->exchange_rate * $recurringInvoice->due_amount;
-        $newInvoice['base_discount_val'] = $recurringInvoice->exchange_rate * $recurringInvoice->discount_val;
-        $newInvoice['base_sub_total'] = $recurringInvoice->exchange_rate * $recurringInvoice->sub_total;
-        $newInvoice['base_tax'] = $recurringInvoice->exchange_rate * $recurringInvoice->tax;
-        $newInvoice['base_total'] = $recurringInvoice->exchange_rate * $recurringInvoice->total;
+        $newInvoice['base_due_amount'] = MoneyConversion::toBaseMinor($newInvoice['due_amount'], $recurringInvoice->exchange_rate);
+        $newInvoice['base_discount_val'] = MoneyConversion::toBaseMinor($recurringInvoice->discount_val, $recurringInvoice->exchange_rate);
+        $newInvoice['base_sub_total'] = MoneyConversion::toBaseMinor($recurringInvoice->sub_total, $recurringInvoice->exchange_rate);
+        $newInvoice['base_tax'] = MoneyConversion::toBaseMinor($recurringInvoice->tax, $recurringInvoice->exchange_rate);
+        $newInvoice['base_total'] = MoneyConversion::toBaseMinor($recurringInvoice->total, $recurringInvoice->exchange_rate);
 
         // Stamped last: the visible number is rendered from a format that may
         // embed either of the two sequences.
@@ -199,7 +232,7 @@ class RecurringInvoiceService
         ];
 
         $invoice = Invoice::create($newInvoice);
-        $invoice->unique_hash = Hashids::connection(HashidConnection::Invoice->value)->encode($invoice->id);
+        $invoice->unique_hash = PublicToken::make();
         $invoice->save();
 
         $recurringInvoice->load('items.taxes');
@@ -233,39 +266,6 @@ class RecurringInvoiceService
             ];
 
             $this->invoiceService->send($invoice, $data);
-        }
-    }
-
-    private function createItems(RecurringInvoice $recurringInvoice, array $items): void
-    {
-        foreach ($items as $item) {
-            $item['company_id'] = $recurringInvoice->company_id;
-            $createdItem = $recurringInvoice->items()->create($item);
-            if (array_key_exists('taxes', $item) && $item['taxes']) {
-                foreach ($item['taxes'] as $tax) {
-                    if (empty($tax['tax_type_id'])) {
-                        continue;
-                    }
-
-                    $tax['company_id'] = $recurringInvoice->company_id;
-                    if (gettype($tax['amount']) !== 'NULL') {
-                        $createdItem->taxes()->create($tax);
-                    }
-                }
-            }
-        }
-    }
-
-    /**
-     * Write the template's own tax rows, skipping the ones carrying no amount.
-     */
-    private function createTaxes(RecurringInvoice $recurringInvoice, array $taxes): void
-    {
-        foreach ($taxes as $tax) {
-            if (gettype($tax['amount']) !== 'NULL') {
-                $tax['company_id'] = $recurringInvoice->company_id;
-                $recurringInvoice->taxes()->create($tax);
-            }
         }
     }
 }

@@ -6,6 +6,7 @@ use App\Domains\Catalog\Models\Item;
 use App\Domains\Catalog\Models\Unit;
 use App\Domains\Contacts\Models\Address;
 use App\Domains\Contacts\Models\Customer;
+use App\Domains\Metadata\Concerns\HasCustomFields;
 use App\Domains\Metadata\Models\CustomField;
 use App\Domains\Metadata\Models\CustomFieldValue;
 use App\Domains\Money\Models\ExchangeRateLog;
@@ -37,10 +38,20 @@ use Spatie\MediaLibrary\InteractsWithMedia;
  */
 class Company extends Model implements HasMedia
 {
+    use HasCustomFields;
     use HasFactory;
     use InteractsWithMedia;
 
     protected $table = 'companies';
+
+    /**
+     * A company has no `company_id`; it is the company, so its own key is
+     * what its answers are scoped against.
+     */
+    public function customFieldCompanyId(): ?int
+    {
+        return $this->getKey();
+    }
 
     protected $guarded = [
         'id',

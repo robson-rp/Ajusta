@@ -8,6 +8,7 @@ use App\Domains\Accounts\Models\Company;
 use App\Domains\Accounts\Models\CompanyInvitation;
 use App\Domains\Accounts\Models\CompanySetting;
 use App\Domains\Accounts\Models\ImpersonationLog;
+use App\Domains\Accounts\Models\RolePreset;
 use App\Domains\Accounts\Models\User;
 use App\Domains\Accounts\Models\UserSetting;
 use App\Domains\Billing\Models\BillingCharge;
@@ -38,6 +39,8 @@ use App\Domains\Sales\Models\RecurringInvoice;
 use App\Domains\Taxation\Models\Tax;
 use App\Domains\Taxation\Models\TaxType;
 use App\Platform\Mail\Models\EmailLog;
+use App\Platform\Mcp\Models\McpActivity;
+use App\Platform\Mcp\Models\McpConnection;
 use App\Platform\Modules\Models\MarketplaceCredential;
 use App\Platform\Modules\Models\MarketplaceOperation;
 use App\Platform\Modules\Models\Module;
@@ -94,6 +97,8 @@ final class ModelIdentityMap
             'item' => Item::class,
             'marketplace_credential' => MarketplaceCredential::class,
             'marketplace_operation' => MarketplaceOperation::class,
+            'mcp_activity' => McpActivity::class,
+            'mcp_connection' => McpConnection::class,
             'module' => Module::class,
             'note' => Note::class,
             self::PAYMENT_ALIAS => Payment::class,
@@ -101,6 +106,7 @@ final class ModelIdentityMap
             'payment_method' => PaymentMethod::class,
             'plan' => Plan::class,
             'recurring_invoice' => RecurringInvoice::class,
+            'role_preset' => RolePreset::class,
             'setting' => Setting::class,
             'subscription' => Subscription::class,
             'tax' => Tax::class,

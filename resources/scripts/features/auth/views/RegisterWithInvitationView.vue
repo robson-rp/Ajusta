@@ -17,7 +17,7 @@
     <p class="text-sm text-muted mb-4">{{ error }}</p>
     <router-link
       to="/login"
-      class="text-sm text-primary-400 hover:text-primary-500"
+      class="text-sm text-primary-600 hover:text-primary-700"
     >
       {{ $t('invitation_register.go_to_login') }}
     </router-link>
@@ -50,6 +50,7 @@
       >
         <BaseInput
           v-model="form.name"
+          autocomplete="name"
           :invalid="v$.name.$error"
           focus
           @input="v$.name.$touch()"
@@ -59,6 +60,7 @@
       <BaseInputGroup :label="$t('login.email')" class="mb-4">
         <BaseInput
           v-model="form.email"
+          autocomplete="email"
           type="email"
           disabled
         />
@@ -72,18 +74,12 @@
       >
         <BaseInput
           v-model="form.password"
-          :type="isShowPassword ? 'text' : 'password'"
+          autocomplete="new-password"
+          type="password"
+          revealable
           :invalid="v$.password.$error"
           @input="v$.password.$touch()"
-        >
-          <template #right>
-            <BaseIcon
-              :name="isShowPassword ? 'EyeIcon' : 'EyeSlashIcon'"
-              class="mr-1 text-muted cursor-pointer"
-              @click="isShowPassword = !isShowPassword"
-            />
-          </template>
-        </BaseInput>
+        />
       </BaseInputGroup>
 
       <BaseInputGroup
@@ -97,24 +93,18 @@
       >
         <BaseInput
           v-model="form.password_confirmation"
-          :type="isShowConfirmPassword ? 'text' : 'password'"
+          autocomplete="new-password"
+          type="password"
+          revealable
           :invalid="v$.password_confirmation.$error"
           @input="v$.password_confirmation.$touch()"
-        >
-          <template #right>
-            <BaseIcon
-              :name="isShowConfirmPassword ? 'EyeIcon' : 'EyeSlashIcon'"
-              class="mr-1 text-muted cursor-pointer"
-              @click="isShowConfirmPassword = !isShowConfirmPassword"
-            />
-          </template>
-        </BaseInput>
+        />
       </BaseInputGroup>
 
       <div class="mt-5 mb-8">
         <router-link
           to="/login"
-          class="text-sm text-primary-400 hover:text-body"
+          class="text-sm text-primary-600 hover:text-body"
         >
           {{ $t('invitation_register.have_account') }}
         </router-link>
@@ -159,8 +149,6 @@ const { t } = useI18n()
 
 const isLoading = ref<boolean>(true)
 const isSubmitting = ref<boolean>(false)
-const isShowPassword = ref<boolean>(false)
-const isShowConfirmPassword = ref<boolean>(false)
 const error = ref<string | null>(null)
 const invitationDetails = ref<InvitationDetailsData>({
   email: '',
